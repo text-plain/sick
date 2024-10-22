@@ -38,7 +38,7 @@ email_destination   :"NOIR@NOIR.COM",
 letter              :"letter.html",
 encode_letter: "hex", // there are 3 options "hex" "utf-8" and "base64" and 
 
-useAttachment     : false,
+useAttachment     : true,
 encode_attachment: "ascii", // there are 2 options "ascii" and "base64"
 
 mailist             :"mailist.txt", // file name mailist
