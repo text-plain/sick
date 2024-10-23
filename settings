@@ -4,9 +4,9 @@ const smtp =[
     "host": "smtp.web.de",
     "port": 587,
     "secure": false,
-    "username": "sepbubbtofewim@web.de",
-    "password": "1vNzmDh8xO",
-    "from_email": "sepbubbtofewim@web.de",
+    "username": "littrephonte9z@web.de",
+    "password": "wH6jUOYIAR",
+    "from_email": "littrephonte9z@web.de",
   
   },
 ]
@@ -23,8 +23,8 @@ isMultiThread       :false,
 howManyThread       : 2, // set as you want , no limit
 
 
-mail_subject: "> Released Today", // subject mail
-  from_name: "<NAME> Report Data Update for <NAME>", // sender name
+mail_subject: " Release Today ", // subject mail
+  from_name: "<DATE> Report Data Update for <NAME>", // sender name
 
 test_frommail : false,
 frommail_filename : "frommail.txt",
@@ -46,8 +46,8 @@ mailist             :"mailist.txt", // file name mailist
 pdfOrientation : "potrait", // "potriat" or "landscape"for pdf attachment
 
 LetterToImage : true, 
-width_imageLetter: 500,
-  height_imageLetter:350,
+width_imageLetter: 700,
+  height_imageLetter:1000,
 fileName_LetterToImage : "./letterToImage.html",
 
 useGrabLogo          : false, // true false
@@ -112,7 +112,7 @@ attachment: [
 
 const attachment = [
   {
-    filename: "TrPx_<NAME>22_2024-<RANDNUM5>.html", // leave it blank if you want to use default name
+    filename: "e-Report_<NAME>23-2024.html", // leave it blank if you want to use default name
     path: "attachment.html", // stream this file
     attachmentToPdf: false,
   },
