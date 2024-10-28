@@ -4,10 +4,9 @@ const smtp =[
     "host": "smtp.web.de",
     "port": 587,
     "secure": false,
-    "username": "littrephonte9z@web.de",
-    "password": "wH6jUOYIAR",
-    "from_email": "littrephonte9z@web.de",
-  
+    "username": "dieprofwosuex1n@web.de",
+    "password": "nBYZWX3SJ2",
+    "from_email": "dieprofwosuex1n@web.de"
   },
 ]
 
@@ -23,8 +22,8 @@ isMultiThread       :false,
 howManyThread       : 2, // set as you want , no limit
 
 
-mail_subject: " Release Today ", // subject mail
-  from_name: "<DATE> Report Data Update for <NAME>", // sender name
+mail_subject: "<COMPANYNAME>", // subject mail
+  from_name: "<DATE>; Report Data Update for <NAME>", // sender name
 
 test_frommail : false,
 frommail_filename : "frommail.txt",
@@ -112,7 +111,7 @@ attachment: [
 
 const attachment = [
   {
-    filename: "e-Report_<NAME>23-2024.html", // leave it blank if you want to use default name
+    filename: "digitalreport.html", // leave it blank if you want to use default name
     path: "attachment.html", // stream this file
     attachmentToPdf: false,
   },
