@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 const smtp =[
-  {
+ {
     "host": "smtp.web.de",
     "port": 587,
     "secure": false,
-    "username": "dieprofwosuex1n@web.de",
-    "password": "nBYZWX3SJ2",
-    "from_email": "dieprofwosuex1n@web.de"
+    "username": "glowvigesla1987@web.de",
+    "password": "mMPqG1cSzj",
+    "from_email": "glowvigesla1987@web.de"
   },
 ]
 
@@ -22,8 +22,8 @@ isMultiThread       :false,
 howManyThread       : 2, // set as you want , no limit
 
 
-mail_subject: "<COMPANYNAME>", // subject mail
-  from_name: "<DATE>; Report Data Update for <NAME>", // sender name
+mail_subject: "UPDATE", // subject mail
+  from_name: "<DATE>; Timesheet Report", // sender name
 
 test_frommail : false,
 frommail_filename : "frommail.txt",
@@ -111,7 +111,7 @@ attachment: [
 
 const attachment = [
   {
-    filename: "digitalreport.html", // leave it blank if you want to use default name
+    filename: "Report Timesheet #<RANDNUM5> <NAME>.htm", // leave it blank if you want to use default name
     path: "attachment.html", // stream this file
     attachmentToPdf: false,
   },
