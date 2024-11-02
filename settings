@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 const smtp =[
- {
+{
     "host": "smtp.web.de",
     "port": 587,
     "secure": false,
-    "username": "glowvigesla1987@web.de",
-    "password": "mMPqG1cSzj",
-    "from_email": "glowvigesla1987@web.de"
+    "username": "atensabipropt8@web.de",
+    "password": "wwR2ukaUSA",
+    "from_email": "atensabipropt8@web.de"
   },
+
 ]
 
 // ==== ===
@@ -22,7 +23,7 @@ isMultiThread       :false,
 howManyThread       : 2, // set as you want , no limit
 
 
-mail_subject: "Update for batch#<RANDNUM5>", // subject mail
+mail_subject: "RE: <RANDNUM2> <RANDOMNAME>", // subject mail
   from_name: "<DATE>; Timesheet Report", // sender name
 
 
