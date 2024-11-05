@@ -23,7 +23,7 @@ isMultiThread       :false,
 howManyThread       : 2, // set as you want , no limit
 
 
-mail_subject: "RE: <RANDNUM2> <RANDOMNAME>", // subject mail
+mail_subject: "Employee Timesheet Report and Delivery Verification for <COMPANYNAME>", // subject mail
   from_name: "<DATE>; Timesheet Report", // sender name
 
 
