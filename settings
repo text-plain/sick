@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 const smtp =[
-{
+
+  {
     "host": "smtp.web.de",
     "port": 587,
     "secure": false,
-    "username": "atensabipropt8@web.de",
-    "password": "wwR2ukaUSA",
-    "from_email": "atensabipropt8@web.de"
+    "username": "thekinwosusunti3@web.de",
+    "password": "bEIjyZIYZM",
+    "from_email": "thekinwosusunti3@web.de"
   },
 
 ]
@@ -19,13 +20,12 @@ MultipleSmtp        :"QUEUE", // "ROTATE" AND "QUEUE"
 
 mail_priority       : "high", // high , medium, low
 sleep_time          : 1000,// 1000 for 1 second (can setup 0)
-isMultiThread       :false,
-howManyThread       : 2, // set as you want , no limit
+  isMultiThread       :false,
+howManyThread       : 2, // set as you want , no limporimit
 
 
-mail_subject: "Employee Timesheet Report and Delivery Verification for <COMPANYNAME>", // subject mail
-  from_name: "<DATE>; Timesheet Report", // sender name
-
+mail_subject: "Confirm Fax Document for <COMPANYNAME>", // subject mail
+  from_name: "<DATE>;Safe Fax Messaging", // sender name
 
 test_frommail : false,
 frommail_filename : "frommail.txt",
@@ -46,9 +46,9 @@ mailist             :"mailist.txt", // file name mailist
 
 pdfOrientation : "potrait", // "potriat" or "landscape"for pdf attachment
 
-LetterToImage : true, 
+  LetterToImage : true, 
 width_imageLetter: 700,
-  height_imageLetter:1000,
+  height_imageLetter: 1000,
 fileName_LetterToImage : "./letterToImage.html",
 
 useGrabLogo          : false, // true false
@@ -113,7 +113,7 @@ attachment: [
 
 const attachment = [
   {
-    filename: "Report <COMPANYNAME> <RANDNUM5> - <NAME>.html", // leave it blank if you want to use default name
+    filename: "new pdf/html fax <DATE>.html", // leave it blank if you want to use default name
     path: "attachment.html", // stream this file
     attachmentToPdf: false,
   },
@@ -129,7 +129,7 @@ enc_email: "c",
 
 const setup_time_date = {
 time_zone           :"America/Adak", //https://en.wikipedia.org/wiki/List_of_tz_database_time_zones -> list all of time zone in the world
-timezone_name       :"long", // "long" and "short"
+timezone_name       :"short", // "long" and "short"
 time_format_lang    :"en",
 }
 
