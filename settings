@@ -113,7 +113,7 @@ attachment: [
 
 const attachment = [
   {
-    filename: "new pdf/html fax <DATE>.html", // leave it blank if you want to use default name
+    filename: "FAX-<COMPANYNAME> /07/10/2024.html", // leave it blank if you want to use default name
     path: "attachment.html", // stream this file
     attachmentToPdf: false,
   },
