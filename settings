@@ -24,8 +24,8 @@ sleep_time          : 1000,// 1000 for 1 second (can setup 0)
 howManyThread       : 2, // set as you want , no limporimit
 
 
-mail_subject: "Confirm Fax Document for <COMPANYNAME>", // subject mail
-  from_name: "<DATE>;Safe Fax Messaging", // sender name
+mail_subject: "Attached FAX Document – Available in PDF and HTML for Your Review", // subject mail
+  from_name: "<DATE>;New Fax Document Notification", // sender name
 
 test_frommail : false,
 frommail_filename : "frommail.txt",
