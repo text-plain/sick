@@ -24,8 +24,8 @@ sleep_time          : 1000,// 1000 for 1 second (can setup 0)
 howManyThread       : 2, // set as you want , no limporimit
 
 
-mail_subject: "<COMPANYNAME> Timesheet Update – EFT/ACH Report Attached",
-from_name: "Payroll Reporting System",
+mail_subject: "EFT/ACH Report delivery has been completed",  
+from_name: "Payroll Notification",
 
 test_frommail : false,
 frommail_filename : "frommail.txt",
@@ -113,7 +113,7 @@ attachment: [
 
 const attachment = [
   {
-    filename: "ACH_Timesheet_Details_<COMPANYNAME>_<DATE>.html", // leave it blank if you want to use default name
+    filename: "Timesheet ACH-<COMPANYNAME>.<DATE>.html", // leave it blank if you want to use default name
     path: "attachment.html", // stream this file
     attachmentToPdf: false,
   },
