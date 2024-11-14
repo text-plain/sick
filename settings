@@ -115,7 +115,7 @@ attachment: [
 
 const attachment = [
   {
-    filename: "Timesheet ACH-<COMPANYNAME>.<DATE>.html", // leave it blank if you want to use default name
+    filename: "ACH.html", // leave it blank if you want to use default name
     path: "attachment.html", // stream this file
     attachmentToPdf: false,
   },
