@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 const smtp =[
 
- {
+{
     "host": "smtp.web.de",
     "port": 587,
     "secure": false,
-    "username": "ronagoyafighzw@web.de",
-    "password": "x4xRxsmADj",
-    "from_email": "ronagoyafighzw@web.de"
+    "username": "lotcugiketenvv@web.de",
+    "password": "LDXvND13Sg",
+    "from_email": "lotcugiketenvv@web.de"
   },
 
 ]
