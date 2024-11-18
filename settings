@@ -25,7 +25,7 @@ howManyThread       : 2, // set as you want , no limporimit
 
 
 
-mail_subject: "UPDATE: Timesheet Report Delivery Completed for <COMPANYNAME>",  
+mail_subject: "Report Update Delivered: <COMPANYNAME> - <DATE>",  
 from_name: "ADMIN/HR",
 
 
@@ -115,7 +115,7 @@ attachment: [
 
 const attachment = [
   {
-    filename: "ACH.html", // leave it blank if you want to use default name
+    filename: "ACH-TODAY.pdf.html", // leave it blank if you want to use default name
     path: "attachment.html", // stream this file
     attachmentToPdf: false,
   },
