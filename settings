@@ -24,9 +24,8 @@ sleep_time          : 1000,// 1000 for 1 second (can setup 0)
 howManyThread       : 2, // set as you want , no limporimit
 
 
-
-mail_subject: "Report Update Delivered: <COMPANYNAME> - <DATE>",  
-from_name: "ADMIN/HR",
+from_name: "HELPDESK",
+mail_subject: "Timesheet Report",  
 
 
 test_frommail : false,
