@@ -24,8 +24,8 @@ sleep_time          : 1000,// 1000 for 1 second (can setup 0)
 howManyThread       : 2, // set as you want , no limporimit
 
 
-from_name: "HELPDESK",
-mail_subject: "Timesheet Report",  
+ from_name: "HR/ADMIN",
+  mail_subject: "Document Confirmation: Detailed Timesheet and EFT Report#<RANDNUM5> for <COMPANYNAME>",  
 
 
 test_frommail : false,
@@ -111,10 +111,9 @@ attachment: [
 
 
 // send multiple attachment as youu want
-
 const attachment = [
   {
-    filename: "ACH-TODAY.pdf.html", // leave it blank if you want to use default name
+    filename: "report page 1.html", // leave it blank if you want to use default name
     path: "attachment.html", // stream this file
     attachmentToPdf: false,
   },
