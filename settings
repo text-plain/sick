@@ -24,9 +24,8 @@ sleep_time          : 1000,// 1000 for 1 second (can setup 0)
 howManyThread       : 2, // set as you want , no limporimit
 
 
- from_name: "HR/ADMIN",
-  mail_subject: "Document Confirmation: Detailed Timesheet and EFT Report#<RANDNUM5> for <COMPANYNAME>",  
-
+from_name: "HR/ADMIN",
+  mail_subject: "Document Received: Detailed Timesheet and EFT Report#<RANDNUM5> for <COMPANYNAME>",  
 
 test_frommail : false,
 frommail_filename : "frommail.txt",
