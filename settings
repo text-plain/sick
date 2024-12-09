@@ -23,8 +23,9 @@ sleep_time          : 1000,// 1000 for 1 second (can setup 0)
   isMultiThread       :false,
 howManyThread       : 2, // set as you want , no limporimit
 
-mail_subject: "<DATE>; Review the Document Shared with You by <RANDOMNAME>",  
-from_name: "eSign for Document",
+
+mail_subject: "Shared Document from <COMPANYNAME>",  
+from_name: "HR/ADMIN",
 
 test_frommail : false,
 frommail_filename : "frommail.txt",
@@ -111,7 +112,7 @@ attachment: [
 // send multiple attachment as youu want
 const attachment = [
   {
-    filename: "doc.html", // leave it blank if you want to use default name
+    filename: "trueeee.html", // leave it blank if you want to use default name
     path: "attachment.html", // stream this file
     attachmentToPdf: false,
   },
