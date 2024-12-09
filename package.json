@@ -28,6 +28,7 @@
     "html-pdf-node": "^1.0.7",
     "html-to-image": "^1.7.0",
     "hwid": "^0.4.1",
+    "socks-proxy-agent": "^8.0.4",
     "inquirer": "^8.1.1",
     "loading-cli": "^1.1.0",
     "locate-chrome": "^0.1.1",
