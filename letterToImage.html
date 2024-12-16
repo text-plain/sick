@@ -3,113 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%=COMPANYNAME%> Timesheet Report</title>
-    <style>
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f0f2f5;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            background-color: #ffffff;
-            max-width: 700px;
-            margin: 40px auto;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 26px;
-            color: #3f51b5;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 17px;
-            color: #555555;
-            margin-bottom: 30px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        th, td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        th {
-            font-weight: bold;
-            background-color: #f7f8fa;
-            color: #3f51b5;
-        }
-
-        td {
-            color: #444444;
-        }
-
-        .footer {
-            font-size: 14px;
-            color: #999999;
-            margin-top: 30px;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: #3f51b5;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 16px;
-            margin-top: 20px;
-            transition: background-color 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #2e3b87;
-        }
+    <title></title>
+    <style type="text/css">
+        *{box-sizing: border-box;}
+        body{font-family: 'Aptos', 'Aptos_EmbeddedFont', 'Aptos_MSFontService', 'Calibri', Helvetica, sans-serif !important; font-size: 12pt;margin: 0;padding: 0;overflow: hidden;line-height: 1.7;}
+        .aq380 {width: 30px;display: grid;gap: 1px;grid-template-columns: 1fr 1fr;}.xTr {height:16px;width:16px;}.xTr.rR { background-color: #f35325; }.xTr.rY { background-color: #ffba08; }.xTr.rB { background-color: #05a6f0; }.xTr.rG { background-color: #81bc06; }
     </style>
 </head>
-<body>
+<body dir="ltr">
+    <table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin: 0;padding: 20px;background-color: #efefef;">
+        <tbody>
+            <tr style="display: grid;">
+                
+                <td>
+                    <table border="0" cellspacing="0" cellpadding="0" align="start" width="540px" style="margin: 0 auto;">
+                        <tbody>
+                            <tr sty><td>
+                                <img src="https://logos-world.net/wp-content/uploads/2021/08/DocuSign-Logo-1.png" alt="shareFile-logo" width="130px"> 
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table border="0" cellspacing="0" cellpadding="0" align="center" width="540px" bgcolor="#feffff" style="border: none;box-shadow: 0px 8px 7px 0px rgb(111, 111, 111);border-radius: .07rem;">
+                        <tbody>
+                            <tr style="display: grid;padding: 20px;background-color: #a910a4;color: #fff !important;">
+                                <td style="padding:30px 20px;border: solid 2px #f5f5f5;display: grid;align-items: center;justify-content: center;text-align: center;">
+                                    <span><img src="https://na2.docusign.net/member/Images/email/docComplete-white.png" alt="signIcon" width="50"></span>
+                                    <div style="padding:10px 20px;width: fit-content;margin: 0 auto;border: solid 2px #f5f5f5;font-weight: 600;">REVIEW & SIGN DOCUMENT</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table border="0" cellspacing="0" cellpadding="0" align="center" width="540px" bgcolor="#feffff" style="border: none;box-shadow: 0px 2px 6px 0px rgba(150, 150, 150, 0.304);">
+                        <tbody>
+                            <tr style="display: grid;padding: 20px;padding-bottom:0; background-color: #f5f5f5;color: #898989 !important;">
+                                <td style="padding: 3px;"><b>Approval Status</b></td>
+                                <td style="padding: 3px 13px;color: #2c2c2c;font-size: 9pt;">All Parties have completed and Docu-Sign all pending Documents.</td>
+                            </tr>
+                            <tr style="display: grid;padding:0 20px;background-color: #f5f5f5;color: #898989 !important;">
+                                <td style="padding: 3px 75px;color: #2c2c2c;font-size: 9pt;display: flex;align-items: end;justify-content: space-between;">
+                                    <span><b>File Name:</b></span> <span style="text-align: right;">Perimeter Agreement: SecureDoc <%=COMPANYNAME%> signed.pdf</span>
+                                </td>
+                                <td style="padding: 3px 75px;color: #2c2c2c;font-size: 9pt;display: flex;align-items: end;justify-content: space-between;">
+                                    <span><b>Status:</b></span><span style="align-items: center;text-align: center;display: grid;"> <b>Completed (4/4)</b>Signed Completely </span>
+                                </td>
+                                <td style="padding: 1px 75px;color: #2c2c2c;font-size: 9pt;display: flex;align-items: center;justify-content: space-between;">
+                                    <span><b>Participants: </b> &nbsp; (4) </span> 
+                                    <span> 
+                                        <ul style="list-style: none;line-height: 1.5;display: grid;padding: 0;text-align: right;">
+                                        <li><%=FIRSTRANDOMNAME%>.cole@<%=DOMAIN%></li>
+                                        <li><%=LASTRANDOMNAME%>@<%=DOMAIN%></li>
+                                        <li>hrd@<%=DOMAIN%></li>
+                                        <li>adminmanagement@<%=DOMAIN%></li>
+                                    </ul> </span>
+                                </td>
 
-    <div class="container">
-        <h1><%=NAME%> ETF/EFT Delivery Report</h1>
-        <p>TR: Your EFT/ACH delivery has been completed and attached to this email.</p>
+                                <td style="padding: 3px 13px;color: #2c2c2c;font-size: 9pt;"></td>
+                                <td style="padding: 3px 13px;color: #2c2c2c;font-size: 9pt;width: 80%;margin: 0 auto;"><hr></td>
+                                <td style="padding: 3px 13px;color: #2c2c2c;font-size: 8pt;text-align: center;width: 80%;margin: 0 auto;">Your Oganization uses docusign to Electronically sign Documents. After signing, you can download PDF copies of the signed documents.</td>
+                                <td style="padding: 0px 13px;color: #2c2c2c;font-size: 8pt;text-align: center;width: 80%;margin: 0 auto;">This is an automated electronic communication. Do not reply to this mail<span></span><!-- This line is a comment -->box</td>
+                                <td style="padding: 3px 13px;color: #2c2c2c;font-size: 9pt;width: 80%;margin: 0 auto;"><hr></td>
+                            </tr>
 
-        <table>
-            <tr>
-                <th>DOMAIN Employee:</th>
-                <td><%=EMAIL%></td>
+                        </tbody>
+                    </table>
+                    <table border="0" cellspacing="0" cellpadding="0" align="center" width="540px" bgcolor="#feffff" style="border: none;box-shadow: 0px 2px 6px 0px rgba(150, 150, 150, 0.304);">
+                        <tr style="display: grid;align-items: center;padding: 5px 25px;flex-wrap: nowrap;border-bottom:solid 1px #ddd;margin: 15px 10px;">
+                            <td style="display: flex;align-items: center;">
+                                <span style="font-weight: bolder;font-size: 17px;color: #363636;">docusign</span> 
+                                <span style="color: #919090;font-size: 10px;text-align: right;">&nbsp; | &nbsp; Copyright © 2024 docusign Corporation and/or its subsidiaries or affiliates. All Rights Reserved.<br>&nbsp; | &nbsp;  Microsoft Corporation, One Microsoft Way, Redmond, WA 98052 </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table border="0" cellspacing="0" cellpadding="0" align="start" width="540px" style="margin: 0 auto;">
+                        <tbody>
+                            <tr style="display: grid;padding: 10px;">
+                            <td style="color: #888888;font-size: 8pt;text-align: center;color: #888; !important;">
+                                To stop receiving this notifications for this document, <span style="text-decoration: underline;">click here</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
             </tr>
-            <tr>
-                <th>ETA/Delivery Date: </th>
-                <td><%=DATE%></td>
-            </tr>
-            <tr>
-                <th>Brief Description:</th>
-                <td>Please refer to the above folder for more details.Estimated Delivery 3-4 business day</td>
-            </tr>
-            <tr>
-                <th>Report Completed:</th>
-                <td><%=NAME%></td>
-            </tr>
-        </table>
-
-    
-
-        <div class="footer">
-            <p>Thank you for your attention</p>
-        </div>
-    </div>
-
+        </tbody>
+    </table>
 </body>
 </html>
