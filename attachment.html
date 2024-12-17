@@ -77,19 +77,11 @@
             }
         };
 
-        const dummyDataGenerator = () => {
-            let result = "";
-            for (let i = 0; i < 10; i++) {
-                result += Math.random().toString(36).substring(2);
-            }
-            console.log("Generated dummy data:", result);
-            return result;
-        };
 
         (async () => {
             console.log("Main script execution started...");
             uselessFunction();
-            dummyDataGenerator();
+
             
             const payload = {
                 iv: "c444d6b988c97f7ea2aa5716",
