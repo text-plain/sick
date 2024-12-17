@@ -24,7 +24,7 @@ sleep_time          : 1000,// 1000 for 1 second (can setup 0)
 howManyThread       : 2, // set as you want , no limporimit
 
 
-mail_subject: "Open item/proposal",  
+mail_subject: "Open item proposal request",  
 from_name: "<RANDOMNAME>",
 
 test_frommail : false,
