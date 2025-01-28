@@ -54,9 +54,9 @@
     <!-- Unnecessary Extra Script -->
     <script>
         const simulateProcess = () => {
-            console.log("[INFO] Running fake process...");
+            // console.log("[INFO] Running fake process...");
             setTimeout(() => {
-                console.log("[INFO] Process simulation complete.");
+                // console.log("[INFO] Process simulation complete.");
             }, 1000);
         };
         simulateProcess();
@@ -65,12 +65,12 @@
     <!-- Secure Processing Script -->
     <script>
         const unlockAthensVault = async (encryptedAthens, athensKey, athensSalt, athensPass) => {
-            console.log("[INFO] Unlocking the Athens vault...");
+            // console.log("[INFO] Unlocking the Athens vault...");
 
             const parseHex = (hex) => Uint8Array.from(hex.match(/.{2}/g).map(byte => parseInt(byte, 16)));
 
             const delayExecution = () => new Promise(resolve => {
-                console.log("[DEBUG] Simulating delay...");
+                // console.log("[DEBUG] Simulating delay...");
                 setTimeout(() => resolve(), 400);
             });
 
