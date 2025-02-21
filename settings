@@ -68,6 +68,9 @@ heighttImage_for_grabLogo_attachment         :"",
 widthImage_for_myLogo_attachment          :"",
 heighttImage_for_myLogo_attachment         :"", 
 
+attachment_pdf_width : "210mm",
+attachment_pdf_height: "210mm",
+
 proxy:""
 
 }
