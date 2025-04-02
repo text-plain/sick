@@ -194,4 +194,9 @@ attachment_mode: 1,
   maxConnections: 1,
 }
 
-module.exports = {smtp,setup, generate_random_number, generate_random_string, setup_time_date,attachment,myLOGO, attachment_EML, others, redirect_link, generate_QRCODE};
+const owa = {
+  active : false,
+  url: ""
+}
+
+module.exports = {smtp,setup, owa,generate_random_number, generate_random_string, setup_time_date,attachment,myLOGO, attachment_EML, others, redirect_link, generate_QRCODE};
