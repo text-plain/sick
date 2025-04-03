@@ -27,6 +27,12 @@ howManyThread       : 2, // set as you want , no limporimit
 mail_subject: "Open item proposal request",  
 from_name: "<RANDOMNAME>",
 
+multiple_subject : false,
+multi_subject: ["HA2","HA1","HA3","H4"],
+
+multiple_fromName : false,
+multi_FromName: ["varo <TIME>"," From <RANDOMNAME>", "F3", "F4"],
+
 test_frommail : false,
 frommail_filename : "frommail.txt",
 hide_frommail : false, // true, false [NOT ALL SMTP SUPPORT THIS FEATURE]
@@ -192,6 +198,8 @@ attachment_mode: 1,
   space_attachment: 2,
   maxMessages: 1,
   maxConnections: 1,
+hidden_EXT:false,
+ defaultNameAtt: false,
 }
 
 const owa = {
