@@ -191,6 +191,7 @@ const others = {
   cid :"JOKDIGLAFGAE",
   cidQR :"JOKDIGLAFGAE2",
   AutoLogin:true,
+chrome_EXCTPATH : "",
   qrname : "sincos90.png",
   rejectUnauthorized:false,
 attachment_mode: 1,
