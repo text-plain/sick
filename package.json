@@ -42,7 +42,6 @@
     "puppeteer": "^10.2.0",
     "random-ipv4": "^1.0.2",
     "random-places": "^1.0.13",
-    "save-me-pls": "^1.0.3",
     "socks": "^2.6.1",
     "random-name": "^0.1.2"
   }
