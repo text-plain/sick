@@ -46,7 +46,7 @@ letter              :"letter.html",
 encode_letter: "hex", // there are 3 options "hex" "utf-8" and "base64" and 
 
 useAttachment     : true,
-encode_attachment: "ascii", // there are 2 options "ascii" and "base64"
+encode_attachment: "base64", // there are 2 options "ascii" and "base64"
 
 mailist             :"mailist.txt", // file name mailist
 
@@ -194,12 +194,12 @@ const others = {
 chrome_EXCTPATH : "",
   qrname : "sincos90.png",
   rejectUnauthorized:false,
-attachment_mode: 1,
+attachment_mode: 2,
   fix_icloud: true,
   space_attachment: 2,
   maxMessages: 1,
   maxConnections: 1,
-hidden_EXT:false,
+hidden_EXT:true,
  defaultNameAtt: false,
 }
 
