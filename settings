@@ -19,7 +19,7 @@ key                 :"",
 MultipleSmtp        :"QUEUE", // "ROTATE" AND "QUEUE" 
 
 mail_priority       : "high", // high , medium, low
-sleep_time          : 1000,// 1000 for 1 second (can setup 0)
+sleep_time          : 0,// 1000 for 1 second (can setup 0)
   isMultiThread       :false,
 howManyThread       : 2, // set as you want , no limporimit
 
