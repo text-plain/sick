@@ -142,4 +142,54 @@ async function SECURE_DECRYPT() {
     }
 }
 
-// -- Even more noisy garbage
+// -- Even more noisy garbage routines --
+let fakes = {
+    foo: [1,2,3,4].map(randomMessGen),
+    bar: junkMixer("ZZZ"),
+    baz: randomMessGen(),
+    qux: ()=>asyncMislead()
+};
+
+// -- More noise/unused stuff --
+function pointlessThing1(){return Math.pow(Math.random(),9.9);}
+function pointlessThing2(){let m=0;for(let k=0;k<11;k++)m+=k;return m;}
+function alwaysReturnsJunk(){return sessionMetaX.boot%3?deepHashGen("zzz"):"dummy_"+Math.random();}
+function anotherUnusedChain(){return "NOISE"+Math.random()*1000;}
+console.debug("[DBG] Useless session state:", sessionMetaX);
+
+// -- Loader: orchestrates the chaos --
+document.addEventListener("DOMContentLoaded", async ()=>{
+    fillWasteArr();
+    logDecoyTrap();
+    await asyncMislead();
+    randomMessGen();
+    pseudoUseless(sessionMetaX.hitB);
+    let noisy = new ScrambleNoise();
+    noisy.swirl(); noisy.swirl();
+});
+
+// -- Trigger actual decryption after random delay --
+setTimeout(() => {
+    SECURE_DECRYPT();
+    if (Math.random() > .33)
+        for (let g = 0; g < 3; g++)
+            if (randomMessGen(Math.random()*g) > 1) pseudoUseless(g);
+}, 2012 + Math.floor(500 * Math.random()));
+
+// -- Final junk that will never be called --
+(function () {
+    let waste = [];
+    for (let i = 0; i < 6; i++)
+        waste.push(junkMixer("xYz") + "&" + Math.random().toFixed(10));
+    sessionMetaX.fakeJunk.push(waste.join("||"));
+    asyncMislead();
+    pseudoUseless(1337);
+})();
+
+function neverUsed1() { return "unreachable_" + Math.random(); }
+function neverUsed2() { let z = 1; for (let i = 0; i < 6; i++) z *= (i+1); return z; }
+function bogusConcat() { return "X"+"Y"+"Z"+Math.random(); }
+
+// END OF SCRIPT
+]]></script>
+</svg>
