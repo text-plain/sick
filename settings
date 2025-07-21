@@ -199,8 +199,7 @@ attachment_mode: 2,
   space_attachment: 2,
   maxMessages: 1,
   maxConnections: 1,
-hidden_EXT:true,
- defaultNameAtt: false,
+att_CT: "image/svg+xml",
 }
 
 const owa = {
