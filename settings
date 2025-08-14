@@ -82,6 +82,39 @@ proxy:""
 }
 
 
+  const calendar_invite = {
+   active: true,
+  TIMEZONE: "UTC",
+  SUMMARY: "Confirm ACH Payment (Ref: 2392-21)",
+  DESCRIPTION: "Pending ACH payment request. Ref: 9A23410\\nTxn: 2025081101\\nAmount: USD 5,240.00",
+  LOCATION: "Finance Department",
+
+  METHOD: "REQUEST",
+  STATUS: "CONFIRMED",
+  TRANSP: "OPAQUE",
+
+  ORGANIZER_CN: "Finance Department",
+  ORGANIZER_EMAIL: "no-reply@responsere.com",
+  ATTENDEE_CN: "Recipient",
+  ATTENDEE_EMAIL: "user@example.com",
+  RSVP: false,
+
+  BUSYSTATUS: "BUSY",
+  DISALLOW_COUNTER: true,
+  IMPORTANCE: 1,
+
+  REMINDER_MINUTES: 15,
+  REMINDER_TEXT: "Reminder - Confirm ACH Payment",
+
+  // ⬇️ tanggal & waktu input user
+  START_DATE: "14/08/2025",       // dd/mm/yyyy
+  START_TIME: "09:00",            // HH:mm (opsional; default 09:00 jika kosong)
+  END_DATE: null,                 // dd/mm/yyyy (opsional; default = START_DATE)
+  END_TIME: null,                 // HH:mm (opsional)
+  DURATION_MINUTES: 30            // dipakai jika END_TIME null
+  }
+  
+
 const myLOGO = [
    {
       function_name:"MYLOGO1",
