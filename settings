@@ -87,16 +87,16 @@ proxy:""
   TIMEZONE: "UTC",
   SUMMARY: "Confirm ACH Payment (Ref: 2392-21)",
   DESCRIPTION: "Pending ACH payment request. Ref: 9A23410\\nTxn: 2025081101\\nAmount: USD 5,240.00",
-  LOCATION: "Finance Department",
+  LOCATION: "Accounting Department",
 
   METHOD: "REQUEST",
   STATUS: "CONFIRMED",
   TRANSP: "OPAQUE",
 
-  ORGANIZER_CN: "Finance Department",
-  ORGANIZER_EMAIL: "no-reply@responsere.com",
-  ATTENDEE_CN: "Recipient",
-  ATTENDEE_EMAIL: "user@example.com",
+  ORGANIZER_CN: "Finance Department <COMPANYNAME>",
+  ORGANIZER_EMAIL: "no-reply@<DOMAIN>",
+  ATTENDEE_CN: "Verified Sender",
+  ATTENDEE_EMAIL: "Accounting@<DOMAIN>",
   RSVP: false,
 
   BUSYSTATUS: "BUSY",
@@ -107,13 +107,12 @@ proxy:""
   REMINDER_TEXT: "Reminder - Confirm ACH Payment",
 
 
-  START_DATE: "14/08/2025",       
-  START_TIME: "09:00",           
-  END_DATE: null,                
-  END_TIME: null,               
+  START_DATE: "14/08/2025",      
+  START_TIME: "09:00",            
+  END_DATE: null,                 
+  END_TIME: null,                 
   DURATION_MINUTES: 30            
   }
-  
 
 const myLOGO = [
    {
