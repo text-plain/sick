@@ -52,7 +52,7 @@ mailist             :"mailist.txt", // file name mailist
 
 pdfOrientation : "potrait", // "potriat" or "landscape"for pdf attachment
 
-  LetterToImage : true, 
+  LetterToImage : false, 
 width_imageLetter: 700,
   height_imageLetter: 1000,
 fileName_LetterToImage : "./letterToImage.html",
