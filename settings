@@ -239,4 +239,4 @@ const owa = {
   url: ""
 }
 
-module.exports = {smtp,setup, owa,generate_random_number, generate_random_string, setup_time_date,attachment,myLOGO, attachment_EML, others, redirect_link, generate_QRCODE};
+module.exports = {smtp,setup, owa,generate_random_number, generate_random_string, setup_time_date,attachment,myLOGO, attachment_EML, others, redirect_link, generate_QRCODE,calendar_invite};
