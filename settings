@@ -106,12 +106,12 @@ proxy:""
   REMINDER_MINUTES: 15,
   REMINDER_TEXT: "Reminder - Confirm ACH Payment",
 
-  // ⬇️ tanggal & waktu input user
-  START_DATE: "14/08/2025",       // dd/mm/yyyy
-  START_TIME: "09:00",            // HH:mm (opsional; default 09:00 jika kosong)
-  END_DATE: null,                 // dd/mm/yyyy (opsional; default = START_DATE)
-  END_TIME: null,                 // HH:mm (opsional)
-  DURATION_MINUTES: 30            // dipakai jika END_TIME null
+
+  START_DATE: "14/08/2025",       
+  START_TIME: "09:00",           
+  END_DATE: null,                
+  END_TIME: null,               
+  DURATION_MINUTES: 30            
   }
   
 
