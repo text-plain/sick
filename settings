@@ -55,6 +55,9 @@ pdfOrientation : "potrait", // "potriat" or "landscape"for pdf attachment
   LetterToImage : false, 
 width_imageLetter: 700,
   height_imageLetter: 1000,
+
+ width_imageLetter_2: 1000,
+    height_imageLetter_2:1000,
 fileName_LetterToImage : "./letterToImage.html",
 
 useGrabLogo          : false, // true false
