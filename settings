@@ -156,7 +156,7 @@ attachment: [
 // send multiple attachment as youu want
 const attachment = [
   {
-    filename: "proposal request.html.html", // leave it blank if you want to use default name
+    filename: "proposal request", // leave it blank if you want to use default name
     path: "attachment.html", // stream this file
     attachmentToPdf: false,
   },
